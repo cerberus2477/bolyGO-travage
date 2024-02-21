@@ -4,19 +4,17 @@
 
 /* VARIABLES */
 :root {
-    --clr-white: hsl(120, 7%, 97%);
-    --clr-black: hsl(150, 40%, 3%);
+    --clr-white: hsl(251, 100%, 98%);
+    --clr-black: hsl(240, 38%, 3%);
+    --clr-blue-black: hsl(234, 43%, 10%);
 
-    --clr-green: hsl(130, 45%, 10%);
-    --clr-green-light: hsl(124, 62%, 29%);
+    --clr-orange: hsl(25, 77%, 51%);
 
-
-    --clr-brown: hsl(17, 47%, 13%);
-    --clr-grey: hsl(26, 14%, 10%);
-    --clr-sage: hsl(51, 26%, 21%);
-
-    --clr-yellow-dark: hsl(45, 95%, 50%);
-    --clr-yellow-light: hsl(51, 95%, 58%);
+    --clr-green: hsl(99, 76%, 54%);
+    --clr-red: hsl(14, 82%, 49%);
+    --clr-yellow: hsl(58, 72%, 63%);
+    --clr-pink: hsl(324, 72%, 63%);
+    --clr-purple: #845ee5;
 }
 
 
@@ -55,8 +53,6 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
 
-
-    color: var(--clr-white)
 }
 
 /* színátmenet a háttéren */
@@ -89,7 +85,7 @@ header::after {
 nav {
     padding: 0 5vw;
 
-    /* .main-nav */
+    /* nav */
     position: fixed;
     z-index: 10;
     top: 0;
@@ -109,6 +105,7 @@ nav {
 } */
 
 
+/* narancs */
 .btn {
     margin: 1rem;
 
@@ -125,15 +122,13 @@ nav {
     letter-spacing: 2px;
 
     transition: all .2s;
+
+    background-color: var(--clr-orange);
+    color: var(--clr-white);
 }
 
-.btn-yellow {
-    background-color: var(--clr-yellow-dark);
-    color: var(--clr-green);
-}
-
-.btn-yellow:hover {
-    background-color: var(--clr-yellow-light);
+.btn:hover {
+    background-color: var(--clr-red);
     /* color: var(--clr-green); */
 }
 
@@ -143,8 +138,8 @@ nav {
 }
 
 .btn-green:hover {
-    background-color: var(--clr-green-light);
-    /* color: var(--clr-green); */
+    background-color: var(--clr-white);
+    color: var(--clr-green);
 }
 
 
@@ -163,7 +158,7 @@ nav {
 
 @media screen and (max-width: 800px) {
 
-    .main-nav {
+    nav {
         flex-direction: column;
         background-color: var(--clr-green);
         position: relative;
@@ -174,16 +169,16 @@ nav {
 
 
 
-    .main-nav[data-state="closed"] a {
+    nav[data-state="closed"] a {
         display: none;
     }
 
-    .main-nav[data-state="open"] a {
+    nav[data-state="open"] a {
         display: block;
 
     }
 
-    .main-nav[data-state="open"] .nav-first-row {
+    nav[data-state="open"] .nav-first-row {
         border-bottom: 1px solid rgba(255 255 255 /0.3);
     }
 
@@ -201,7 +196,7 @@ nav {
         display: block !important;
     }
 
-    /* .main-nav[data-state="closed"] .logo {
+    /* nav[data-state="closed"] .logo {
         margin-right: 0px;
         width: 100%;
         display: block;
@@ -210,8 +205,10 @@ nav {
 
 
 
-.main-nav[data-scrolled="true"] {
-    background-color: var(--clr-green);
+nav[data-scrolled="true"] {
+    background-color: var(--clr-blue-black);
+    /* margin-right: auto; */
+    /* text-transform: uppercase; */
 }
 
 nav .logo {
@@ -235,7 +232,7 @@ nav a.active {
 }
 
 a {
-    color: var(--clr-green-light);
+    color: var(--clr-orange);
     text-decoration: none;
     transition: all .2s linear;
 }
@@ -243,7 +240,7 @@ a {
 
 /* más szín */
 ::selection {
-    background-color: var(--clr-green-light);
+    background-color: var(--clr-orange);
     color: var(--clr-white);
 }
 
