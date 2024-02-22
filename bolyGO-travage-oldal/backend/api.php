@@ -2,6 +2,8 @@
 
 //header('Content-Type: application/json; charset=utf-8');
 
+echo "uuhu";
+
 switch($_SERVER["REQUEST_METHOD"]) {
     case "GET":
         if (isset($_GET["csomagid"])) getCsomag($_GET["csomagid"]);
