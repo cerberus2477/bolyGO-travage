@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
 <?php
 
-header('Content-Type: application/json; charset=utf-8');
+//header('Content-Type: application/json; charset=utf-8');
 
 switch($_SERVER["REQUEST_METHOD"]) {
     case "GET":
@@ -19,7 +10,9 @@ switch($_SERVER["REQUEST_METHOD"]) {
     case "POST":
         foglal();
         break;
-
+    default:
+        echo "uwu";
+        break;
 }
 
 //csomagok leírásának, nevének, azonosítójának lekérése
@@ -67,13 +60,7 @@ function closeDB() {
 function hibauzenet($e) {
     $uzenet = array("hiba" => "SQL-hiba", "uzenet" => "Nem sikerült csatlakozni az adatbázishoz. Hibaüzenet: ".$e->getMessage());
     $json = json_encode($uzenet);
-    echo $json;
-
+    exit($json);
 }
 
 echo "cukiság";
-
-?>
-
-</body>
-</html>
