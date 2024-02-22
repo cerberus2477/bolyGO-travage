@@ -1,13 +1,389 @@
-html,
-body {
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+/* VARIABLES */
+:root {
+    --clr-white: hsl(251, 100%, 98%);
+    --clr-black: hsl(240, 38%, 3%);
+    --clr-blue-black: hsl(234, 43%, 10%);
+
+    --clr-orange: hsl(25, 77%, 51%);
+
+    --clr-green: hsl(99, 76%, 54%);
+    --clr-red: hsl(14, 82%, 49%);
+    --clr-yellow: hsl(58, 72%, 63%);
+    --clr-pink: hsl(324, 72%, 63%);
+    --clr-purple: #845ee5;
 }
 
+
+/* CSS RESET */
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+
+    /* sajat font kene*/
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: var(--clr-white);
     background: url("./img/bg.jpg") no-repeat center center / contain;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+/* színátmenet a háttéren */
+header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+
+    /* background: linear-gradient(10deg, var(--clr-yellow-dark), var(--clr-green) 60%); */
+    background: linear-gradient(to bottom, var(--clr-black), var(--clr-green-light));
+    opacity: .6;
+}
+
+/* .header-main::after {
+    background: var(--clr-black);
+} */
+
+
+
+
+
+.header-content {
+    text-align: center;
+    z-index: 8;
+}
+
+
+nav {
+    padding: 0 5vw;
+
+    /* nav */
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+
+    align-items: center;
+}
+
+
+/* .maps-container {
+    height: 100%;
+    width: 100%;
+} */
+
+
+/* narancs */
+.btn {
+    margin: 1rem;
+
+    border-radius: 1px;
+    border: none;
+
+    padding: 15px 30px;
+
+    font-weight: 500;
+
+    font-size: 0.75rem;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    transition: all .2s;
+
+    background-color: var(--clr-orange);
+    color: var(--clr-white);
+}
+
+.btn:hover {
+    background-color: var(--clr-red);
+    /* color: var(--clr-green); */
+}
+
+.btn-green {
+    background-color: var(--clr-green);
+    color: var(--clr-white);
+}
+
+.btn-green:hover {
+    background-color: var(--clr-white);
+    color: var(--clr-green);
+}
+
+
+
+.navbar-toggler {
+    display: none;
+    padding: 15px;
+}
+
+.nav-first-row {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+
+    nav {
+        flex-direction: column;
+        background-color: var(--clr-green);
+        position: relative;
+        transition: all .2s;
+    }
+
+
+
+
+
+    nav[data-state="closed"] a {
+        display: none;
+    }
+
+    nav[data-state="open"] a {
+        display: block;
+
+    }
+
+    nav[data-state="open"] .nav-first-row {
+        border-bottom: 1px solid rgba(255 255 255 /0.3);
+    }
+
+    .navbar-toggler {
+        display: block !important;
+        /* position: fixed;
+        top: 0;
+        right: 0; */
+    }
+
+    .logo {
+        margin-right: 0px;
+        width: 100%;
+
+        display: block !important;
+    }
+
+    /* nav[data-state="closed"] .logo {
+        margin-right: 0px;
+        width: 100%;
+        display: block;
+    } */
+}
+
+
+
+nav[data-scrolled="true"] {
+    background-color: var(--clr-blue-black);
+    /* margin-right: auto; */
+    /* text-transform: uppercase; */
+}
+
+nav .logo {
+    margin-right: auto;
+    text-transform: uppercase;
+}
+
+nav a {
+    margin: 0;
+    padding: 2.4vh 1em;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: var(--clr-white);
+    font-weight: light;
+
+    /* mix-blend-mode: difference; */
+}
+
+nav a.active {
+    text-decoration: underline wavy;
+}
+
+a {
+    color: var(--clr-orange);
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+
+/* más szín */
+::selection {
+    background-color: var(--clr-orange);
+    color: var(--clr-white);
+}
+
+section {
+    position: relative;
+}
+
+img {
+    display: block;
+    width: 100%;
+    /* height: 100%; */
+}
+
+
+
+main {
+    /* display: grid; */
+    /* background-color: var(--clr-white); */
+    /* grid-template-columns: 1fr 1fr 1fr; */
+
+
+    /* gap: 2rem; */
+
+    padding: 5rem 0rem;
+}
+
+
+
+
+
+
+
+
+/* TYPOGRAPHY */
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.header-main h1 {
+    font-stretch: narrower;
+    font-size: 3rem;
+}
+
+.header-main h1 span {
+    /* text-transform: uppercase; */
+    /* color: black;
+    background-color: var(--clr-white);
+    padding: .5rem;
+    border-radius: 4px; */
+
+    font-family: 'Lobster', cursive;
+    font-size: 5rem;
+    line-height: 1;
+}
+
+
+h2 {
+    font-weight: 600;
+    font-size: 30px;
+    font-style: italic;
+    font-family: 'Lobster', serif;
+}
+
+/* h2::after {
+    position: absolute;
+    content: "ˇˇ";
+    width: 45px;
+    height: 2px;
+    top: 50%;
+    right: -50px;
+    margin-top: -1px;
+    background: currentColor;
+} */
+
+
+
+.wave-top {
+    top: -1px;
+}
+
+.wave-bottom {
+    transform: rotate(180deg);
+    bottom: -1px;
+}
+
+.wave {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+
+    z-index: 9;
+
+}
+
+
+.wave path {
+    fill: var(--clr-white);
+    transform-origin: center;
+
+    transform: rotateY(0deg);
+    line-height: 0;
+
+    height: 20px;
+}
+
+.wave svg {
+    width: calc(100% + 1.3px);
+    height: 25px;
+    z-index: -1;
+    display: block;
+
+    position: relative;
+}
+
+
+.bg-section {
+    background-image: linear-gradient(rgba(0 0 0 /0.4), rgba(0 0 0 /0.4)), url("../img/rudolf/galeria/kornyek/kutyas_seta.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+    padding: 150px 50px;
+    color: var(--clr-white);
+
+    /* padding: -3rem; */
+}
+
+
+footer {
+
+    background-color: var(--clr-green);
+    color: var(--clr-white);
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 5rem;
 }
