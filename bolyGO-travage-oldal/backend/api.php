@@ -61,3 +61,5 @@ function hibauzenet($e) {
     echo $json;
 
 }
+
+echo "cukiság";
