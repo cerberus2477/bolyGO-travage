@@ -3,6 +3,7 @@
 //header('Content-Type: application/json; charset=utf-8');
 
 echo "uuhu";
+var_dump(function_exists('mysqli_connect'));
 
 switch($_SERVER["REQUEST_METHOD"]) {
     case "GET":
