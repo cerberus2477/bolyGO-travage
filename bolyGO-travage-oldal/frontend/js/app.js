@@ -1,18 +1,24 @@
-//nav toggle and color change on scroll
-
-const nav = document.querySelector(".main-nav");
-const toggleNav = () => {
-    if (nav.dataset.state == "closed") {
-        nav.dataset.state = "open";
+const nav = document.getElementsByTagName("nav")[0];
+const navHeight = nav.getBoundingClientRect().height;
+window.onscroll = function () {
+    if (window.pageYOffset > navHeight) {
+        nav.dataset.scrolled = "true";
     } else {
-        nav.dataset.state = "closed";
+        nav.dataset.scrolled = "false";
     }
 }
 
+//TOGGLE NAV
+// const toggleNav = () => {
+//     if (nav.dataset.state == "closed") {
+//         nav.dataset.state = "open";
+//     } else {
+//         nav.dataset.state = "closed";
+//     }
+// }
 
+// EZ LENNE AHHOZ HOGY CSAK A NAV ALATT SZINEZŐDJÖN KI DE NEM KELL SZERINTEM
 // const header = document.querySelector('header');
-const navHeight = nav.getBoundingClientRect().height;
-
 // function updateNavColor(entries) {
 //     const [entry] = entries;
 //     if (!entry.isIntersecting) {
@@ -33,19 +39,11 @@ const navHeight = nav.getBoundingClientRect().height;
 
 
 
-window.onscroll = function () {
-    if (window.pageYOffset > navHeight) {
-        nav.dataset.scrolled = "true";
-    } else {
-        nav.dataset.scrolled = "false";
-    }
-}
 
-
-//FILTER IMAGES IN GALERIA.HTML
-const filter = (category) => {
-    // if (category == "Összes"){
-    //     document.querySelectorAll(img).style.show; //markup
-    // }
-    console.log(category);
-};
+//FILTER IMAGES
+// const filter = (category) => {
+//     // if (category == "Összes"){
+//     //     document.querySelectorAll(img).style.show; //markup
+//     // }
+//     console.log(category);
+// };
