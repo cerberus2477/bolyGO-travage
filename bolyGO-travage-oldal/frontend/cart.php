@@ -16,14 +16,16 @@
         </a>
     </header>
     <main>
-        form<!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
+        <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
         <?PHP foreach ($_SESSION["kosar"] as $item):?> 
-                <div class="lineOfCart">
-                    <p class="Sorszám"><?$item[0]?></p>
-                    <p class="Name"><?$item[2]?></p>
+                <div class="lineOfCart" id="line<?$item[1]?>">
+                    <p class="orderNum"><?$item[0]?></p>
+                    <p class="name"><?$item[2]?></p>
                     <input type="number" name="<?"numOfPeople".$item[0]?>" id="<?"numOfPeople".$item[0]?>" value="<?$item[3]?>">
+                    <button class="delete" onclick="del(<?$item[1]?>)">törlés</button>
                 </div>
         <?php endforeach ?>
+
     </main>
 </body>
     
