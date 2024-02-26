@@ -61,7 +61,13 @@ main {
     padding: 5rem 0rem;
 }
 
+.header-cart {
+    height: 50vh;
+}
 
+.main-cart{
+    background-color: var(--clr-blue-black);
+}
 
 
 
@@ -77,6 +83,7 @@ header {
     align-items: center;
     justify-content: center;
 }
+
 
 /* színátmenet a háttéren */
 header::after {

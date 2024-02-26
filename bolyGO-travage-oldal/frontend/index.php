@@ -16,7 +16,7 @@
     <nav data-state="closed" data-scrolled="false">
         <div class="nav-elements">
             <a class="logo" href="#">bolyGO</a>
-            <a class="btn" href="">Kosár</a>
+            <a class="btn" href="./cart.php">Kosár</a>
         </div>
     </nav>
 

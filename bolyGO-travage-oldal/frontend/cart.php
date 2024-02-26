@@ -7,15 +7,29 @@
     <script src="js/cartAPP.js"></script>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="shortcut icon" href="resources/logo.ico" type="image/x-icon">
+
+    
+    <style>
+
+    </style>
 </head>
 <body>
-    <header>
-        <a href="index.php">
-            <img src="logo_ikon.png" alt="logo">
-            <p>bolyGO</p>
-        </a>
+
+    <header class="header-cart">
+        <div class="header-content">
+            <h1>Kosár</h1>
+        </div>
     </header>
-    <main>
+
+
+    <nav data-state="closed" data-scrolled="false">
+        <div class="nav-elements">
+            <a class="logo" href="#">bolyGO</a>
+            <a class="btn" href="./index.php">X</a>
+        </div>
+    </nav>
+    
+    <main class="main-cart">
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
         <?PHP foreach ($_SESSION["kosar"] as $item):?> 
                 <div class="lineOfCart" id="line<?$item[1]?>">
