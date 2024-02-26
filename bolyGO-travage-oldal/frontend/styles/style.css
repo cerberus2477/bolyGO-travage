@@ -61,13 +61,6 @@ main {
     padding: 5rem 0rem;
 }
 
-.header-cart {
-    height: 50vh;
-}
-
-.main-cart{
-    background-color: var(--clr-blue-black);
-}
 
 
 
@@ -75,7 +68,7 @@ main {
 /* HEADER */
 header {
     position: relative;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: transparent;
 
     display: flex;
@@ -321,4 +314,15 @@ footer {
     height: 100%;
     width: 100%;
 } */
+
+
+
+
+.header-cart {
+    height: 50vh;
+}
+
+.main-cart{
+    background-color: var(--clr-blue-black);
+}
 
