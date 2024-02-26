@@ -20,6 +20,7 @@
 /* CSS RESET */
 * {
     box-sizing: border-box;
+    z-index: 2;
 }
 
 html,
@@ -35,11 +36,24 @@ body {
     line-height: 1.5;
     color: var(--clr-white);
     /* background: url("./img/bg.jpg") no-repeat center center / contain; */
+    /* background-color: transparent; */
     background-image: url("./img/bg.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    position: relative;
+    z-index: 1;
+}
+
+body::after{
+    content: '';
+
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--clr-pink), transparent);
+    /* background: var(--clr-black); */
+    opacity: .6;
 }
 
 ::selection {
@@ -70,18 +84,6 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-
-/* színátmenet a háttéren */
-header::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-
-    /* background: var(--clr-black); */
-    background: linear-gradient(to top, var(--clr-blue-black), transparent);
-    opacity: .6;
 }
 
 

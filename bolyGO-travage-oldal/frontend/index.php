@@ -42,7 +42,7 @@
 
    
         <section id="csomagok">
-
+s
             <h2>Csomagok</h2>
             <div class="cards-container">
                 <div class="card" data-csomagid="szam">
