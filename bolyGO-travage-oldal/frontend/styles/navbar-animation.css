@@ -186,7 +186,7 @@ h2 {
 }
 
 .bg-section {
-    background-image: linear-gradient(rgba(0 0 0 /0.4), rgba(0 0 0 /0.4)), url("../img/rudolf/galeria/kornyek/kutyas_seta.jpg");
+    background-image: linear-gradient(rgba(0 0 0 /0.4), rgba(0 0 0 /0.4)), url("./img/hero-optimised.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
