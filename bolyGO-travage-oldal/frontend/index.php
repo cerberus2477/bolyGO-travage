@@ -41,12 +41,42 @@
         </section>
 
    
-        <section>
-            <h2>Ez egy térkép lesz</h2>
-            <!-- térkép -->
-            
+        <section id="csomagok">
 
-            <!-- <img src="./img/rudolf/galeria/kornyek/csonak.jpg" alt="dolog"> -->
+            <h2>Csomagok</h2>
+            <div class="cards-container">
+                <div class="card" data-csomagid="szam">
+                    <div class="card-image">
+                        <img src="planet1.jpg" alt="Planet 1">
+                    </div>
+                    <div class="card-content">
+                        <h2>Planet 1</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <button class="btn">Részletek</button>    
+                    </div>
+                </div>
+                <div class="card" data-csomagid="szam">
+                    <div class="card-image">
+                        <img src="planet1.jpg" alt="Planet 1">
+                    </div>
+                    <div class="card-content">
+                        <h2>Planet 1</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <button class="btn">Részletek</button>    
+                    </div>
+                </div>
+                <div class="card" data-csomagid="szam">
+                    <div class="card-image">
+                        <img src="planet1.jpg" alt="Planet 1">
+                    </div>
+                    <div class="card-content">
+                        <h2>Planet 1</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <button class="btn">Részletek</button>    
+                    </div>
+                </div>
+
+            </div>
         </section>
 
         <section class="bg-section">
