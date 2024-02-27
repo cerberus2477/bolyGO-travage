@@ -50,11 +50,9 @@ body {
 
 body::after{
     content: '';
-
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, var(--clr-purple), transparent);
-    /* background: var(--clr-black); */
+    background: linear-gradient(to top, var(--clr-purple), var(--clr-black));
     opacity: .3;
 }
 
@@ -352,10 +350,15 @@ footer {
 
   .big-card{
     width: 100%;
+    display: flex;
+    flex-direction: row;
   }
 
 
 
 
-
+#csomagok{
+    background-color: var(--clr-pink);
+    margin: 0 -5rem;
+}
   

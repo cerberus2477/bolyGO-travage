@@ -40,7 +40,7 @@
                 <div class="rolunk-container">
                 <div class="card" data-color="yellow">
                     <div class="card-image">
-                        <img src="./stlyes/img/levi.png" alt="Levi">
+                        <img src="./styles/img/levi.png" alt="Levi">
                     </div>
                     <div class="card-content">
                         <h2>Levi</h2>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="card" data-color="pink">
                     <div class="card-image">
-                        <img src="./stlyes/img/tunde.jpg" alt="Tünde">
+                        <img src="./styles/img/tunde.jpg" alt="Tünde">
                     </div>
                     <div class="card-content">
                         <h2>Tünde</h2>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="card" data-color="green">
                     <div class="card-image">
-                        <img src="./stlyes/img/sityu.jpg" alt="Sityu">
+                        <img src="./styles/img/sityu.jpg" alt="Sityu">
                     </div>
                     <div class="card-content">
                         <h2>Sityu</h2>
@@ -70,7 +70,6 @@
 
    
         <section id="csomagok">
-s
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <div class="card" data-csomagid="szam">
@@ -80,7 +79,7 @@ s
                     <div class="card-content">
                         <h2>Planet 1</h2>
                         <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                        <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                        <button class="btn btn-light">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
                     </div>
                 </div>
                 <div class="card" data-csomagid="szam">
@@ -90,7 +89,7 @@ s
                     <div class="card-content">
                         <h2>Planet 1</h2>
                         <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                        <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                        <button class="btn btn-light">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
                     </div>
                 </div>
                 <div class="card" data-csomagid="szam">
@@ -100,7 +99,7 @@ s
                     <div class="card-content">
                         <h2>Planet 1</h2>
                         <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> 
-                        <a href="#csomag-bovebben" class="btn btn-dark" onclick="reszletek();">Részletek <i class="fa-solid fa-circle-chevron-down"></i></a>
+                        <a href="#csomag-bovebben" class="btn btn-light" onclick="reszletek();">Részletek <i class="fa-solid fa-circle-chevron-down"></i></a>
                     </div>
                 </div>
 
@@ -147,10 +146,10 @@ s
                                 </tbody>
                             </table>
 
-
+                        <button class="btn">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>   
 
                     </div>  
-                    <button class="btn btn-dark">Részletek</button>    
+  
                 </div>
             </div>
 
