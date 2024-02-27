@@ -10,66 +10,67 @@
     <body>
         <script>
             //pelda.json
-            var data = [
-                {
-                    "csomagid": 123,
-                    "kezdido": "2024-03-03",
-                    "vegido": "2024-03-10",
-                    "ar": 27600,
-                    "ugyfelek": [
-                        {
-                            "nev": "Jani",
-                            "lakcim": "lakcim",
-                            "szul": "1998-01-01",
-                            "nem": "férfi",
-                            "tel": "+36704689115",
-                            "email": "kutya0@gmail.com"
-                        },
-                        {
-                            "nev": "Luca",
-                            "lakcim": "lakcim",
-                            "szul": "1999-06-01",
-                            "nem": "nő",
-                            "tel": "+36304133123",
-                            "email": "cica2@gmail.com"
-                        }
-                    ]
+            var data = [{
+                "csomagid": 123,
+                "jarmuid": 345,
+                "kezdido": "2024-03-03",
+                "vegido": "2024-03-10",
+                "ar": 27600,
+                "ugyfelek": [
+                    {
+                        "nev": "Jani",
+                        "lakcim": "lakcim",
+                        "szul": "1998-01-01",
+                        "nem": "férfi",
+                        "tel": "+36704689115",
+                        "email": "kutya0@gmail.com"
+                    },
+                    {
+                        "nev": "Luca",
+                        "lakcim": "lakcim",
+                        "szul": "1999-06-01",
+                        "nem": "nő",
+                        "tel": "+36304133123",
+                        "email": "cica2@gmail.com"
+                    }
+                ]
 
-                },
-                {
-                    "csomagid": 200,
-                    "kezdido": "2024-02-16",
-                    "vegido": "2024-03-01",
-                    "ar": 32900,
-                    "ugyfelek": [
-                        {
-                            "nev": "Jani",
-                            "lakcim": "lakcim",
-                            "szul": "1998-01-01",
-                            "nem": "férfi",
-                            "tel": "+36704689115",
-                            "email": "kutya0@gmail.com"
-                        },
-                        {
-                            "nev": "Luca",
-                            "lakcim": "lakcim",
-                            "szul": "1999-06-01",
-                            "nem": "nő",
-                            "tel": "+36304133123",
-                            "email": "cica2@gmail.com"
-                        },
-                        {
-                            "nev": "Gabi",
-                            "lakcim": "lakcim2",
-                            "szul": "1998-06-01",
-                            "nem": "",
-                            "tel": "+363041654654",
-                            "email": "hamper@gmail.com"
-                        }
-                    ]
+            },
+            {
+                "csomagid": 200,
+                "jarmuid": 956,
+                "kezdido": "2024-02-16",
+                "vegido": "2024-03-01",
+                "ar": 32900,
+                "ugyfelek": [
+                    {
+                        "nev": "Jani",
+                        "lakcim": "lakcim",
+                        "szul": "1998-01-01",
+                        "nem": "férfi",
+                        "tel": "+36704689115",
+                        "email": "kutya0@gmail.com"
+                    },
+                    {
+                        "nev": "Luca",
+                        "lakcim": "lakcim",
+                        "szul": "1999-06-01",
+                        "nem": "nő",
+                        "tel": "+36304133123",
+                        "email": "cica2@gmail.com"
+                    },
+                    {
+                        "nev": "Gabi",
+                        "lakcim": "lakcim2",
+                        "szul": "1998-06-01",
+                        "nem": "",
+                        "tel": "+363041654654",
+                        "email": "hamper@gmail.com"
+                    }
+                ]
 
-                }
-            ];
+            }];
+
 
             var dolog = fetch("api.php", {              //elérési út relatív a fájlhoz amiben meg van hívva
                 method: "POST",                         //metódus (POST vagy GET jelenleg)
@@ -85,10 +86,7 @@
 
             //ja amúgy itt ugye majd adatnak max a számlázáshoz kapunk vissza valamit, hogy mennyi a fizetendő, stb., egyébként meg egy választ, hogy ment-e a feltöltés, vagy sem
             function printdata(data) {
-                data.forEach(element => {
-                    //ez csak kiírás, hogy történjen valami
-                    document.body.innerHTML += JSON.stringify(element) + '\n';
-                });
+                document.body.innerHTML += JSON.stringify(data);
             }
         </script>
     </body>

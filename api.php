@@ -55,6 +55,7 @@ function getCsomag($csomagid)
     $csomag["vegido"] = $sor["vege"];
     $csomag["csomagar"] = intval($sor["ar"]);
 
+    //csomaghoz választható járművek adatai
     $sql = "SELECT jarmu.nev, jarmu.osztaly, jarmu.fekvohely, csomagjarmu.ar FROM csomagjarmu INNER JOIN jarmu ON csomagjarmu.jarmuid = jarmu.id WHERE csomagjarmu.csomagid = " . $csomagid;
     $tabla = runQuery($sql);
     $csomag["jarmuvek"] = array();
@@ -78,9 +79,34 @@ function foglal()
 {
     $data = json_decode(file_get_contents('php://input'), true);
 
-    http_response_code(201);
-    echo json_encode($data, JSON_PRETTY_PRINT);
+    try {
+        //foglalás számosságának tesztelése: 
+        //ha csak 1 elem van, csak azt kell feltölteni, ha több, akkor mindet külön
+        if (!isset($data[0])) {
+            uploadtoDB($data);
+        } else {
+            foreach ($data as $elem) {
+                uploadtoDB($elem);
+            }
+        }
+
+        $d = array("eredmeny" => "juhu");
+        http_response_code(201);
+        echo json_encode($d, JSON_PRETTY_PRINT);
+    } catch (Exception $e) {
+        $d = array("eredmeny" => "nem juhu: " . $e->getMessage());
+        http_response_code(500);
+        echo json_encode($d, JSON_PRETTY_PRINT);
+    }
+
 }
+
+//egy foglalás feltöltése az adatbázisba
+function uploadtoDB($foglalas)
+{
+
+}
+
 
 //SQL lekérdezés lefuttatása
 function runQuery($sql)
