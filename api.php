@@ -90,9 +90,9 @@ function foglal()
             }
         }
 
-        $d = array("eredmeny" => "juhu");
+        $d = array("eredmeny" => "Foglalás sikeresen rögzítve.");
         http_response_code(201);
-        echo json_encode($d, JSON_PRETTY_PRINT);
+        echo json_encode($d);
     } catch (Exception $e) {
         $d = array("eredmeny" => "nem juhu: " . $e->getMessage());
         http_response_code(500);
@@ -102,9 +102,30 @@ function foglal()
 }
 
 //egy foglalás feltöltése az adatbázisba
-function uploadtoDB($foglalas)
+function uploadtoDB($adatok)
 {
+    //1. foglalás hozzáadása
 
+    $foglalasid = mysqli_fetch_array(runQuery("SELECT COUNT(*) AS db FROM `foglalas`"))["db"] + 1;
+    $sql = "INSERT INTO foglalas (id, csomagid, kezdes, vege, ar) VALUES ($foglalasid," . $adatok["csomagid"] . ",' " . $adatok["kezdido"] . "',' " . $adatok["vegido"] . "', " . $adatok["ar"] . ")";
+    runNonQuery($sql);
+
+    //2. ügyfelek hozzáadása
+
+    $ugyfelek = array();
+    foreach ($adatok["ugyfelek"] as $ugyfel) {
+        $ugyfelid = mysqli_fetch_array(runQuery("SELECT COUNT(*) AS db FROM `ugyfel`"))["db"] + 1;
+        $ugyfelek[] = $ugyfelid;
+        $sql = "INSERT INTO ugyfel (id, nev, lakcim, szul, nem, tel, email) VALUES ($ugyfelid, '" . $ugyfel["nev"] . "', '" . $ugyfel["lakcim"] . "', '" . $ugyfel["szul"] . "', '" . $ugyfel["nem"] . "', '" . $ugyfel["tel"] . "', '" . $ugyfel["email"] . "')";
+        runNonQuery($sql);
+    }
+
+    //3. ügyfelek-foglalás összekapcsolása
+
+    foreach ($ugyfelek as $ugyfelid) {
+        $sql = "INSERT INTO csoport (foglalasid, ugyfelid) VALUES ($foglalasid, $ugyfelid);";
+        runNonQuery($sql);
+    }
 }
 
 
@@ -116,6 +137,18 @@ function runQuery($sql)
         $tabla = mysqli_query($adb, $sql);
         mysqli_close($adb);
         return $tabla;
+    } catch (Exception $e) {
+        SQL_Hibauzenet($e);
+    }
+}
+
+//SQL módosító parancs lefuttatása
+function runNonQuery($sql)
+{
+    try {
+        $adb = mysqli_connect("localhost", "root", "", "bolygo_db");
+        mysqli_query($adb, $sql);
+        mysqli_close($adb);
     } catch (Exception $e) {
         SQL_Hibauzenet($e);
     }
