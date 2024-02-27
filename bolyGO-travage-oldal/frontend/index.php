@@ -16,7 +16,7 @@
     <nav data-state="closed" data-scrolled="false">
         <div class="nav-elements">
             <img src="./resources/logo_transparent.png" alt="bolyGO logo">
-            <a class="btn" href="./cart.php">Kosár</a>
+            <a class="btn" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
         </div>
     </nav>
 
@@ -26,7 +26,7 @@
         <div class="header-content">
             <h1> <span>bolyGO</span> <br> utazási iroda</h1>
             <p>Utazz epikus bolygókra!!</p>
-            <div><a class="btn" href="#csomagok">Csomagok</a></div>
+            <div><a class="btn btn-light" href="#csomagok">Csomagok <i class="fa-solid fa-rocket"></i></a></div>
         </div>
 
     </header>
@@ -40,7 +40,7 @@
                 <div class="rolunk-container">
                 <div class="card" data-color="yellow">
                     <div class="card-image">
-                        <img src="./resources/logo.ico" alt="Levi">
+                        <img src="./stlyes/img/levi.png" alt="Levi">
                     </div>
                     <div class="card-content">
                         <h2>Levi</h2>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="card" data-color="pink">
                     <div class="card-image">
-                        <img src="./resources/logo.ico" alt="Tünde">
+                        <img src="./stlyes/img/tunde.jpg" alt="Tünde">
                     </div>
                     <div class="card-content">
                         <h2>Tünde</h2>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="card" data-color="green">
                     <div class="card-image">
-                        <img src="./resources/logo.ico" alt="Sityu">
+                        <img src="./stlyes/img/sityu.jpg" alt="Sityu">
                     </div>
                     <div class="card-content">
                         <h2>Sityu</h2>
@@ -110,19 +110,45 @@ s
                 <div class="card-image">
                     <img src="./resources/logo.ico" alt="dolog">
                 </div>
+                <!--  -->
                 <div class="card-content">
-                    <div>
+                    <div class="leiras">
                         <h2>Cyperpunknesss bolygóshit</h2>
                         <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                     </div>
-                    <div>
-                        <h3>Adatok:</h3>
-                            <p>Választható dátum: 9999.99.99 - 6666.66.66</p>
+                    <!--  -->
+                    <div class="adatok">
+                        
+                        <p>Választható dátum: 9999.99.99 - 6666.66.66</p>
                             <p>Választható járművek:</p>
-                            <ul>
-                                <li>Autó</li>
-                                <li></li>
-                            </ul>
+                            
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <th>név</th>
+                                        <th>osztály</th>
+                                        <th>fekvőhely</th>
+                                        <th>ár</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>János</td>
+                                        <td>9. osztály</td>
+                                        <td>8</td>
+                                        <td>5000 Ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erzsébet</td>
+                                        <td>11. osztály</td>
+                                        <td>12</td>
+                                        <td>7500 Ft</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+
                     </div>  
                     <button class="btn btn-dark">Részletek</button>    
                 </div>

@@ -22,7 +22,6 @@
 }
 
 
-/* CSS RESET */
 * {
     box-sizing: border-box;
     position: relative;
@@ -68,6 +67,10 @@ body::after{
     position: relative;
 } */
 
+/* .header-content {
+    text-align: center;
+} */
+
 
 main {
     padding: 0 5rem;
@@ -90,10 +93,6 @@ header {
 }
 
 
-.header-content {
-    text-align: center;
-    z-index: 8;
-}
 
 
 
@@ -111,7 +110,7 @@ nav {
 
 .nav-elements {
     padding: 2.4vh 1em;
-    height: 2rem;
+    height: .5rem;
     display: flex;
     width: 100%;
     height: 100%;
@@ -138,14 +137,13 @@ a {
 }
 
 nav img {
-    /* width: 100px;  */
-    height: 5rem;
+    height: 2rem;
     transition: transform 0.5s ease-in-out; 
 }
 
-nav[data-scrolled="true"] img {
+/* nav[data-scrolled="true"] img {
     transform: scale(0.8); 
-}
+} */
 
 
 
@@ -188,13 +186,23 @@ nav[data-scrolled="true"] img {
     /* border: 1px solid var(--clr-blue-black); */
 }
 
+.btn-light {
+    background-color: var(--clr-white);
+    color: var(--clr-blue-black);
+}
+
+.btn-light:hover {
+    background-color: var(--clr-blue-black);
+    color: var(--clr-white);
+    /* border: 1px solid var(--clr-blue-black); */
+}
 
 
 
 /* más szín */
 
 
-/* TYPOGRAPHY */
+/* TYPOGRAPHY ------------------------------------------------------------------------------------------------------*/
 h1 {
     font-size: 40px;
     margin-bottom: 20px;
