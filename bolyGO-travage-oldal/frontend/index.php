@@ -15,7 +15,7 @@
 <body>
     <nav data-state="closed" data-scrolled="false">
         <div class="nav-elements">
-            <a class="logo" href="#">bolyGO</a>
+            <img src="./resources/logo_transparent.png" alt="bolyGO logo">
             <a class="btn" href="./cart.php">Kosár</a>
         </div>
     </nav>
@@ -36,50 +36,101 @@
 
         <section>
             <h2>Rólunk</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum vero hic accusamus sint. Ex, temporibus. Iusto animi fuga ipsa in, porro possimus veniam nam quasi soluta numquam ut ex est illo tempore reprehenderit quos at voluptas id, placeat impedit molestias ipsam eum recusandae ducimus? Sit distinctio saepe modi ex maiores?</p>
-            
-        </section>
-
-   
-        <section id="csomagok">
-s
-            <h2>Csomagok</h2>
-            <div class="cards-container">
-                <div class="card" data-csomagid="szam">
+            <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, quos.</p>
+                <div class="rolunk-container">
+                <div class="card" data-color="yellow">
                     <div class="card-image">
-                        <img src="planet1.jpg" alt="Planet 1">
+                        <img src="./resources/logo.ico" alt="Levi">
                     </div>
                     <div class="card-content">
-                        <h2>Planet 1</h2>
-                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                        <button class="btn">Részletek</button>    
+                        <h2>Levi</h2>
+                        <p class="description">MIAUUUUU</div>
+                </div>
+                <div class="card" data-color="pink">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Tünde">
+                    </div>
+                    <div class="card-content">
+                        <h2>Tünde</h2>
+                        <p class="description"><--- that's my boyfren c:</p>  
                     </div>
                 </div>
-                <div class="card" data-csomagid="szam">
+                <div class="card" data-color="green">
                     <div class="card-image">
-                        <img src="planet1.jpg" alt="Planet 1">
+                        <img src="./resources/logo.ico" alt="Sityu">
                     </div>
                     <div class="card-content">
-                        <h2>Planet 1</h2>
-                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                        <button class="btn">Részletek</button>    
-                    </div>
-                </div>
-                <div class="card" data-csomagid="szam">
-                    <div class="card-image">
-                        <img src="planet1.jpg" alt="Planet 1">
-                    </div>
-                    <div class="card-content">
-                        <h2>Planet 1</h2>
-                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                        <button class="btn">Részletek</button>    
+                        <h2>Sityu</h2>
+                        <p class="description">Hol vagyok?</p>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <section class="bg-section">
+   
+        <section id="csomagok">
+s
+            <h2>Csomagok</h2>
+            <div class="csomag-container">
+                <div class="card" data-csomagid="szam">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Planet 1">
+                    </div>
+                    <div class="card-content">
+                        <h2>Planet 1</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                    </div>
+                </div>
+                <div class="card" data-csomagid="szam">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Planet 1">
+                    </div>
+                    <div class="card-content">
+                        <h2>Planet 1</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                    </div>
+                </div>
+                <div class="card" data-csomagid="szam">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Planet 1">
+                    </div>
+                    <div class="card-content">
+                        <h2>Planet 1</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> 
+                        <a href="#csomag-bovebben" class="btn btn-dark" onclick="reszletek();">Részletek <i class="fa-solid fa-circle-chevron-down"></i></a>
+                    </div>
+                </div>
+
+            </div>
+     
+            <div id="csomag-bovebben" class="card big-card" data-csomagid="szam">
+                <div class="card-image">
+                    <img src="./resources/logo.ico" alt="dolog">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h2>Cyperpunknesss bolygóshit</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    </div>
+                    <div>
+                        <h3>Adatok:</h3>
+                            <p>Választható dátum: 9999.99.99 - 6666.66.66</p>
+                            <p>Választható járművek:</p>
+                            <ul>
+                                <li>Autó</li>
+                                <li></li>
+                            </ul>
+                    </div>  
+                    <button class="btn btn-dark">Részletek</button>    
+                </div>
+            </div>
+
+        </section>
+
+        <!-- <section class="bg-section">
             <h2>Nem tudom ide mit lehetne de akár ilyenünk is lehet</h2>
             <p>I guess fehér oldalon Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat optio cumque accusamus excepturi a eaque necessitatibus explicabo nostrum dolore maxime sapiente enim, perferendis corporis soluta dolorum amet, ipsam error. Recusandae.</p>
 
@@ -146,12 +197,12 @@ s
                     </path>
                 </svg>
             </div>
-        </section>
+        </section> -->
 
 
     </main>
 
-    <footer class="center-container">
+    <footer>
         <section>
             <h3>Ide lehetnek ilyen dolgok</h3>
         </section>

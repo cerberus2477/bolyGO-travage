@@ -8,42 +8,17 @@ window.onscroll = function () {
     }
 }
 
-//TOGGLE NAV
-// const toggleNav = () => {
-//     if (nav.dataset.state == "closed") {
-//         nav.dataset.state = "open";
-//     } else {
-//         nav.dataset.state = "closed";
-//     }
-// }
 
-// EZ LENNE AHHOZ HOGY CSAK A NAV ALATT SZINEZŐDJÖN KI DE NEM KELL SZERINTEM
-// const header = document.querySelector('header');
-// function updateNavColor(entries) {
-//     const [entry] = entries;
-//     if (!entry.isIntersecting) {
-//         nav.dataset.scrolled = "true";
-//     } else {
-//         nav.dataset.scrolled = "false";
-//     }
-
-// }
-
-// const headerObserver = new IntersectionObserver(updateNavColor, {
-//     root: null,
-//     threshold: 0,
-//     rootMargin: `-${navHeight}px`
-// });
-
-// headerObserver.observe(header)
-
-
-
-
-//FILTER IMAGES
-// const filter = (category) => {
-//     // if (category == "Összes"){
-//     //     document.querySelectorAll(img).style.show; //markup
-//     // }
-//     console.log(category);
-// };
+// kártyák szinezése
+document.querySelectorAll('.card').forEach(card => {
+    const color = card.dataset.color || 'white';
+    card.addEventListener('mouseenter', () => {
+        card.style.border = `1px solid var(--clr-${color})`;
+        card.style.boxShadow = `0 8px 16px var(--clr-${color})`;
+        console.log(`0 8px 16px var(--clr-${color})`);
+    });
+    card.addEventListener('mouseleave', () => {
+        card.style.boxShadow = `0 4px 8px rgba(0, 0, 0, 0.1)`;
+        console.log(`0 4px 8px rgba(0, 0, 0, 0.1)`);
+    });
+});

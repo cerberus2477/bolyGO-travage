@@ -11,9 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener("click", function() {
             var card = this.closest(".card");
             var csomagid = card.getAttribute("data-csomagid");
-            // Pass the csomagid to your JavaScript function
-            // For example: myFunction(csomagid);
             console.log(csomagid);
+
+
         });
     });
 });
+
+function reszletek(){
+    
+}
