@@ -1,5 +1,9 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: *");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
 header('Content-Type: application/json; charset=utf-8');
 
 switch ($_SERVER["REQUEST_METHOD"]) {
@@ -13,7 +17,7 @@ switch ($_SERVER["REQUEST_METHOD"]) {
         foglal();
         break;
     default:
-        hibauzenet("API-hívás hiba", "Ismeretlen hívás típus.");
+        hibauzenet(405, "API-hívás hiba", "Ismeretlen hívás típus.");
 }
 
 //csomagok leírásának, nevének, azonosítójának lekérése
@@ -30,6 +34,7 @@ function getCsomagok()
         );
     }
 
+    http_response_code(200);
     echo json_encode($csomagok);
     //echo json_encode($csomagok, JSON_PRETTY_PRINT);
 }
@@ -63,6 +68,7 @@ function getCsomag($csomagid)
         );
     }
 
+    http_response_code(200);
     echo json_encode($csomag);
     //echo json_encode($csomag, JSON_PRETTY_PRINT);
 }
@@ -70,6 +76,10 @@ function getCsomag($csomagid)
 //foglalások feltöltése az adatbázisba
 function foglal()
 {
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    http_response_code(201);
+    echo json_encode($data, JSON_PRETTY_PRINT);
 }
 
 //SQL lekérdezés lefuttatása
@@ -94,9 +104,10 @@ function SQL_Hibauzenet($e)
 }
 
 //saját hibaüzenet visszaküldése
-function hibauzenet($hibatipus, $hibauzenet)
+function hibauzenet($hibakod, $hibatipus, $hibauzenet)
 {
     $uzenet = array("hiba" => $hibatipus, "uzenet" => "Hiba: " . $hibauzenet);
+    http_response_code($hibakod);
     $json = json_encode($uzenet);
     exit($json);
 }
