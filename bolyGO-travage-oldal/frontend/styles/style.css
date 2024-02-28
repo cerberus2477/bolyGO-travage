@@ -22,6 +22,7 @@
 }
 
 
+
 /* CSS RESET */
 * {
     box-sizing: border-box;
@@ -51,7 +52,6 @@ body {
 
 body::after{
     content: '';
-
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, var(--clr-purple), transparent);
@@ -90,10 +90,12 @@ header {
 }
 
 
+
 .header-content {
     text-align: center;
     z-index: 8;
 }
+
 
 
 
@@ -151,6 +153,7 @@ nav[data-scrolled="true"] img {
 
 
 
+
 /* GOMBOK ----------------------------------------------------------------------------------------------------------*/
 /* alapbol narancs */
 .btn {
@@ -189,12 +192,23 @@ nav[data-scrolled="true"] img {
 }
 
 
+.btn-light {
+    background-color: var(--clr-white);
+    color: var(--clr-blue-black);
+}
+
+.btn-light:hover {
+    background-color: var(--clr-blue-black);
+    color: var(--clr-white);
+    /* border: 1px solid var(--clr-blue-black); */
+}
+
 
 
 /* más szín */
 
 
-/* TYPOGRAPHY */
+/* TYPOGRAPHY ------------------------------------------------------------------------------------------------------*/
 h1 {
     font-size: 40px;
     margin-bottom: 20px;
@@ -344,10 +358,16 @@ footer {
 
   .big-card{
     width: 100%;
-  }
+    display: flex;
+    flex-direction: row;
+ }
 
 
 
 
 
-  
+#csomagok{
+    background-color: var(--clr-pink);
+    margin: 0 -5rem;
+}
+
