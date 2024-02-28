@@ -16,11 +16,7 @@
     <nav data-state="closed" data-scrolled="false">
         <div class="nav-elements">
             <img src="./resources/logo_transparent.png" alt="bolyGO logo">
-<<<<<<< HEAD
-            <a class="btn" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
-=======
             <a class="btn" href="./cart.php">Kosár</a>
->>>>>>> keddi_mentes
         </div>
     </nav>
 
@@ -30,11 +26,7 @@
         <div class="header-content">
             <h1> <span>bolyGO</span> <br> utazási iroda</h1>
             <p>Utazz epikus bolygókra!!</p>
-<<<<<<< HEAD
-            <div><a class="btn btn-light" href="#csomagok">Csomagok <i class="fa-solid fa-rocket"></i></a></div>
-=======
             <div><a class="btn" href="#csomagok">Csomagok</a></div>
->>>>>>> keddi_mentes
         </div>
 
     </header>
@@ -48,11 +40,7 @@
                 <div class="rolunk-container">
                 <div class="card" data-color="yellow">
                     <div class="card-image">
-<<<<<<< HEAD
-                        <img src="./styles/img/levi.png" alt="Levi">
-=======
                         <img src="./resources/logo.ico" alt="Levi">
->>>>>>> keddi_mentes
                     </div>
                     <div class="card-content">
                         <h2>Levi</h2>
@@ -60,11 +48,7 @@
                 </div>
                 <div class="card" data-color="pink">
                     <div class="card-image">
-<<<<<<< HEAD
-                        <img src="./styles/img/tunde.jpg" alt="Tünde">
-=======
                         <img src="./resources/logo.ico" alt="Tünde">
->>>>>>> keddi_mentes
                     </div>
                     <div class="card-content">
                         <h2>Tünde</h2>
@@ -73,11 +57,7 @@
                 </div>
                 <div class="card" data-color="green">
                     <div class="card-image">
-<<<<<<< HEAD
-                        <img src="./styles/img/sityu.jpg" alt="Sityu">
-=======
                         <img src="./resources/logo.ico" alt="Sityu">
->>>>>>> keddi_mentes
                     </div>
                     <div class="card-content">
                         <h2>Sityu</h2>
@@ -90,10 +70,7 @@
 
    
         <section id="csomagok">
-<<<<<<< HEAD
-=======
-s
->>>>>>> keddi_mentes
+
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <div class="card" data-csomagid="szam">
@@ -103,11 +80,8 @@ s
                     <div class="card-content">
                         <h2>Planet 1</h2>
                         <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-<<<<<<< HEAD
-                        <button class="btn btn-light">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
-=======
+
                         <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
->>>>>>> keddi_mentes
                     </div>
                 </div>
                 <div class="card" data-csomagid="szam">
@@ -117,11 +91,8 @@ s
                     <div class="card-content">
                         <h2>Planet 1</h2>
                         <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-<<<<<<< HEAD
-                        <button class="btn btn-light">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
-=======
+
                         <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
->>>>>>> keddi_mentes
                     </div>
                 </div>
                 <div class="card" data-csomagid="szam">
@@ -131,11 +102,8 @@ s
                     <div class="card-content">
                         <h2>Planet 1</h2>
                         <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> 
-<<<<<<< HEAD
-                        <a href="#csomag-bovebben" class="btn btn-light" onclick="reszletek();">Részletek <i class="fa-solid fa-circle-chevron-down"></i></a>
-=======
+
                         <a href="#csomag-bovebben" class="btn btn-dark" onclick="reszletek();">Részletek <i class="fa-solid fa-circle-chevron-down"></i></a>
->>>>>>> keddi_mentes
                     </div>
                 </div>
 
@@ -145,49 +113,7 @@ s
                 <div class="card-image">
                     <img src="./resources/logo.ico" alt="dolog">
                 </div>
-<<<<<<< HEAD
-                <!--  -->
-                <div class="card-content">
-                    <div class="leiras">
-                        <h2>Cyperpunknesss bolygóshit</h2>
-                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                    </div>
-                    <!--  -->
-                    <div class="adatok">
-                        
-                        <p>Választható dátum: 9999.99.99 - 6666.66.66</p>
-                            <p>Választható járművek:</p>
-                            
-                            <table border="1">
-                                <thead>
-                                    <tr>
-                                        <th>név</th>
-                                        <th>osztály</th>
-                                        <th>fekvőhely</th>
-                                        <th>ár</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>János</td>
-                                        <td>9. osztály</td>
-                                        <td>8</td>
-                                        <td>5000 Ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Erzsébet</td>
-                                        <td>11. osztály</td>
-                                        <td>12</td>
-                                        <td>7500 Ft</td>
-                                    </tr>
-                                </tbody>
-                            </table>
 
-                        <button class="btn">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>   
-
-                    </div>  
-  
-=======
                 <div class="card-content">
                     <div>
                         <h2>Cyperpunknesss bolygóshit</h2>
@@ -203,7 +129,6 @@ s
                             </ul>
                     </div>  
                     <button class="btn btn-dark">Részletek</button>    
->>>>>>> keddi_mentes
                 </div>
             </div>
 
