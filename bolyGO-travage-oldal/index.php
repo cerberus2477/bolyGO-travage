@@ -36,15 +36,17 @@
 
         <section>
             <h2>Rólunk</h2>
-            <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, quos.</p>
-                <div class="rolunk-container">
+            <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Blanditiis, quos.</p>
+            <div class="rolunk-container">
                 <div class="card" data-color="yellow">
                     <div class="card-image">
                         <img src="styles/img/levi.png" alt="Levi">
                     </div>
                     <div class="card-content">
                         <h2>Levi</h2>
-                        <p class="description">MIAUUUUU</div>
+                        <p class="description">MIAUUUUU
+                    </div>
                 </div>
                 <div class="card" data-color="pink">
                     <div class="card-image">
@@ -52,7 +54,8 @@
                     </div>
                     <div class="card-content">
                         <h2>Tünde</h2>
-                        <p class="description"><--- that's my boyfren c:</p>  
+                        <p class="description">
+                            <--- that's my boyfren c:</p>
                     </div>
                 </div>
                 <div class="card" data-color="green">
@@ -68,40 +71,109 @@
             </div>
         </section>
 
-   
+
         <section id="csomagok">
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <?php
-                    $data = json_decode(file_get_contents('api.php'), true);
+                    // $data = json_decode(file_get_contents('api.php'), true);
+                    // teszteléshez
+                    $data = json_decode('[
+                        {
+                            "kezdido": "2024-03-03",
+                            "vegido": "2024-03-10",
+                            "ar": 27600,
+                            "nev": "UTAZÁÁÁáááÁÁáÁÁs",
+                            "id": 32,
+                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
+                        },
+                        {
+                            "kezdido": "2024-03-03",
+                            "vegido": "2024-03-10",
+                            "ar": 27600,
+                            "nev": "UTAZÁÁÁáááÁÁáÁÁsasdad",
+                            "id": 2,
+                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
+                        },
+                        {
+                            "kezdido": "2024-03-03",
+                            "vegido": "2024-03-10",
+                            "ar": 27600,
+                            "nev": "Uasd",
+                            "id": 32,
+                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
+                        },
+                        {
+                            "kezdido": "2024-03-03",
+                            "vegido": "2024-03-10",
+                            "ar": 27600,
+                            "nev": "UTAZasd",
+                            "id": 32,
+                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
+                        },
+                        {
+                            "kezdido": "2024-03-03",
+                            "vegido": "2024-03-10",
+                            "ar": 27600,
+                            "nev": "ggggggg",
+                            "id": 32,
+                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
+                        },
+                        {                            
+                            "kezdido": "2024-03-03",
+                            "vegido": "2024-03-10",
+                            "ar": 27600,
+                            "nev": "Uasdfsdf",
+                            "id": 32,
+                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
+                        },
+                        {
+                            "kezdido": "2024-03-03",
+                            "vegido": "2024-03-10",
+                            "ar": 27600,
+                            "nev": "asdasdfasdf",
+                            "id": 32,
+                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
+                        }
+                        
+                       
+                    ]', true);
+
+
+                    // $colors = ['green', 'red', 'yellow', 'pink', 'purple'];
+                    // <?$colors[array_rand($colors)]
                 ?>
+                
 
                 <!-- jó lenne random szín or smth -->
                 <?php foreach ($data as $item):?>
-                    <div class="card" data-color="red" data-csomagid="<? $item["id"]?>">
+                    <div class="card" data-color="" data-csomagid="<?= $item["id"]?>">
                         <div class="card-image">
-                            <img src="./resources/<? $item["nev"]?>.img" alt="<? $item["nev"]?>">
+                            <!-- kepek forrasa?? -->
+                            <img src="<?= './resources/'.$item["nev"].'img'?>" alt="<?= $item["nev"].' képe'?>">
                         </div>
                         <div class="card-content">
-                            <h2><? $item["nev"]?></h2>
-                            <p class="description"><? $item["leiras"]?></p>
-                            <button class="btn btn-light">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                            <h2><?= $item["nev"]?></h2>
+                            <p class="description"><?= $item["leiras"]?></p>
+                            <button class="btn btn-light">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
                         </div>
                     </div>
                 <?php endforeach ?>
             </div>
-     
+
+            <!-- grid? -->
             <div id="csomag-bovebben" class="card big-card" data-csomagid="szam">
-             
-                    <img src="./resources/logo.ico" alt="dolog">
-                
-                
+
+                <img src="./resources/logo.ico" alt="dolog">
+
                 <div>
                     <h2>Cyperpunknesss bolygóshit</h2>
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 </div>
                 <div>
-                    <!-- generálni --><p>Választható dátum: 9999.99.99 - 6666.66.66</p>
+                    <!-- generálni -->
+                    <p>Választható dátum: 9999.99.99 - 6666.66.66</p>
                     <p>Választható járművek</p>
                     <table border="1">
                         <thead>
@@ -123,10 +195,10 @@
                             <!-- eddig -->
                         </tbody>
                     </table>
-                    <button class="btn">Kosárhoz adás<i class="fa-solid fa-cart-plus"></i></button>   
-                </div>  
-                    
-                
+                    <button class="btn">Kosárhoz adás<i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+
+
             </div>
 
         </section>
