@@ -73,8 +73,13 @@
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <?php
-                    $data = json_decode(file_get_contents('./api.php'), true);
-                    echo "lelele";
+                // ezt itt meg kéne javítani:
+
+                /*    $file = file_get_contents(__DIR__."/api.php");
+                    echo $file;
+                    $data = json_decode($file, true);
+                    echo $data;
+                    */
                 ?>
 
                 <!-- jó lenne random szín or smth -->
