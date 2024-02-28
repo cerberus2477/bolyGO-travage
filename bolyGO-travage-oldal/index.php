@@ -1,5 +1,3 @@
-<!-- ANGOLUL! -->
-
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -7,42 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rudolf vendégház</title>
-    <!-- favicon -->
-    <link rel="stylesheet" href="./css/base.css">
+    <title>bolyGO</title>
+    <link rel="shortcut icon" href="resources/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/style.css">
     <script defer src="https://kit.fontawesome.com/af2e246792.js" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="./css/index.css">
-    <!-- <link rel="stylesheet" href="./css/style2.css"> -->
     <script defer src="./js/app.js"></script>
-
 </head>
 
 <body>
-    <nav class="main-nav" data-state="closed" data-scrolled="false">
-        <div class="nav-first-row">
-            <a class="logo" href="#">Rudolf vendégház</a>
-            <a href="#" class="btn btn-yellow navbar-toggler" onclick="toggleNav();">
-                <span class="fa fa-bars"></span>
-            </a>
+    <nav data-state="closed" data-scrolled="false">
+        <div class="nav-elements">
+            <img src="./resources/logo_transparent.png" alt="bolyGO logo">
+            <a class="btn" href="./cart.php">Kosár</a>
         </div>
-        <div class="nav-collapse">
-            <a href="programok.html">Programok</a>
-            <a href="">Galéria</a>
-            <a href="">Kapcsolat</a>
-            <a class="btn btn-green" href="">Foglalás</a>
-        </div>
-
-
     </nav>
 
 
 
     <header class="header-main">
         <div class="header-content">
-            <h1> <span>Rudolf</span> <br> vendégház</h1>
-            <p>Nyaralj te is Szigetközben!</p>
-            <!-- <div>gombok</div> -->
+            <h1> <span>bolyGO</span> <br> utazási iroda</h1>
+            <p>Utazz epikus bolygókra!!</p>
+            <div><a class="btn" href="#csomagok">Csomagok</a></div>
         </div>
 
     </header>
@@ -52,45 +36,103 @@
 
         <section>
             <h2>Rólunk</h2>
-            <p>
-                4-5 személynek - és kutyáknak - alkalmas házikónk kb. június elejétől kiadó
-                Kis nappali-konyha, 2 háló, zuhanyzós fürdőszobával. 200nm, körbekerített kert, sütögetési
-                lehetőséggel.
-                Strand 100m-re,
-                ahol a kutyák is fürödhetnek!</p>
-            <p>avaszi kikapcsolódás
-                Csodás levegő, csupa zöld, csupa szín, csupa madárdal környezet vár a Szigetközben, egy 5 főig kényelmes
-                házikóval. 🏡
-                A környéken van minden, amire egy természetkedvelő ember vágyhat, a hegyek kivételével. 🛶🚴‍♂️🏸🏇🚣🎣
-                Ha kutyát hoznál, és ígéred, hogy az ágyakra nem megy fel, akkor őt ingyen fogadjuk. 🐕👍
-                Éjszakánként 20-30ezer forintért ez nem rossz, igaz?
-                Szabad helyekért és pontos árakért keress üzenetben!
-                NTAK azonosító: MA22037809</p>
-            <p>Ha szeretnének igazán csendben, egy kényelmes, meleg házikóban🌡🛌, nyugalomban tölteni a december egy
-                részét, akkor itt
-                a lehetőség!
-                Ha szeretnétek csavarogni, a Szigetköz télen is gyönyörű☃️❄️, de nincs túl messze Győr és Pozsony meg
-                Bécs sem, ha a
-                karácsonyi hangulatot szívnátok magatokba. 🎄⛸️🎁Ha pedig inkább a wellness esne jól, akkor ajánlom a
-                mosonmagyaróvári
-                vagy a lipóti fürdőt🏊!
-                Legfeljebb öten tudtok jönni, és kutyust is hozhattok, ha nem az ágyban alszik. 🙂</p>
-        </section>
-        <!-- <iframe aria-hidden="true" frameborder="0" tabindex="-1"
-            style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"></iframe> -->
-        <section>
-            <h2>Ez egy térkép lesz</h2>
-            <img src="./img/rudolf/galeria/kornyek/csonak.jpg" alt="dolog">
+            <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, quos.</p>
+                <div class="rolunk-container">
+                <div class="card" data-color="yellow">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Levi">
+                    </div>
+                    <div class="card-content">
+                        <h2>Levi</h2>
+                        <p class="description">MIAUUUUU</div>
+                </div>
+                <div class="card" data-color="pink">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Tünde">
+                    </div>
+                    <div class="card-content">
+                        <h2>Tünde</h2>
+                        <p class="description"><--- that's my boyfren c:</p>  
+                    </div>
+                </div>
+                <div class="card" data-color="green">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Sityu">
+                    </div>
+                    <div class="card-content">
+                        <h2>Sityu</h2>
+                        <p class="description">Hol vagyok?</p>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
-        <section class="bg-section">
-            <h2>Naon kutyabarát</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, quasi optio libero aut dolorem
-                soluta
-                necessitatibus officiis quam qui nesciunt hic magni dicta facere, esse facilis eos? Temporibus, cum!
-                Recusandae, veniam illum? Error officiis recusandae atque velit, repellendus animi sed cumque ullam
-                neque
-                fugiat mollitia nam dolorem. Modi, amet hic!</p>
+   
+        <section id="csomagok">
+s
+            <h2>Csomagok</h2>
+            <div class="csomag-container">
+                <div class="card" data-csomagid="szam">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Planet 1">
+                    </div>
+                    <div class="card-content">
+                        <h2>Planet 1</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                    </div>
+                </div>
+                <div class="card" data-csomagid="szam">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Planet 1">
+                    </div>
+                    <div class="card-content">
+                        <h2>Planet 1</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                    </div>
+                </div>
+                <div class="card" data-csomagid="szam">
+                    <div class="card-image">
+                        <img src="./resources/logo.ico" alt="Planet 1">
+                    </div>
+                    <div class="card-content">
+                        <h2>Planet 1</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> 
+                        <a href="#csomag-bovebben" class="btn btn-dark" onclick="reszletek();">Részletek <i class="fa-solid fa-circle-chevron-down"></i></a>
+                    </div>
+                </div>
+
+            </div>
+     
+            <div id="csomag-bovebben" class="card big-card" data-csomagid="szam">
+                <div class="card-image">
+                    <img src="./resources/logo.ico" alt="dolog">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <h2>Cyperpunknesss bolygóshit</h2>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    </div>
+                    <div>
+                        <h3>Adatok:</h3>
+                            <p>Választható dátum: 9999.99.99 - 6666.66.66</p>
+                            <p>Választható járművek:</p>
+                            <ul>
+                                <li>Autó</li>
+                                <li></li>
+                            </ul>
+                    </div>  
+                    <button class="btn btn-dark">Részletek</button>    
+                </div>
+            </div>
+
+        </section>
+
+        <!-- <section class="bg-section">
+            <h2>Nem tudom ide mit lehetne de akár ilyenünk is lehet</h2>
+            <p>I guess fehér oldalon Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat optio cumque accusamus excepturi a eaque necessitatibus explicabo nostrum dolore maxime sapiente enim, perferendis corporis soluta dolorum amet, ipsam error. Recusandae.</p>
 
             <div class="wave wave-top">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
@@ -155,14 +197,32 @@
                     </path>
                 </svg>
             </div>
-        </section>
+        </section> -->
 
 
     </main>
 
-    <footer class="center-container">
-        <p>A weboldalt készítette: <a href="https://www.facebook.com/tunde.tabor.2004/" target="_blank"
-                rel="noopener noreferrer">Tábor Tünde</a></p>
+    <footer>
+        <section>
+            <h3>Ide lehetnek ilyen dolgok</h3>
+        </section>
+        <section>
+            <h3>Hogy KAPCSOLAT pl</h3>
+            <ul>
+                <li>random telefonszám +369696969</li>
+                <li>meoww</li>
+                <li>cicákat akarok most ide most gimme</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Térkép?</h3>
+            <div class="maps-container">
+                <iframe width="100%" height="100%"
+                    src="https://maps.google.com/maps?width=100&amp;height=100&amp;hl=en&amp;q=dunasziget%20nefelejcs%20utca%2064+(Rudolf%20Vend%C3%A9gh%C3%A1z%2C%20Dunasziget)&amp;ie=UTF8&amp;t=p&amp;z=10&amp;iwloc=B&amp;output=embed"
+                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                </iframe>
+            </div>
+        </section>
     </footer>
 </body>
 
