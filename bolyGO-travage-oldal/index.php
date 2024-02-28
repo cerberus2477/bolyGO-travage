@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bolyGO</title>
-    <link rel="shortcut icon" href="resources/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon favicon" href="styles/img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
     <script defer src="https://kit.fontawesome.com/af2e246792.js" crossorigin="anonymous"></script>
     <script defer src="./js/app.js"></script>
@@ -15,8 +15,8 @@
 <body>
     <nav data-state="closed" data-scrolled="false">
         <div class="nav-elements">
-            <img src="./resources/logo_transparent.png" alt="bolyGO logo">
-            <a class="btn" href="./cart.php">Kosár</a>
+            <img src="styles/img/logo_transparent.png" alt="bolyGO logo">
+            <a class="btn" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
         </div>
     </nav>
 
@@ -40,7 +40,7 @@
                 <div class="rolunk-container">
                 <div class="card" data-color="yellow">
                     <div class="card-image">
-                        <img src="./resources/logo.ico" alt="Levi">
+                        <img src="styles/img/levi.png" alt="Levi">
                     </div>
                     <div class="card-content">
                         <h2>Levi</h2>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="card" data-color="pink">
                     <div class="card-image">
-                        <img src="./resources/logo.ico" alt="Tünde">
+                        <img src="styles/img/tunde.jpg" alt="Tünde">
                     </div>
                     <div class="card-content">
                         <h2>Tünde</h2>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="card" data-color="green">
                     <div class="card-image">
-                        <img src="./resources/logo.ico" alt="Sityu">
+                        <img src="styles/img/sityu.jpg" alt="Sityu">
                     </div>
                     <div class="card-content">
                         <h2>Sityu</h2>
@@ -85,32 +85,48 @@
                         <div class="card-content">
                             <h2><? $item["nev"]?></h2>
                             <p class="description"><? $item["leiras"]?></p>
-                            <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                            <button class="btn btn-light">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
                         </div>
                     </div>
                 <?php endforeach ?>
             </div>
      
             <div id="csomag-bovebben" class="card big-card" data-csomagid="szam">
-                <div class="card-image">
+             
                     <img src="./resources/logo.ico" alt="dolog">
+                
+                
+                <div>
+                    <h2>Cyperpunknesss bolygóshit</h2>
+                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 </div>
-                <div class="card-content">
-                    <div>
-                        <h2>Cyperpunknesss bolygóshit</h2>
-                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                    </div>
-                    <div>
-                        <h3>Adatok:</h3>
-                            <p>Választható dátum: 9999.99.99 - 6666.66.66</p>
-                            <p>Választható járművek:</p>
-                            <ul>
-                                <li>Autó</li>
-                                <li></li>
-                            </ul>
-                    </div>  
-                    <button class="btn btn-dark">Részletek</button>    
-                </div>
+                <div>
+                    <!-- generálni --><p>Választható dátum: 9999.99.99 - 6666.66.66</p>
+                    <p>Választható járművek</p>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>név</th>
+                                <th>osztály</th>
+                                <th>fekvőhely</th>
+                                <th>ár</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ezt generálni kéne -->
+                            <tr>
+                                <td>János</td>
+                                <td>9. osztály</td>
+                                <td>8</td>
+                                <td>5000 Ft</td>
+                            </tr>
+                            <!-- eddig -->
+                        </tbody>
+                    </table>
+                    <button class="btn">Kosárhoz adás<i class="fa-solid fa-cart-plus"></i></button>   
+                </div>  
+                    
+                
             </div>
 
         </section>

@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
-
-
 @font-face {
     font-family: 'Century Gothic';
-    src: url('../resources/fonts/Century\ Gothic.ttf') format('truetype');
+    src: url('./fonts/Century\ Gothic.ttf') format('truetype');
 }
   
 /* VARIABLES */
@@ -63,11 +61,6 @@ body::after{
     background-color: var(--clr-orange);
     color: var(--clr-white);
 }
-
-/* section {
-    position: relative;
-} */
-
 
 main {
     padding: 0 5rem;
@@ -141,8 +134,8 @@ a {
 
 nav img {
     /* width: 100px;  */
-    height: 5rem;
-    transition: transform 0.5s ease-in-out; 
+    height: 2rem;
+    transition: transform 0.2s ease-in-out; 
 }
 
 nav[data-scrolled="true"] img {
