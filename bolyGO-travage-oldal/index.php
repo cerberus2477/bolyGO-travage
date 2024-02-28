@@ -70,7 +70,7 @@
 
    
         <section id="csomagok">
-
+s
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <?php
@@ -100,7 +100,6 @@
                 <div class="card-image">
                     <img src="./resources/logo.ico" alt="dolog">
                 </div>
-
                 <div class="card-content">
                     <div>
                         <h2>Cyperpunknesss bolygóshit</h2>
