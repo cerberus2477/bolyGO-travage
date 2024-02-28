@@ -74,7 +74,8 @@ s
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <?php
-                    $data = json_decode(file_get_contents('../backend/api.php'), true);
+                    $data = json_decode(file_get_contents('./api.php'), true);
+                    echo "lelele";
                 ?>
 
 
