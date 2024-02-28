@@ -70,7 +70,6 @@
 
    
         <section id="csomagok">
-s
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <?php
