@@ -70,7 +70,6 @@
 
    
         <section id="csomagok">
-s
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <?php
@@ -78,23 +77,19 @@ s
                     echo "lelele";
                 ?>
 
-
                 <!-- jó lenne random szín or smth -->
-                <h2>Csomagok</h2>
-                <div class="csomag-container">
-                    <?php foreach ($data as $item):?>
-                        <div class="card" data-color="red" data-csomagid="<? $item["id"]?>">
-                            <div class="card-image">
-                                <img src="./resources/<? $item["nev"]?>.img" alt="<? $item["nev"]?>">
-                            </div>
-                            <div class="card-content">
-                                <h2><? $item["nev"]?></h2>
-                                <p class="description"><? $item["leiras"]?></p>
-                                <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
-                            </div>
+                <?php foreach ($data as $item):?>
+                    <div class="card" data-color="red" data-csomagid="<? $item["id"]?>">
+                        <div class="card-image">
+                            <img src="./resources/<? $item["nev"]?>.img" alt="<? $item["nev"]?>">
                         </div>
+                        <div class="card-content">
+                            <h2><? $item["nev"]?></h2>
+                            <p class="description"><? $item["leiras"]?></p>
+                            <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                        </div>
+                    </div>
                 <?php endforeach ?>
-
             </div>
      
             <div id="csomag-bovebben" class="card big-card" data-csomagid="szam">
