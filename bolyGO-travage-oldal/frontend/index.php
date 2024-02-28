@@ -70,42 +70,27 @@
 
    
         <section id="csomagok">
-s
-            <h2>Csomagok</h2>
-            <div class="csomag-container">
-                <div class="card" data-csomagid="szam">
-                    <div class="card-image">
-                        <img src="./resources/logo.ico" alt="Planet 1">
-                    </div>
-                    <div class="card-content">
-                        <h2>Planet 1</h2>
-                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                        <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
-                    </div>
-                </div>
-                <div class="card" data-csomagid="szam">
-                    <div class="card-image">
-                        <img src="./resources/logo.ico" alt="Planet 1">
-                    </div>
-                    <div class="card-content">
-                        <h2>Planet 1</h2>
-                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                        <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
-                    </div>
-                </div>
-                <div class="card" data-csomagid="szam">
-                    <div class="card-image">
-                        <img src="./resources/logo.ico" alt="Planet 1">
-                    </div>
-                    <div class="card-content">
-                        <h2>Planet 1</h2>
-                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> 
-                        <a href="#csomag-bovebben" class="btn btn-dark" onclick="reszletek();">Részletek <i class="fa-solid fa-circle-chevron-down"></i></a>
-                    </div>
-                </div>
+        <?php
+        $data = json_decode(file_get_contents('../backend/api.php'), true);
+        ?>
 
-            </div>
-     
+            
+            <h2>Csomagok</h2>
+            <?php foreach ($data as $item):?>
+                <div class="csomag-container">
+                    <div class="card" data-csomagid="<? $item["id"]?>">
+                        <div class="card-image">
+                            <img src="./resources/<? $item["nev"]?>.img" alt="<? $item["nev"]?>">
+                        </div>
+                        <div class="card-content">
+                            <h2><? $item["nev"]?></h2>
+                            <p class="description"><? $item["leiras"]?></p>
+                            <button class="btn btn-dark">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>    
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
+            
             <div id="csomag-bovebben" class="card big-card" data-csomagid="szam">
                 <div class="card-image">
                     <img src="./resources/logo.ico" alt="dolog">
