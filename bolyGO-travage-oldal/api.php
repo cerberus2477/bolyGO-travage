@@ -8,10 +8,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 switch ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
-        if (isset($_GET["csomagid"]))
-            getCsomag($_GET["csomagid"]);
-        else
-            getCsomagok();
+        getCsomagok();
         break;
     case "POST":
         foglal();
@@ -23,15 +20,11 @@ switch ($_SERVER["REQUEST_METHOD"]) {
 //csomagok leírásának, nevének, azonosítójának lekérése
 function getCsomagok()
 {
-    $sql = "SELECT id, nev, leiras FROM csomag WHERE id > -1";
+    $sql = "SELECT id FROM csomag WHERE id > -1";
     $csomagok = array();
     $tabla = runQuery($sql);
     while ($sor = mysqli_fetch_array($tabla)) {
-        $csomagok[] = array(
-            "id" => intval($sor["id"]),
-            "nev" => $sor["nev"],
-            "leiras" => $sor["leiras"]
-        );
+        $csomagok[] = getCsomag($sor["id"]);
     }
 
     http_response_code(200);
@@ -44,10 +37,11 @@ function getCsomag($csomagid)
 {
     $csomag = array();
 
-    $sql = "SELECT csomag.nev AS csomagnev, csomag.leiras, bolygo.nev AS bolygonev, csomag.kezdes, csomag.vege, csomag.ar FROM csomag INNER JOIN bolygo ON csomag.bolygoid = bolygo.id WHERE csomag.id = " . $csomagid;
+    $sql = "SELECT csomag.id AS id, csomag.nev AS csomagnev, csomag.leiras, bolygo.nev AS bolygonev, csomag.kezdes, csomag.vege, csomag.ar FROM csomag INNER JOIN bolygo ON csomag.bolygoid = bolygo.id WHERE csomag.id = " . $csomagid;
     $tabla = runQuery($sql);
     $sor = mysqli_fetch_array($tabla);
 
+    $csomag["id"] = $sor["id"];
     $csomag["nev"] = $sor["csomagnev"];
     $csomag["leiras"] = $sor["leiras"];
     $csomag["bolygo"] = $sor["bolygonev"];
@@ -69,8 +63,7 @@ function getCsomag($csomagid)
         );
     }
 
-    http_response_code(200);
-    echo json_encode($csomag);
+    return $csomag;
     //echo json_encode($csomag, JSON_PRETTY_PRINT);
 }
 
