@@ -82,10 +82,19 @@
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <?php
-                    // $colors = ['green', 'red', 'yellow', 'pink', 'purple'];
+                    //API meghívása
+                    $url = "http://".implode("/",array_map('rawurlencode',explode("/",$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])."/api.php")));
+                    $options = array(
+                        'http' => array(
+                            'method' => 'GET',
+                            'header' => 'Content-Type: application/json'
+                        )
+                    );
+                    $context = stream_context_create($options);
+                    $data = json_decode(file_get_contents($url, false, $context), true);
+                     // $colors = ['green', 'red', 'yellow', 'pink', 'purple'];
                     // <?$colors[array_rand($colors)]
                 ?>
-                
 
                 <!-- jó lenne random szín or smth -->
                 <?php foreach ($data as $item):?>

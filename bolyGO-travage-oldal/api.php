@@ -8,10 +8,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 switch ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
-        if (isset($_GET["csomagid"]))
-            getCsomag($_GET["csomagid"]);
-        else
-            getCsomagok();
+        getCsomagok();
         break;
     case "POST":
         foglal();
@@ -20,18 +17,14 @@ switch ($_SERVER["REQUEST_METHOD"]) {
         hibauzenet(405, "API-hívás hiba", "Ismeretlen hívás típus.");
 }
 
-//csomagok leírásának, nevének, azonosítójának lekérése
+//csomagok adatainak lekérése
 function getCsomagok()
 {
-    $sql = "SELECT id, nev, leiras FROM csomag WHERE id > -1";
-    $csomagok = array();
+    $sql = "SELECT id FROM csomag WHERE id > -1";
     $tabla = runQuery($sql);
+    $csomagok = array();
     while ($sor = mysqli_fetch_array($tabla)) {
-        $csomagok[] = array(
-            "id" => intval($sor["id"]),
-            "nev" => $sor["nev"],
-            "leiras" => $sor["leiras"]
-        );
+        $csomagok[] = getCsomag($sor["id"]);
     }
 
     http_response_code(200);
@@ -44,10 +37,11 @@ function getCsomag($csomagid)
 {
     $csomag = array();
 
-    $sql = "SELECT csomag.nev AS csomagnev, csomag.leiras, bolygo.nev AS bolygonev, csomag.kezdes, csomag.vege, csomag.ar FROM csomag INNER JOIN bolygo ON csomag.bolygoid = bolygo.id WHERE csomag.id = " . $csomagid;
+    $sql = "SELECT csomag.id AS id, csomag.nev AS csomagnev, csomag.leiras, bolygo.nev AS bolygonev, csomag.kezdes, csomag.vege, csomag.ar FROM csomag INNER JOIN bolygo ON csomag.bolygoid = bolygo.id WHERE csomag.id = " . $csomagid;
     $tabla = runQuery($sql);
     $sor = mysqli_fetch_array($tabla);
 
+    $csomag["id"] = $sor["id"];
     $csomag["nev"] = $sor["csomagnev"];
     $csomag["leiras"] = $sor["leiras"];
     $csomag["bolygo"] = $sor["bolygonev"];
@@ -69,8 +63,7 @@ function getCsomag($csomagid)
         );
     }
 
-    http_response_code(200);
-    echo json_encode($csomag);
+    return $csomag;
     //echo json_encode($csomag, JSON_PRETTY_PRINT);
 }
 
@@ -94,7 +87,7 @@ function foglal()
         http_response_code(201);
         echo json_encode($d);
     } catch (Exception $e) {
-        $d = array("eredmeny" => "nem juhu: " . $e->getMessage());
+        $d = array("eredmeny" => "Hiba az adatbázisba feltöltés során: " . $e->getMessage());
         http_response_code(500);
         echo json_encode($d, JSON_PRETTY_PRINT);
     }
@@ -159,6 +152,7 @@ function SQL_Hibauzenet($e)
 {
     $uzenet = array("hiba" => "SQL-hiba", "uzenet" => "Nem sikerült csatlakozni az adatbázishoz. Hibaüzenet: " . $e->getMessage());
     $json = json_encode($uzenet);
+    http_response_code(500);
     exit($json);
 }
 
