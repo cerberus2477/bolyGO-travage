@@ -95,47 +95,51 @@ header {
 
 /* NAV ------------------------------------------------------------------------------------------------------------------*/
 nav {
-    height: 10.2rem;
-    padding: 1.6rem 5vw;
+    padding: 0 5vw;
+    transition: all .2s linear;
+    height: 5rem;
     position: fixed;
     z-index: 10;
     top: 0;
     left: 0;
     width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
 
-    transition: all .2s linear;
+    align-items: center;
 }
 
-/* opera gx telepítőoldalról loptam */
-@media only screen and (min-width: 1224px) {
-    nav{
-        padding-left: 9.3rem;
-        padding-right: 9.3rem;
-    }
-}
-
-.nav-elements {
-    padding: 2.4vh 1em;
-    /* margin: 5vh 5vw; */
-    /* height: 2rem; */
+.nav-first-row {
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: space-between;
+    align-items: center;
 }
 
 nav[data-scrolled="true"] {
-    background-color: rgba(17, 0, 131, 0.5);
-    /* opacity: 0.5; */
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(15px);
 }
 
+nav .logo {
+    margin-right: auto;
+}
 
-nav a {
+.logo {
+    padding: 1rem;
+    margin-right: 0px;
+    height: 100%;
+    display: block !important;
+}
+
+
+
+nav a{
     font-size: 1rem;
     letter-spacing: 1px;
     color: var(--clr-white);
-    font-weight: light;
+    margin: 2.4vh 1rem;
 }
 
 
@@ -145,15 +149,63 @@ a {
     transition: all .2s linear;
 }
 
-nav img {
-    /* width: 100px;  */
-    /* height: 2rem; */
-    transition: transform 0.2s ease-in-out; 
+/* pc */
+@media screen and (min-width: 801px){
+    .mobile-btn {
+        display: none;
+        padding: 15px;
+    }
+    .pc-btn{
+        display: block;
+    }
 }
 
-nav[data-scrolled="true"] img {
-    transform: scale(0.8); 
+
+/* mobile */
+@media screen and (max-width: 800px) {
+
+    nav {
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(15px);
+        position: relative;
+        transition: all .2s;
+    }
+
+    nav[data-state="closed"] a {
+        display: none;
+    }
+    nav[data-state="open"] a {
+        display: block;
+    }
+
+    .mobile-btn {
+        display: block !important;
+    }
+    .pc-btn{
+        display: none !important;
+    }
+
+    /* style */
+    nav[data-state="open"] .nav-first-row {
+        border-bottom: 1px solid rgba(255 255 255 /0.3);
+    }
+
+    .logo {
+        margin-right: 0px;
+        height: 100%;
+        display: block !important;
+    }
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -209,6 +261,9 @@ nav[data-scrolled="true"] img {
     /* border: 1px solid var(--clr-blue-black); */
 }
 
+.icon-btn{
+    white-space: nowrap;
+}
 
 
 /* más szín */
