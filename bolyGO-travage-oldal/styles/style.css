@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
-
-
 @font-face {
     font-family: 'Century Gothic';
-    src: url('../resources/fonts/Century\ Gothic.ttf') format('truetype');
+    src: url('./fonts/Century\ Gothic.ttf') format('truetype');
 }
   
 /* VARIABLES */
@@ -64,11 +62,6 @@ body::after{
     color: var(--clr-white);
 }
 
-/* section {
-    position: relative;
-} */
-
-
 main {
     padding: 0 5rem;
 }
@@ -102,18 +95,29 @@ header {
 
 /* NAV ------------------------------------------------------------------------------------------------------------------*/
 nav {
-    padding: 0 5vw;
-
+    height: 10.2rem;
+    padding: 1.6rem 5vw;
     position: fixed;
     z-index: 10;
     top: 0;
     left: 0;
     width: 100%;
+
+    transition: all .2s linear;
+}
+
+/* opera gx telepítőoldalról loptam */
+@media only screen and (min-width: 1224px) {
+    nav{
+        padding-left: 9.3rem;
+        padding-right: 9.3rem;
+    }
 }
 
 .nav-elements {
     padding: 2.4vh 1em;
-    height: 2rem;
+    /* margin: 5vh 5vw; */
+    /* height: 2rem; */
     display: flex;
     width: 100%;
     height: 100%;
@@ -121,7 +125,9 @@ nav {
 }
 
 nav[data-scrolled="true"] {
-    background-color: var(--clr-blue-black);
+    background-color: rgba(17, 0, 131, 0.5);
+    /* opacity: 0.5; */
+    backdrop-filter: blur(15px);
 }
 
 
@@ -141,8 +147,8 @@ a {
 
 nav img {
     /* width: 100px;  */
-    height: 5rem;
-    transition: transform 0.5s ease-in-out; 
+    /* height: 2rem; */
+    transition: transform 0.2s ease-in-out; 
 }
 
 nav[data-scrolled="true"] img {
@@ -367,7 +373,8 @@ footer {
 
 
 #csomagok{
-    background-color: var(--clr-pink);
-    margin: 0 -5rem;
+    /* background-color: var(--clr-pink); */
+    /* margin: 0 -5rem; */
+    border-top: 3px solid var(--clr-white);
 }
 
