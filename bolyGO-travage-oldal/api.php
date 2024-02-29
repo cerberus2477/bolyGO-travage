@@ -17,12 +17,12 @@ switch ($_SERVER["REQUEST_METHOD"]) {
         hibauzenet(405, "API-hívás hiba", "Ismeretlen hívás típus.");
 }
 
-//csomagok leírásának, nevének, azonosítójának lekérése
+//csomagok adatainak lekérése
 function getCsomagok()
 {
     $sql = "SELECT id FROM csomag WHERE id > -1";
-    $csomagok = array();
     $tabla = runQuery($sql);
+    $csomagok = array();
     while ($sor = mysqli_fetch_array($tabla)) {
         $csomagok[] = getCsomag($sor["id"]);
     }
