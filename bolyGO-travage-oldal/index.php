@@ -76,74 +76,19 @@
             <h2>Csomagok</h2>
             <div class="csomag-container">
                 <?php
-                    // $data = json_decode(file_get_contents('api.php'), true);
-                    // teszteléshez
-                    $data = json_decode('[
-                        {
-                            "kezdido": "2024-03-03",
-                            "vegido": "2024-03-10",
-                            "ar": 27600,
-                            "nev": "UTAZÁÁÁáááÁÁáÁÁs",
-                            "id": 32,
-                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
-                        },
-                        {
-                            "kezdido": "2024-03-03",
-                            "vegido": "2024-03-10",
-                            "ar": 27600,
-                            "nev": "UTAZÁÁÁáááÁÁáÁÁsasdad",
-                            "id": 2,
-                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
-                        },
-                        {
-                            "kezdido": "2024-03-03",
-                            "vegido": "2024-03-10",
-                            "ar": 27600,
-                            "nev": "Uasd",
-                            "id": 32,
-                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
-                        },
-                        {
-                            "kezdido": "2024-03-03",
-                            "vegido": "2024-03-10",
-                            "ar": 27600,
-                            "nev": "UTAZasd",
-                            "id": 32,
-                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
-                        },
-                        {
-                            "kezdido": "2024-03-03",
-                            "vegido": "2024-03-10",
-                            "ar": 27600,
-                            "nev": "ggggggg",
-                            "id": 32,
-                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
-                        },
-                        {                            
-                            "kezdido": "2024-03-03",
-                            "vegido": "2024-03-10",
-                            "ar": 27600,
-                            "nev": "Uasdfsdf",
-                            "id": 32,
-                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
-                        },
-                        {
-                            "kezdido": "2024-03-03",
-                            "vegido": "2024-03-10",
-                            "ar": 27600,
-                            "nev": "asdasdfasdf",
-                            "id": 32,
-                            "leiras": "lorem ipsum dolor sit amet, cosetuctor ad sdf sdf asdf asddfasd asdfasd afasd asdfas asdasasdf asdad dfaasdf asdf."
-                        }
-                        
-                       
-                    ]', true);
-
-
-                    // $colors = ['green', 'red', 'yellow', 'pink', 'purple'];
+                    //API meghívása
+                    $url = "http://".implode("/",array_map('rawurlencode',explode("/",$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])."/api.php")));
+                    $options = array(
+                        'http' => array(
+                            'method' => 'GET',
+                            'header' => 'Content-Type: application/json'
+                        )
+                    );
+                    $context = stream_context_create($options);
+                    $data = json_decode(file_get_contents($url, false, $context), true);
+                     // $colors = ['green', 'red', 'yellow', 'pink', 'purple'];
                     // <?$colors[array_rand($colors)]
                 ?>
-                
 
                 <!-- jó lenne random szín or smth -->
                 <?php foreach ($data as $item):?>

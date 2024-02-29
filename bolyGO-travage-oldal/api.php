@@ -94,7 +94,7 @@ function foglal()
         http_response_code(201);
         echo json_encode($d);
     } catch (Exception $e) {
-        $d = array("eredmeny" => "nem juhu: " . $e->getMessage());
+        $d = array("eredmeny" => "Hiba az adatbázisba feltöltés során: " . $e->getMessage());
         http_response_code(500);
         echo json_encode($d, JSON_PRETTY_PRINT);
     }
@@ -159,6 +159,7 @@ function SQL_Hibauzenet($e)
 {
     $uzenet = array("hiba" => "SQL-hiba", "uzenet" => "Nem sikerült csatlakozni az adatbázishoz. Hibaüzenet: " . $e->getMessage());
     $json = json_encode($uzenet);
+    http_response_code(500);
     exit($json);
 }
 
