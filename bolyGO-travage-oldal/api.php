@@ -1,5 +1,7 @@
 <?php
 
+// SITYUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+// ide kell komment hogy mi ez
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -91,7 +93,6 @@ function foglal()
         http_response_code(500);
         echo json_encode($d, JSON_PRETTY_PRINT);
     }
-
 }
 
 //egy foglalás feltöltése az adatbázisba
@@ -147,7 +148,7 @@ function runNonQuery($sql)
     }
 }
 
-//SQL hibaüzenet visszaküldése
+// SQL hibaüzenet visszaküldése
 function SQL_Hibauzenet($e)
 {
     $uzenet = array("hiba" => "SQL-hiba", "uzenet" => "Nem sikerült csatlakozni az adatbázishoz. Hibaüzenet: " . $e->getMessage());

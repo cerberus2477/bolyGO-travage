@@ -203,15 +203,6 @@ a {
 
 
 
-
-
-
-
-
-
-
-
-
 /* GOMBOK ----------------------------------------------------------------------------------------------------------*/
 /* alapbol narancs */
 .btn {
@@ -265,8 +256,16 @@ a {
     white-space: nowrap;
 }
 
+.btn-controll {
+    background-color: transparent;
+}
 
-/* más szín */
+.btn-controll:hover {
+    background-color: var(--clr-white);
+    color: var(--clr-blue-black);
+}
+
+
 
 
 /* TYPOGRAPHY ------------------------------------------------------------------------------------------------------*/
@@ -295,7 +294,133 @@ h2 {
 
 
 
+footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--clr-blue-black);
+}
 
+
+section{
+        padding: 5rem 0;
+}
+
+/* CART.PHP */
+.header-cart {
+    height: 50vh;
+}
+
+.main-cart{
+    background-color: var(--clr-blue-black);
+}
+
+
+
+
+
+/* CARDS ---------------------------------------------------------------------------------------------------------------------------------------*/
+
+.rolunk-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
+.csomag-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: top;
+    /* max-width: 800px; */        
+}
+
+.card {
+    width: 300px;
+    border-radius: 7px;
+    transition: box-shadow 0.3s ease;
+    color: var(--clr-white);
+    background-color: var(--clr-blue-black);
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+
+  
+  .small-card-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px 5px 0 0;
+  }
+
+
+  .card-content .description{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /*harmadik sortól levágja és ...-ot tesz*/
+    white-space: pre-wrap; /* sortörés a szóközök megtartásával*/
+  }
+
+
+  
+
+/* bovebben ---------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.bovebben-container{
+    padding: 5rem 2rem;
+    margin: 0 -5rem;
+    display: flex;
+
+    background-color: var(--clr-purple);
+}
+
+  .big-card{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+ }
+
+ .big-card .card-content{
+    padding: 1.5rem .5rem;
+ }
+
+.big-card-img {
+    min-width: 100px;
+    width: max(100px, 100%);
+    object-fit: contain;
+    display: block;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+.card-hidden {
+    /* visibility: hidden; */
+    display: none;
+    opacity: 0;
+    transition: all 0.5s linear;
+}
+
+
+
+
+span{
+    color: var(--clr-pink);
+    font-weight: bold;
+}
+
+
+
+.még-semmi-hátteres-hullámos-rész-lehetne-ig{
 /* .wave-top {
     top: -1px;
 }
@@ -345,91 +470,4 @@ h2 {
     padding: 150px 50px;
     color: var(--clr-white);
 } */
-
-
-footer {
-    display: flex;
-    justify-content: space-around;
-    background-color: var(--clr-blue-black);
 }
-
-
-
-
-/* CART.PHP */
-.header-cart {
-    height: 50vh;
-}
-
-.main-cart{
-    background-color: var(--clr-blue-black);
-}
-
-
-
-/* CARDS */
-
-.csomag-container{
-    display: grid;
-    gap: .5rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.rolunk-container {
-    display: flex;
-    justify-content: space-around; 
-    align-items: center;
-    flex-wrap: wrap; 
-}
-
-
-.card {
-    width: 300px;
-    padding: 20px;
-    border-radius: 7px;
-    transition: box-shadow 0.3s ease;
-    color: var(--clr-white);
-    background-color: var(--clr-blue-black);
-  }
-  
-  .card-content {
-    padding: 15px;
-  }
-
-  
-.card-image {
-    flex-grow: 1;
-    overflow: hidden;
-    border-radius: 5px 5px 0 0;
-  }
-  
-  .card-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .card-content .description{
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* start showing ellipsis when 3rd line is reached */
-    white-space: pre-wrap; /* let the text wrap preserving spaces */
-  }
-
-  .big-card{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
- }
-
-
-
-
-
-#csomagok{
-    /* background-color: var(--clr-pink); */
-    /* margin: 0 -5rem; */
-    border-top: 3px solid var(--clr-white);
-}
-

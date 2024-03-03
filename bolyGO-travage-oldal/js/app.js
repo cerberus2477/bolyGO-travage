@@ -33,3 +33,26 @@ document.querySelectorAll('.card').forEach(card => {
         console.log(`0 4px 8px rgba(0, 0, 0, 0.1)`);
     });
 });
+
+
+//bővebben kártyák váltása
+
+let currentCardIndex = 0;
+
+//azért hogy az első látható legyen alapból de a többi ne
+showNextCard();
+showPrevCard();
+
+function showNextCard() {
+    const cards = document.querySelectorAll('.big-card');
+    cards[currentCardIndex].classList.add('card-hidden');
+    currentCardIndex = (currentCardIndex + 1) % cards.length;
+    cards[currentCardIndex].classList.remove('card-hidden');
+}
+
+function showPrevCard() {
+    const cards = document.querySelectorAll('.big-card');
+    cards[currentCardIndex].classList.add('card-hidden');
+    currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+    cards[currentCardIndex].classList.remove('card-hidden');
+}

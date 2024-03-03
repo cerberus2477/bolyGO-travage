@@ -40,14 +40,14 @@
 
 
     <main id="index-content">
-        <section>
+        <section id=rolunk>
             <h2>Rólunk</h2>
             <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Blanditiis, quos.</p>
             <div class="rolunk-container">
                 <div class="card" data-color="yellow">
-                    <div class="card-image">
-                        <img src="styles/img/levi.png" alt="Levi">
+                    <div >
+                        <img class="small-card-img" src="styles/img/levi.png" alt="Levi">
                     </div>
                     <div class="card-content">
                         <h2>Levi</h2>
@@ -55,9 +55,7 @@
                     </div>
                 </div>
                 <div class="card" data-color="pink">
-                    <div class="card-image">
-                        <img src="styles/img/tunde.jpg" alt="Tünde">
-                    </div>
+                    <img class="small-card-img" src="styles/img/tunde.jpg" alt="Tünde">
                     <div class="card-content">
                         <h2>Tünde</h2>
                         <p class="description">
@@ -65,9 +63,7 @@
                     </div>
                 </div>
                 <div class="card" data-color="green">
-                    <div class="card-image">
-                        <img src="styles/img/sityu.jpg" alt="Sityu">
-                    </div>
+                    <img class="small-card-img" src="styles/img/sityu.jpg" alt="Sityu">
                     <div class="card-content">
                         <h2>Sityu</h2>
                         <p class="description">Hol vagyok?</p>
@@ -92,65 +88,74 @@
                     );
                     $context = stream_context_create($options);
                     $data = json_decode(file_get_contents($url, false, $context), true);
-                     // $colors = ['green', 'red', 'yellow', 'pink', 'purple'];
-                    // <?$colors[array_rand($colors)]
+
+
+                    $colors = ['green', 'red', 'yellow', 'pink', 'purple'];
                 ?>
 
-                <!-- jó lenne random szín or smth -->
-                <?php foreach ($data as $item):?>
-                    <div class="card" data-color="" data-csomagid="<?= $item["id"]?>">
-                        <div class="card-image">
-                            <!-- kepek forrasa?? -->
-                            <img src="<?= './resources/'.$item["nev"].'img'?>" alt="<?= $item["nev"].' képe'?>">
-                        </div>
+                <!-- csomgok kis kártyái -->
+                <?php foreach ($data as $csomag):?>
+                    <div class="card" data-color="<?= $colors[array_rand($colors)] ?>" data-csomagid="<?= $csomag["id"]?>">
+                        <img class="small-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
                         <div class="card-content">
-                            <h2><?= $item["nev"]?></h2>
-                            <p class="description"><?= $item["leiras"]?></p>
+                            <h2><?= $csomag["nev"]?></h2>
+                            <p class="description"><?= $csomag["leiras"]?></p>
                             <button class="btn btn-light icon-btn">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
                         </div>
                     </div>
                 <?php endforeach ?>
             </div>
+        </section>
 
-            <!-- grid? -->
-            <div id="csomag-bovebben" class="card big-card" data-csomagid="szam">
+        <section class="bovebben-container">
 
-                <img src="./resources/logo.ico" alt="dolog">
+            <button class="btn btn-controll" onclick="showPrevCard()"><i class="fa-solid fa-chevron-left"></i></button> 
 
-                <div>
-                    <h2>Cyperpunknesss bolygóshit</h2>
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                </div>
-                <div>
-                    <!-- generálni -->
-                    <p>Választható dátum: 9999.99.99 - 6666.66.66</p>
-                    <p>Választható járművek</p>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>név</th>
-                                <th>osztály</th>
-                                <th>fekvőhely</th>
-                                <th>ár</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- ezt generálni kéne -->
-                            <tr>
-                                <td>János</td>
-                                <td>9. osztály</td>
-                                <td>8</td>
-                                <td>5000 Ft</td>
-                            </tr>
-                            <!-- eddig -->
-                        </tbody>
-                    </table>
-                    <button class="btn icon-btn">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
-                </div>
-
-
+            <div class="meow">  <!-- ha megcsinálom hogy szépen csússzanak a kártyák kelleni fog egy div -->
+                <?php foreach ($data as $csomag):?>
+                    <div class="card big-card card-hidden" data-csomagid="<?= $csomag["id"]?>">
+                        <img class="big-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
+            
+                        <div class="card-content">
+                            <h2><?= $csomag["nev"]?></h2>
+                            <h3><?= $csomag["bolygo"]?></h3>
+                            <p><?= $csomag["leiras"]?></p>
+                        </div>
+                        <div class="card-content">
+                            <p>Választható dátum: <?= $csomag["kezdido"]?> - <?= $csomag["vegido"]?></p>
+                            <p>Választható járművek</p>
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <th>név</th>
+                                        <th>osztály</th>
+                                        <th>fekvőhely</th>
+                                        <th>ár</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($csomag["jarmuvek"] as $jarmu):?>
+                                        <tr>
+                                            <td><?= $jarmu["nev"]?></td>
+                                            <td><?= $jarmu["osztaly"]?></td>
+                                            <td><?= $jarmu["fekvohely"]?></td>
+                                            <td><?= $jarmu["ar"]?></td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                            <p><i>Már <span><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
+                            <button class="btn icon-btn">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
+                        </div>
+                    </div>
+                <?php endforeach ?>
             </div>
+
+            <button class="btn btn-controll" onclick="showNextCard()"><i class="fa-solid fa-chevron-right"></i></button> 
+
+        </section>
+
+        <section id="kapcsolat">
 
         </section>
     </main>
