@@ -89,18 +89,18 @@
                     $context = stream_context_create($options);
                     $data = json_decode(file_get_contents($url, false, $context), true);
 
-
+                    // kártyák random színéhez kell
                     $colors = ['green', 'red', 'yellow', 'pink', 'purple'];
                 ?>
 
                 <!-- csomgok kis kártyái -->
                 <?php foreach ($data as $csomag):?>
-                    <div class="card" data-color="<?= $colors[array_rand($colors)] ?>" data-csomagid="<?= $csomag["id"]?>">
+                    <div class="card" data-color="<?= $colors[array_rand($colors)] ?>">
                         <img class="small-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
                         <div class="card-content">
                             <h2><?= $csomag["nev"]?></h2>
                             <p class="description"><?= $csomag["leiras"]?></p>
-                            <button class="btn btn-light icon-btn">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
+                            <button class="btn btn-light icon-btn" onclick="jumpTo(<?= $csomag["id"]?>)">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
                         </div>
                     </div>
                 <?php endforeach ?>

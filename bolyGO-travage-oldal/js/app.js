@@ -54,5 +54,13 @@ function showPrevCard() {
     const cards = document.querySelectorAll('.big-card');
     cards[currentCardIndex].classList.add('card-hidden');
     currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+    // ugyanaz mint currentCardIndex = currentCardIndex === 0 ? cards.length - 1 : currentCardIndex - 1;
     cards[currentCardIndex].classList.remove('card-hidden');
+}
+
+function jumpTo(csomagid) {
+    const cards = document.querySelectorAll('.big-card');
+    cards[currentCardIndex].classList.add('card-hidden');
+    let currentCard = document.querySelector(`div[data-csomagid="${csomagid}"]`);
+    currentCard.classList.remove('card-hidden');
 }
