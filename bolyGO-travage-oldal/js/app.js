@@ -63,4 +63,6 @@ function jumpTo(csomagid) {
     cards[currentCardIndex].classList.add('card-hidden');
     let currentCard = document.querySelector(`div[data-csomagid="${csomagid}"]`);
     currentCard.classList.remove('card-hidden');
+    currentCardIndex = [].indexOf.call(cards, currentCard);
+    document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start"})
 }
