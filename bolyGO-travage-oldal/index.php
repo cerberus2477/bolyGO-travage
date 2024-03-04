@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    if (!isset($_SESSION["kosar"])) $_SESSION["kosar"] = array();
+
+    if (isset($_POST["addcart"])) {
+        $_SESSION["kosar"][] = array(
+            "id" => $_POST["addcart"], 
+            "nev" => $_POST["csomagnev"],
+            "fo" => 1);
+        unset($_POST["addcart"]);
+        //még oda kéne görgetni vissza az oldalt a részleteshez
+    }
+?>
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -100,7 +113,7 @@
                         <div class="card-content">
                             <h2><?= $csomag["nev"]?></h2>
                             <p class="description"><?= $csomag["leiras"]?></p>
-                            <button class="btn btn-light icon-btn" onclick="jumpTo(<?= $csomag["id"]?>)">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
+                            <button class="btn btn-light icon-btn" onclick='jumpTo(<?= $csomag["id"]?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
                         </div>
                     </div>
                 <?php endforeach ?>
@@ -145,7 +158,10 @@
                                 </tbody>
                             </table>
                             <p><i>Már <span><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
-                            <button class="btn icon-btn">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
+                            <form action="<?php print $_SERVER["PHP_SELF"];?>" method="post">
+                                <button class="btn icon-btn" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
+                                <input type="hidden" name="csomagnev" value="<?= $csomag["nev"]?>">
+                            </form>
                         </div>
                     </div>
                 <?php endforeach ?>

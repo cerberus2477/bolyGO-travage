@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -31,15 +34,20 @@
     
     <main class="main-cart">
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
-        <?PHP foreach ($_SESSION["kosar"] as $item):?> 
-                <div class="lineOfCart" id="line<?$item[1]?>">
-                    <p class="orderNum"><?$item[0]?></p>
-                    <p class="name"><?$item[2]?></p>
-                    <input type="number" name="<?"numOfPeople".$item[0]?>" id="<?"numOfPeople".$item[0]?>" value="<?$item[3]?>">
-                    <button class="delete" onclick="del(<?$item[1]?>)">törlés</button>
-                </div>
+        <table>
+        <?php $orderNum = 0;?>
+        <?php foreach ($_SESSION["kosar"] as $item):?> 
+            <?php $orderNum++;?>
+            <tr class="lineOfCart" id="line_<?= $item["id"]?>">
+                <td class="orderNum"><?= $orderNum?>.</td>
+                <td>
+                    <p class="name">Csomagnév: <b><?= $item["nev"]?></b></p>
+                    <p>Utazók száma: <input type="number" name="<?= "numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>"><button class="delete" name="deleteElement" value="<?=$item["id"]?>">Töröl</button></p>
+                    <input type="hidden" name="id" value="<?=$item["id"]?>">
+                </td>
+            </tr>
         <?php endforeach ?>
-
+        </table>
     </main>
 </body>
     
