@@ -1,5 +1,7 @@
 <?php
 
+// SITYUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+// ide kell komment hogy mi ez
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -17,12 +19,12 @@ switch ($_SERVER["REQUEST_METHOD"]) {
         hibauzenet(405, "API-hívás hiba", "Ismeretlen hívás típus.");
 }
 
-//csomagok leírásának, nevének, azonosítójának lekérése
+//csomagok adatainak lekérése
 function getCsomagok()
 {
     $sql = "SELECT id FROM csomag WHERE id > -1";
-    $csomagok = array();
     $tabla = runQuery($sql);
+    $csomagok = array();
     while ($sor = mysqli_fetch_array($tabla)) {
         $csomagok[] = getCsomag($sor["id"]);
     }
@@ -91,7 +93,6 @@ function foglal()
         http_response_code(500);
         echo json_encode($d, JSON_PRETTY_PRINT);
     }
-
 }
 
 //egy foglalás feltöltése az adatbázisba
@@ -147,7 +148,7 @@ function runNonQuery($sql)
     }
 }
 
-//SQL hibaüzenet visszaküldése
+// SQL hibaüzenet visszaküldése
 function SQL_Hibauzenet($e)
 {
     $uzenet = array("hiba" => "SQL-hiba", "uzenet" => "Nem sikerült csatlakozni az adatbázishoz. Hibaüzenet: " . $e->getMessage());
