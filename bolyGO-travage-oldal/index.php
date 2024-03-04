@@ -1,3 +1,8 @@
+<?php
+    //SESSION inicializálása
+    session_start();
+    $_SESSION["kosar"] = array();
+?>
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -100,7 +105,7 @@
                         <div class="card-content">
                             <h2><?= $csomag["nev"]?></h2>
                             <p class="description"><?= $csomag["leiras"]?></p>
-                            <button class="btn btn-light icon-btn" onclick="jumpTo(<?= $csomag["id"]?>)">Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
+                            <button class="btn btn-light icon-btn" onclick='jumpTo(<?= $csomag["id"]?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
                         </div>
                     </div>
                 <?php endforeach ?>
