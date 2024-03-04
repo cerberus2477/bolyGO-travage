@@ -1,7 +1,15 @@
 <?php
-    //SESSION inicializálása
     session_start();
-    $_SESSION["kosar"] = array();
+    if (!isset($_SESSION["kosar"])) $_SESSION["kosar"] = array();
+
+    if (isset($_POST["addcart"])) {
+        $_SESSION["kosar"][] = array(
+            "id" => $_POST["addcart"], 
+            "nev" => $_POST["csomagnev"],
+            "fo" => 1);
+        unset($_POST["addcart"]);
+        //még oda kéne görgetni vissza az oldalt a részleteshez
+    }
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -150,7 +158,10 @@
                                 </tbody>
                             </table>
                             <p><i>Már <span><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
-                            <button class="btn icon-btn">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
+                            <form action="<?php print $_SERVER["PHP_SELF"];?>" method="post">
+                                <button class="btn icon-btn" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
+                                <input type="hidden" name="csomagnev" value="<?= $csomag["nev"]?>">
+                            </form>
                         </div>
                     </div>
                 <?php endforeach ?>
