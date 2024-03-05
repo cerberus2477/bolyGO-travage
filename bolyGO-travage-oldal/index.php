@@ -181,18 +181,20 @@
             <h3>Ide lehetnek ilyen dolgok</h3>
         </section>
         <section>
-            <h3>Hogy KAPCSOLAT pl</h3>
+            <h3>Forduljon hozzánk bizalommal!</h3>
             <ul>
-                <li>random telefonszám +369696969</li>
-                <li>meoww</li>
-                <li>cicákat akarok most ide most gimme</li>
+                <li>Tel: +369696969 <i class="fa fa-mobile"></i></li>
+                <li>meoww <i class="fa fa-cat"></i></li>
+                <li>cicákat akarok most ide most gimme <i class="fa fa-cat"></i></li>
             </ul>
         </section>
         <section>
-            <h3>Térkép?</h3>
+        <!-- src="https://maps.google.com/maps?width=100&amp;height=100&amp;hl=en&amp;q=dunasziget%20nefelejcs%20utca%2064+(Rudolf%20Vend%C3%A9gh%C3%A1z%2C%20Dunasziget)&amp;ie=UTF8&amp;t=p&amp;z=10&amp;iwloc=B&amp;output=embed" -->
+
+            <h3>Telephelyünk</h3>
             <div class="maps-container">
                 <iframe width="100%" height="100%"
-                    src="https://maps.google.com/maps?width=100&amp;height=100&amp;hl=en&amp;q=dunasziget%20nefelejcs%20utca%2064+(Rudolf%20Vend%C3%A9gh%C3%A1z%2C%20Dunasziget)&amp;ie=UTF8&amp;t=p&amp;z=10&amp;iwloc=B&amp;output=embed"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2706.7356574234536!2d19.23691240392388!3d47.28042171934365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741930014fc0d9b%3A0x195b02a0b1e91634!2sMacskalapos!5e0!3m2!1sen!2sus!4v1709628639614!5m2!1sen!2sus"
                     frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
                 </iframe>
             </div>
