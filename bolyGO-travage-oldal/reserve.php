@@ -34,6 +34,17 @@
             .then(data => console.log(data))
             .catch((error) => console.error('Error:', error));
         }*/
+
+        function kiszamolAr(csomagar, fo, csomagid) {
+            let kezdes = new Date(document.getElementById(csomagid + "_kezd").value);
+            let vege = new Date(document.getElementById(csomagid + "_vege").value);
+            let kulonbseg = vege.getTime() - kezdes.getTime();
+            let napok = kulonbseg / (1000*3600*24);
+            console.log(napok);
+            let osszeg = napok*fo*csomagar + parseInt(document.getElementById(csomagid+"_jarmu").value)*fo*2;
+            if (isFinite(osszeg)) document.getElementById(csomagid).innerText = "Ezen foglalásért fizetendő: " + osszeg + " kobalt.";
+            else document.getElementById(csomagid).innerText = "Nincs elegendő adat az foglalás árának kiszámításához.";
+        }
     </script>
 </head>
 <body>
@@ -52,17 +63,18 @@
                     ?>
                     <p>Helyszín: <?=$data["bolygo"]?></p>
                     <p>Ajánlat tartama: <?=$data["kezdido"]?> - <?=$data["vegido"]?></p>
-                    <p>Adja meg a foglalás kezdeti dátumát: <input type="date" name="<?=$elem["id"]?>_kezd" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required></p>
-                    <p>Adja meg a foglalás végének dátumát: <input type="date" name="<?=$elem["id"]?>_vege" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required></p>
+                    <p>Adja meg a foglalás kezdeti dátumát: <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>)' type="date" id="<?=$elem["id"]?>_kezd" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required></p>
+                    <p>Adja meg a foglalás végének dátumát: <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>)' type="date" id="<?=$elem["id"]?>_vege" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required></p>
                     <p>
                         Válassza ki az utazáshoz igénybe venni kívánt járművet:
-                        <select name="<?=$elem["id"]?>_jarmu">
+                        <select id="<?=$elem["id"]?>_jarmu" onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>)'>
                             <?php foreach ($data["jarmuvek"] as $jarmu):?>
                                 <!--itt a jármű ára a value, mert majd ezzel lesz a teljes fizetendő kiszámolva-->
                                 <option value="<?=$jarmu["ar"]?>"><?=$jarmu["nev"]?> (<?=$jarmu["ar"]?> kobalt/fő, <?=$jarmu["osztaly"]?>. osztály, <?php echo $jarmu["fekvohely"]==1 ? "van" : "nincs"?> fekvőhely)</option>
                             <?php endforeach;?>
                         </select>
                     </p>
+                    <p id="<?=$elem["id"]?>">Nincs elegendő adat az foglalás árának kiszámításához.</p>
                 </form>
             </details>
         <?php endforeach; ?>
