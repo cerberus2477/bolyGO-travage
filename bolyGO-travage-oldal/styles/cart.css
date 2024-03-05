@@ -1,0 +1,96 @@
+:root {
+    --clr-white: hsl(251, 100%, 98%);
+    --clr-black: hsl(240, 38%, 3%);
+    --clr-blue-black: hsl(234, 43%, 10%);
+    --clr-orange: hsl(25, 77%, 51%);
+    --clr-green: hsl(99, 76%, 54%);
+    --clr-red: hsl(14, 82%, 49%);
+    --clr-yellow: hsl(58, 72%, 63%);
+    --clr-pink: hsl(324, 72%, 63%);
+    --clr-purple: hsl(257, 72%, 63%);
+}
+
+body {
+    margin: 0;
+    font-family: 'Century Gothic', sans-serif;
+    background-color: var(--clr-white);
+    color: var(--clr-white);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+
+.item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.details {
+    flex: 1;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.delete {
+    background-color: var(--clr-red);
+    color: var(--clr-white);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.quantity {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid var(--clr-blue-black);
+    border-radius: 5px;
+}
+
+
+
+
+/* Add new CSS rules to adjust layout */
+.cart {
+    display: flex;
+    flex-direction: column; /* Change to vertical layout */
+}
+
+.item {
+    border: 1px solid var(--clr-blue-black);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px; 
+}
+
+
+@media screen and (max-width: 600px) {
+    .cart {
+        padding: 0 10px;
+    }
+
+    .item {
+        padding: 15px;
+    }
+
+    .item img {
+        width: 80px;
+        height: 80px;
+    }
+}
