@@ -92,7 +92,7 @@
             <div class="csomag-container">
                 <?php
                     //API meghívása
-                    $url = "http://".implode("/",array_map('rawurlencode',explode("/",$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])."/api.php")));
+                    $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")));
                     $options = array(
                         'http' => array(
                             'method' => 'GET',
