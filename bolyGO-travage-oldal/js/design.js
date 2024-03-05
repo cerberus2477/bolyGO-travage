@@ -1,7 +1,7 @@
 const nav = document.getElementsByTagName("nav")[0];
 const navHeight = nav.getBoundingClientRect().height;
 
-// nav szinezése
+// nav szinezése -------------------------------------------------------------------------------------------------------
 window.onscroll = function () {
     if (window.pageYOffset > navHeight) {
         nav.dataset.scrolled = "true";
@@ -10,7 +10,7 @@ window.onscroll = function () {
     }
 }
 
-// nav kinyitása becsukása (hamburger menü)
+// nav kinyitása becsukása (hamburger menü) -------------------------------------------------------------------------------------------------------
 const toggleNav = () => {
     if (nav.dataset.state == "closed") {
         nav.dataset.state = "open";
@@ -19,24 +19,22 @@ const toggleNav = () => {
     }
 }
 
-// kártyák szinezése (hover és hover nélkül) data-color alapján
+// kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
 document.querySelectorAll('.card').forEach(card => {
     const color = card.dataset.color || 'white';
-    //a színkód a css globális változóiból jön
-    card.addEventListener('mouseenter', () => {
-        card.style.border = `1px solid var(--clr-${color})`;
-        card.style.boxShadow = `0 8px 16px var(--clr-${color})`;
-        //console.log(`0 8px 16px var(--clr-${color})`);
-    });
-    card.addEventListener('mouseleave', () => {
-        card.style.boxShadow = `0 4px 8px rgba(0, 0, 0, 0.1)`;
-        //console.log(`0 4px 8px rgba(0, 0, 0, 0.1)`);
-    });
+    if (color){
+        card.style.setProperty('--accent-color', `var(--clr-${color})`);
+    }
 });
 
+//minden nagy kártya ugyanolyan színű mint a megfelelő kis kártya
+document.querySelectorAll('.big-card').forEach(bigCard => {
+    bigCard.dataset.color = document.querySelector(`.csomag-container .card[data-csomagid="${bigCard.dataset.csomagid}"]`).dataset.color;
+});
+    
 
-//bővebben kártyák váltása
 
+//bővebben kártyák váltása -------------------------------------------------------------------------------------------------------
 let currentCardIndex = 0;
 
 //azért hogy az első látható legyen alapból de a többi ne

@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/cart.css">
     <script defer src="https://kit.fontawesome.com/af2e246792.js" crossorigin="anonymous"></script>
-    <script defer src="./js/cartApp.js"></script>
+    <script defer src="./js/design.js"></script>
+    <script defer src="./js/cart.js"></script>
 </head>
 </head>
 <body>
@@ -27,7 +28,7 @@
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
 
-        <a href="programok.html">Csomagok</a>
+        <a href="programok.html">itemok</a>
         <a href="galeria.html">Rólunk</a>
         <a href="">Kapcsolat</a>
         <a class="btn pc-btn icon-btn" href="./index.php">Vissza <i class="fa-solid fa-arrow-left"></i></a>
@@ -42,7 +43,7 @@
 
 
     
-    <main class="main-cart">
+    <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
         <!-- <table>
         <?php $orderNum = 0;?>
@@ -51,7 +52,7 @@
             <tr class="lineOfCart" id="line_<?= $item["id"]?>">
                 <td class="orderNum"><?= $orderNum?>.</td>
                 <td>
-                    <p class="name">Csomagnév: <b><?= $item["nev"]?></b></p>
+                    <p class="name">itemnév: <b><?= $item["nev"]?></b></p>
                     <p>Utazók száma: <input type="number" name="<?= "numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>"><button class="delete" name="deleteElement" value="<?=$item["id"]?>">Töröl</button></p>
                     <input type="hidden" name="id" value="<?=$item["id"]?>">
                 </td>
@@ -64,7 +65,7 @@
             <tr class="lineOfCart" id="line_id">
                 <td class="orderNum">ordernum</td>
                 <td>
-                    <p class="name">Csomagnév: <b>nééééév</b></p>
+                    <p class="name">itemnév: <b>nééééév</b></p>
                     <p>Utazók száma: 
                         <input type="number" name="num" value="2">
                         <button class="delete" name="deleteElement" value="2">Töröl</button>
@@ -76,7 +77,7 @@
 
 
 
-        <div class="cart">
+        <div class="cart-items">
         <?php
             // Sample data
             $items = array(
@@ -89,11 +90,12 @@
         <?php foreach ($items as $item):?>
             
             <div class="item">
-                <img src="images/<?php echo $item["image"]; ?>" alt="<?php echo $item["name"]; ?>">
+                <img class="big-card-img" src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
                 <div class="details">
-                    <h2><?php echo $item["name"]; ?></h2>
-                    <p><?php echo $item["description"]; ?></p>
-                    <p>$<?php echo $item["price"]; ?></p>
+                    <h2><?=$item["name"]?></h2>
+                    <p><?=$item["description"]?></p>
+                    <p><?=$item["price"]?></p>
+                    <p>total price: </p>
                 </div>
                 <div class="actions">
                     <input type="number" class="quantity" value="1" min="1">
@@ -102,19 +104,17 @@
             </div>
 
         <?php endforeach;?>
-        <div id="total-price">Total: $0.00</div> <!-- Total price element -->
+        <div id="total-price">Grand Total: $0.00</div> 
 
         
     </div>
     
-</div>
-    </div>
 
 
 
 
         
-        <a class="btn pc-btn icon-btn" href="./reserve.php">Foglalási adatok kitöltése ></i></a>
+        <a class="btn pc-btn icon-btn" href="./reserve.php">Foglalási adatok kitöltése <i class="fa-solid fa-circle-chevron-right"></i></i></a>
 
     </main>
 
