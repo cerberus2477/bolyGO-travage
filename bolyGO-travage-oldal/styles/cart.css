@@ -1,21 +1,20 @@
-:root {
-    --clr-white: hsl(251, 100%, 98%);
-    --clr-black: hsl(240, 38%, 3%);
-    --clr-blue-black: hsl(234, 43%, 10%);
-    --clr-orange: hsl(25, 77%, 51%);
-    --clr-green: hsl(99, 76%, 54%);
-    --clr-red: hsl(14, 82%, 49%);
-    --clr-yellow: hsl(58, 72%, 63%);
-    --clr-pink: hsl(324, 72%, 63%);
-    --clr-purple: hsl(257, 72%, 63%);
+td.orderNum {
+    width: 20%;
+    text-align: center;
 }
 
-body {
-    margin: 0;
-    font-family: 'Century Gothic', sans-serif;
-    background-color: var(--clr-white);
-    color: var(--clr-white);
+.cart-items {
+    display: flex;
+    flex-direction: column; 
 }
+
+.item {
+    border: 1px solid var(--clr-blue-black);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px; 
+}
+
 
 .container {
     max-width: 800px;
@@ -66,22 +65,11 @@ h1 {
 
 
 
-/* Add new CSS rules to adjust layout */
-.cart {
-    display: flex;
-    flex-direction: column; /* Change to vertical layout */
-}
 
-.item {
-    border: 1px solid var(--clr-blue-black);
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 20px; 
-}
 
 
 @media screen and (max-width: 600px) {
-    .cart {
+    .cart-items {
         padding: 0 10px;
     }
 

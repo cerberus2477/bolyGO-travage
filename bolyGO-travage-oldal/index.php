@@ -2,6 +2,21 @@
     session_start();
     if (!isset($_SESSION["kosar"])) $_SESSION["kosar"] = array();
 ?>
+
+<?php
+    //API meghívása
+    $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")));
+    $options = array(
+        'http' => array(
+            'method' => 'GET',
+            'header' => 'Content-Type: application/json'
+        )
+    );
+    $context = stream_context_create($options);
+    $data = json_decode(file_get_contents($url, false, $context), true);
+?>
+
+
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -13,7 +28,7 @@
     <link rel="shortcut icon favicon" href="styles/img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
     <script defer src="https://kit.fontawesome.com/af2e246792.js" crossorigin="anonymous"></script>
-    <script defer src="./js/app.js"></script>
+    <script defer src="./js/design.js"></script>
 </head>
 
 <body>
@@ -27,7 +42,7 @@
         <a href="programok.html">Csomagok</a>
         <a href="galeria.html">Rólunk</a>
         <a href="">Kapcsolat</a>
-        <a class="btn pc-btn icon-btn" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
+        <a class="btn pc-btn icon-btn btn-calc-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
     </nav>
 
 
@@ -43,29 +58,12 @@
 
 
 
-    <main id="index-content">
+    <main class="main-index">
         <section id=rolunk>
             <h2>Rólunk</h2>
             <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Blanditiis, quos.</p>
             <div class="rolunk-container">
-                <div class="card" data-color="yellow">
-                    <div >
-                        <img class="small-card-img" src="styles/img/levi.png" alt="Levi">
-                    </div>
-                    <div class="card-content">
-                        <h2>Levi</h2>
-                        <p class="description">MIAUUUUU
-                    </div>
-                </div>
-                <div class="card" data-color="pink">
-                    <img class="small-card-img" src="styles/img/tunde.jpg" alt="Tünde">
-                    <div class="card-content">
-                        <h2>Tünde</h2>
-                        <p class="description">
-                            <--- that's my boyfren c:</p>
-                    </div>
-                </div>
                 <div class="card" data-color="green">
                     <img class="small-card-img" src="styles/img/sityu.jpg" alt="Sityu">
                     <div class="card-content">
@@ -73,7 +71,21 @@
                         <p class="description">Hol vagyok?</p>
                     </div>
                 </div>
-
+                <div class="card" data-color="yellow">
+                    <div >
+                        <img class="small-card-img" src="styles/img/levi.png" alt="Levi">
+                    </div>
+                    <div class="card-content">
+                        <h2>Levi</h2>
+                        <p class="description">MIAUUUUU</div>
+                </div>
+                <div class="card" data-color="pink">
+                    <img class="small-card-img" src="styles/img/tunde.jpg" alt="Tünde">
+                    <div class="card-content">
+                        <h2>Tünde</h2>
+                        <p class="description"><--- that's my boyfren c:</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -81,30 +93,17 @@
         <section id="csomagok">
             <h2>Csomagok</h2>
             <div class="csomag-container">
-                <?php
-                    //API meghívása
-                    $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")));
-                    $options = array(
-                        'http' => array(
-                            'method' => 'GET',
-                            'header' => 'Content-Type: application/json'
-                        )
-                    );
-                    $context = stream_context_create($options);
-                    $data = json_decode(file_get_contents($url, false, $context), true);
-
-                    // kártyák random színéhez kell
-                    $colors = ['green', 'red', 'yellow', 'pink', 'purple'];
-                ?>
+                <!-- kártyák random színéhez kell -->
+                <?php $colors = ['green', 'red', 'yellow', 'pink', 'purple'];?>
 
                 <!-- csomgok kis kártyái -->
                 <?php foreach ($data as $csomag):?>
-                    <div class="card" data-color="<?= $colors[array_rand($colors)] ?>">
+                    <div class="card" data-csomagid="<?= $csomag["id"]?>" data-color="<?= $colors[array_rand($colors)] ?>">
                         <img class="small-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
                         <div class="card-content">
                             <h2><?= $csomag["nev"]?></h2>
                             <p class="description"><?= $csomag["leiras"]?></p>
-                            <button class="btn btn-light icon-btn" onclick='jumpTo(<?= $csomag["id"]?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
+                            <button class="btn btn-light icon-btn btn-calc-hover" onclick='jumpTo(<?= $csomag["id"]?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
                         </div>
                     </div>
                 <?php endforeach ?>
@@ -117,6 +116,7 @@
 
             <div id="hosszuleiras" class="meow">  <!-- ha megcsinálom hogy szépen csússzanak a kártyák kelleni fog egy div -->
                 <?php foreach ($data as $csomag):?>
+                    <!-- data-color a js-sel van beállítva -->
                     <div class="card big-card card-hidden" data-csomagid="<?= $csomag["id"]?>">
                         <img class="big-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
             
@@ -150,7 +150,7 @@
                             </table>
                             <p><i>Már <span><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
                             <form action="<?php print $_SERVER["PHP_SELF"];?>" method="post">
-                                <button class="btn icon-btn" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
+                                <button class="btn icon-btn btn-calc-hover" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
                                 <input type="hidden" name="csomagnev" value="<?= $csomag["nev"]?>">
                             </form>
                         </div>

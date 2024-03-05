@@ -17,6 +17,12 @@
     --clr-yellow: hsl(58, 72%, 63%);
     --clr-pink: hsl(324, 72%, 63%);
     --clr-purple: hsl(257, 72%, 63%);
+
+    --clr-alpha-black: rgba(0, 0, 0, .5);
+
+    --blur: 10px;
+    --border-radius: 2px;
+    --border-radius-big: 7px;
 }
 
 
@@ -62,18 +68,27 @@ body::after{
     color: var(--clr-white);
 }
 
-main {
-    padding: 0 5rem;
+
+section{
+    padding: 5rem 0;
 }
 
+/* MAIN--------------------------------------------------------------------------------------------------------------------- */
 
+main{
+    background-color: var(--clr-blue-black);
+    padding: 0 5rem
+}
 
+.main-index{
+    background-color: transparent;
+}
 
 
 /* HEADER -------------------------------------------------------------------------------------------------------------*/
 header {
+    height: 50vh;
     position: relative;
-    height: 100vh;
     background-color: transparent;
 
     display: flex;
@@ -82,14 +97,15 @@ header {
     justify-content: center;
 }
 
+.header-main {
+    height: 100vh;
+}
 
 
 .header-content {
     text-align: center;
     z-index: 8;
 }
-
-
 
 
 
@@ -119,8 +135,8 @@ nav {
 }
 
 nav[data-scrolled="true"] {
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(15px);
+    background-color: var(--clr-alpha-black);
+    backdrop-filter: blur(var(--blur));
 }
 
 
@@ -164,8 +180,8 @@ a {
 
     nav {
         flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(15px);
+        background-color: var(--clr-alpha-black);
+        backdrop-filter: blur(var(--blur));
         position: relative;
         transition: all .2s;
     }
@@ -186,11 +202,10 @@ a {
 
     /* style */
     nav[data-state="open"] .nav-first-row {
-        border-bottom: 1px solid rgba(255 255 255 /0.3);
+        border-bottom: 1px solid var(--clr-green);
     }
 
     .logo {
-        /* margin-right: 0px; */
         height: 100%;
         display: block !important;
     }
@@ -204,7 +219,7 @@ a {
 /* GOMBOK ----------------------------------------------------------------------------------------------------------*/
 /* alapbol narancs */
 .btn {
-    border-radius: 2px;
+    border-radius: var(--border-radius);
     border: none;
 
     padding: 15px 30px;
@@ -228,28 +243,9 @@ a {
     background-color: var(--clr-red);
 }
 
-/* nem biztos hogy ilyen marad */
-.btn-dark {
-    background-color: var(--clr-blue-black);
-    color: var(--clr-white);
-}
-
-.btn-dark:hover {
-    background-color: var(--clr-white);
-    color: var(--clr-blue-black);
-    /* border: 1px solid var(--clr-blue-black); */
-}
-
-
 .btn-light {
     background-color: var(--clr-white);
     color: var(--clr-blue-black);
-}
-
-.btn-light:hover {
-    background-color: var(--clr-blue-black);
-    color: var(--clr-white);
-    /* border: 1px solid var(--clr-blue-black); */
 }
 
 .icon-btn{
@@ -294,27 +290,6 @@ h2 {
 
 
 
-footer {
-    display: flex;
-    justify-content: space-around;
-    background-color: var(--clr-blue-black);
-}
-
-
-section{
-        padding: 5rem 0;
-}
-
-/* CART.PHP */
-.header-cart {
-    height: 50vh;
-}
-
-.main-cart{
-    background-color: var(--clr-blue-black);
-}
-
-
 
 
 
@@ -327,8 +302,6 @@ section{
     flex-wrap: wrap;
 }
 
-
-
 .csomag-container{
     display: flex;
     flex-wrap: wrap;
@@ -337,12 +310,19 @@ section{
     align-items: top;   
 }
 
+
+
 .card {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    --accent-color: white;
+
     width: 300px;
-    border-radius: 7px;
+    border-radius: var(--border-radius-big);
     transition: box-shadow 0.3s ease;
     color: var(--clr-white);
+    border: 1px solid var(--accent-color);
     background-color: var(--clr-blue-black);
+    transition: visibility 0.5s ease;
   }
   
   .card-content {
@@ -354,7 +334,8 @@ section{
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 5px 5px 0 0;
+    /* border-radius: var(--border-radius-big) var(--border-radius-big) 0 0; */
+    border-radius: 7px 7px 0 0;
   }
 
 
@@ -369,6 +350,24 @@ section{
 
   
 
+
+.card:hover {
+    box-shadow: 0 8px 16px var(--accent-color);
+}
+
+.card h2 {
+    color: var(--accent-color);
+}
+
+.card .btn {
+    background-color: var(--accent-color);
+}
+
+.btn-calc-hover:hover{
+    filter: brightness(90%) saturate(110%) hue-rotate(-10deg);
+}
+
+
 /* bovebben ---------------------------------------------------------------------------------------------------------------------------------------------*/
 
 .bovebben-container{
@@ -376,7 +375,8 @@ section{
     margin: 0 -5rem;
     display: flex;
 
-    background-color: var(--clr-purple);
+    background-color: var(--clr-alpha-black);
+    backdrop-filter: blur(var(--blur));
 }
 
   .big-card{
@@ -394,18 +394,20 @@ section{
     width: max(100px, 100%);
     object-fit: contain;
     display: block;
-    border-radius: 5px;
+    border-radius: var(--border-radius-big);
 }
 
 
+/* nem az aktuális kártya eltüntetéséhez */
 .card-hidden {
-    /* visibility: hidden; */
     display: none;
     opacity: 0;
-    transition: all 0.5s linear;
+    visibility: none;
+    transition: all 0.5s ease;
 }
 
 
+/* ár */
 .card span{
     color: var(--clr-pink);
     font-weight: bold;
@@ -413,59 +415,10 @@ section{
 
 
 
-.még-semmi-hátteres-hullámos-rész-lehetne-ig{
-/* .wave-top {
-    top: -1px;
-}
 
-.wave-bottom {
-    transform: rotate(180deg);
-    bottom: -1px;
-}
-
-.wave {
-    overflow: hidden;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    line-height: 0;
-
-    z-index: 9;
-
-}
-
-.wave path {
-    fill: var(--clr-white);
-    transform-origin: center;
-
-    transform: rotateY(0deg);
-    line-height: 0;
-
-    height: 20px;
-}
-
-.wave svg {
-    width: calc(100% + 1.3px);
-    height: 25px;
-    z-index: -1;
-    display: block;
-
-    position: relative;
-}
-
-
-.bg-section {
-    background-image: linear-gradient(rgba(0 0 0 /0.4), rgba(0 0 0 /0.4)), url("./img/hero-optimised.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    text-align: center;
-    padding: 150px 50px;
-    color: var(--clr-white);
-} */
-}
-
-td.orderNum {
-    width: 20%;
-    text-align: center;
+/* footer--------------------------------------------------------------------------------------------------------------------------- */
+footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--clr-blue-black);
 }
