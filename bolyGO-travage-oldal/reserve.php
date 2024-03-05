@@ -75,6 +75,18 @@
                         </select>
                     </p>
                     <p id="<?=$elem["id"]?>">Nincs elegendő adat az foglalás árának kiszámításához.</p>
+                    <h1>Utazók adatainak megadása</h1>
+                    <input type="hidden" id="<?=$elem["id"]?>_fo" value="<?=$elem["fo"]?>">
+                    <?php for ($i = 1; $i <= $elem["fo"]; $i++):?>
+                        <p><?=$i?>. utazó</p>
+                        <!--ugyfel (id, nev, lakcim, szul, nem, tel, email)-->
+                        <p>Név: <input required type="text" id="<?=$elem["id"]?>_utas<?=$i?>_nev"></p>
+                        <p>Lakcím: <input required type="text" id="<?=$elem["id"]?>_utas<?=$i?>_lakcim"></p>
+                        <p>Szül. dátum: <input required type="date" id="<?=$elem["id"]?>_utas<?=$i?>_szul"></p>
+                        <p>Nem: <input required type="text" id="<?=$elem["id"]?>_utas<?=$i?>_nem"></p>
+                        <p>Telefonszám: <input required type="tel" id="<?=$elem["id"]?>_utas<?=$i?>_tel"></p>
+                        <p>Email-cím: <input required type="email" id="<?=$elem["id"]?>_utas<?=$i?>_email"></p>
+                    <?php endfor;?>
                 </form>
             </details>
         <?php endforeach; ?>
