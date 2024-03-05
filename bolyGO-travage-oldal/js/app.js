@@ -26,11 +26,11 @@ document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('mouseenter', () => {
         card.style.border = `1px solid var(--clr-${color})`;
         card.style.boxShadow = `0 8px 16px var(--clr-${color})`;
-        console.log(`0 8px 16px var(--clr-${color})`);
+        //console.log(`0 8px 16px var(--clr-${color})`);
     });
     card.addEventListener('mouseleave', () => {
         card.style.boxShadow = `0 4px 8px rgba(0, 0, 0, 0.1)`;
-        console.log(`0 4px 8px rgba(0, 0, 0, 0.1)`);
+        //console.log(`0 4px 8px rgba(0, 0, 0, 0.1)`);
     });
 });
 
@@ -64,5 +64,5 @@ function jumpTo(csomagid) {
     let currentCard = document.querySelector(`div[data-csomagid="${csomagid}"]`);
     currentCard.classList.remove('card-hidden');
     currentCardIndex = [].indexOf.call(cards, currentCard);
-    document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start"})
+    document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }

@@ -112,6 +112,10 @@
 
 
 
+
+        
+        <a class="btn pc-btn icon-btn" href="./reserve.php">Foglalási adatok kitöltése ></i></a>
+
     </main>
 
 </body>

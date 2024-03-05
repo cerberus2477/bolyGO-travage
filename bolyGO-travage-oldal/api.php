@@ -10,7 +10,8 @@ header('Content-Type: application/json; charset=utf-8');
 
 switch ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
-        getCsomagok();
+        if (isset($_GET["csomagid"])) getCsomag($_GET["csomagid"], false);
+        else getCsomagok();
         break;
     case "POST":
         foglal();
@@ -26,7 +27,7 @@ function getCsomagok()
     $tabla = runQuery($sql);
     $csomagok = array();
     while ($sor = mysqli_fetch_array($tabla)) {
-        $csomagok[] = getCsomag($sor["id"]);
+        $csomagok[] = getCsomag($sor["id"], true);
     }
 
     http_response_code(200);
@@ -35,7 +36,7 @@ function getCsomagok()
 }
 
 //egy csomag adatainak lekérése a csomagid alapján
-function getCsomag($csomagid)
+function getCsomag($csomagid, $return)
 {
     $csomag = array();
 
@@ -65,8 +66,11 @@ function getCsomag($csomagid)
         );
     }
 
-    return $csomag;
-    //echo json_encode($csomag, JSON_PRETTY_PRINT);
+    if ($return) return $csomag;
+    else {
+        http_response_code(200);
+        echo json_encode($csomag);
+    }
 }
 
 //foglalások feltöltése az adatbázisba
