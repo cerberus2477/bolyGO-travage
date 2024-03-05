@@ -1,15 +1,6 @@
 <?php
     session_start();
     if (!isset($_SESSION["kosar"])) $_SESSION["kosar"] = array();
-
-    if (isset($_POST["addcart"])) {
-        $_SESSION["kosar"][] = array(
-            "id" => $_POST["addcart"], 
-            "nev" => $_POST["csomagnev"],
-            "fo" => 1);
-        unset($_POST["addcart"]);
-        //még oda kéne görgetni vissza az oldalt a részleteshez
-    }
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -175,6 +166,17 @@
 
         </section>
     </main>
+
+    <?php
+        if (isset($_POST["addcart"])) {
+            $_SESSION["kosar"][] = array(
+                "id" => $_POST["addcart"], 
+                "nev" => $_POST["csomagnev"],
+                "fo" => 1);
+            unset($_POST["addcart"]);
+            echo '<script>document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
+        }
+    ?>
 
     <footer>
         <section>
