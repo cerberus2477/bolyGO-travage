@@ -46,24 +46,28 @@
                 <summary><?=$orderNum?>. foglalás: <?=$elem["nev"]?></summary>
                 <form onsubmit="event.preventDefault(); Folytat(<?=$orderNum?>);">
                     <?php 
-                    //API meghívása
-                    $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")))."?csomagid=".$elem["id"];
-                    /*$options = array(
-                        'http' => array(
-                            'method' => 'GET',
-                            'header' => 'Content-Type: application/json'
-                        )
-                    );
-                    $context = stream_context_create($options);*/
-                    //$data = json_decode(file_get_contents($url, false, $context), true);
-                    $data = json_decode(file_get_contents($url), true);
+                        //API meghívása
+                        $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")))."?csomagid=".$elem["id"];
+                        $data = json_decode(file_get_contents($url), true);
                     ?>
-                    <p><?php print_r($data)?></p>
+                    <p>Helyszín: <?=$data["bolygo"]?></p>
+                    <p>Ajánlat tartama: <?=$data["kezdido"]?> - <?=$data["vegido"]?></p>
+                    <p>Adja meg a foglalás kezdeti dátumát: <input type="date" name="<?=$elem["id"]?>_kezd" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required></p>
+                    <p>Adja meg a foglalás végének dátumát: <input type="date" name="<?=$elem["id"]?>_vege" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required></p>
+                    <p>
+                        Válassza ki az utazáshoz igénybe venni kívánt járművet:
+                        <select name="<?=$elem["id"]?>_jarmu">
+                            <?php foreach ($data["jarmuvek"] as $jarmu):?>
+                                <!--itt a jármű ára a value, mert majd ezzel lesz a teljes fizetendő kiszámolva-->
+                                <option value="<?=$jarmu["ar"]?>"><?=$jarmu["nev"]?> (<?=$jarmu["ar"]?> kobalt/fő, <?=$jarmu["osztaly"]?>. osztály, <?php echo $jarmu["fekvohely"]==1 ? "van" : "nincs"?> fekvőhely)</option>
+                            <?php endforeach;?>
+                        </select>
+                    </p>
                 </form>
             </details>
         <?php endforeach; ?>
     <?php else: ?>
-        <p>Még nem ettél semmit a bevásárlókocsidba <a href="index.php">ide kattintva</a> teheted ezt meg</p>
+        <p>Még nem tett semmit a kosárba. <a href="index.php">Ide kattintva</a> teheti ezt meg.</p>
     <?php endif; ?>
 </body>
 </html>
