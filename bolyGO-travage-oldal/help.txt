@@ -1,0 +1,25 @@
+            <details>
+                <summary><?php echo isset($item[2]) ? $item[2] : "Nincs elérhető cím"; ?></summary>
+                utazással kapcsolatos data
+                <form onsubmit="event.preventDefault(); sendTravelData();">
+                    <label for="departureCity">Departure City:</label>
+                    <input type="text" id="departureCity" name="departureCity" required>
+                    
+                    <label for="destinationCity">Destination City:</label>
+                    <input type="text" id="destinationCity" name="destinationCity" required>
+                    
+                    <label for="travelDate">Travel Date:</label>
+                    <input type="date" id="travelDate" name="travelDate" required>
+                    
+                    <button type="submit">Submit</button>
+                </form>
+                Assuming $item[3] contains a list of customer data, corrected the loop structure
+                <?php if (isset($item[3]) && is_array($item[3])): ?>
+                    <?php foreach ($item[3] as $customerData): ?>
+                       
+                        <?php echo $customerData; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Nincs ügyél megadva</p>
+                <?php endif; ?>
+            </details>
