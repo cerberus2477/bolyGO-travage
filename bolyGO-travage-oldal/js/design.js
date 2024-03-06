@@ -1,33 +1,69 @@
 const nav = document.getElementsByTagName("nav")[0];
 const navHeight = nav.getBoundingClientRect().height;
+const navLinks = document.querySelectorAll('nav a');
+const planet = document.querySelector('.scrolling-planet');
+const headerContent = document.querySelector('.header-content');
+const smallcards = document.querySelectorAll('#csomag-container .card');
+const bigcards = document.querySelectorAll('.big-card');
+let pxScrolled;
 
-// nav szinezése -------------------------------------------------------------------------------------------------------
+// görgetésre változó dolgok ------------------------------------------------------------------------------------
 window.onscroll = function () {
-    if (window.pageYOffset > navHeight) {
-        nav.dataset.scrolled = "true";
-    } else {
-        nav.dataset.scrolled = "false";
-    }
+    pxScrolled = window.scrollY;
+
+    // nav szinezése 
+    nav.dataset.scrolled = pxScrolled > navHeight;
+
+    // planet csusztatasa görgetésre és szöveg
+    planet.style.right = -100 + pxScrolled * 0.5 + 'px';
+    headerContent.style.fontSize = (3 - pxScrolled / 500) + 'rem';
+
+    //nav linkek aláhúzása
+    setActiveLink();
 }
 
-// nav kinyitása becsukása (hamburger menü) -------------------------------------------------------------------------------------------------------
+
+// nav kinyitása - becsukása (hamburger menü)
 const toggleNav = () => {
-    if (nav.dataset.state == "closed") {
-        nav.dataset.state = "open";
-    } else {
-        nav.dataset.state = "closed";
-    }
+    nav.dataset.state = nav.dataset.state == "closed" ? "open" : "closed";
 }
 
-// planet csusztatasa görgetésre----------------------------------------------------------------------------------
-window.addEventListener('scroll', function () {
-    var scrolled = window.scrollY;
-    var planet = document.querySelector('.scrolling-planet');
-    planet.style.right = -100 + scrolled * 0.5 + 'px';
+//nav linkek aláhúzása görgetés alapján
+function setActiveLink() {
+    navLinks.forEach(link => {
+        const sectionId = link.getAttribute('href').substring(1); // ???
+        const section = document.getElementById(sectionId);
+
+        if (section.offsetTop <= pxScrolled && section.offsetTop + section.offsetHeight > pxScrolled) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+
+// hogy alapból alá legyen húzva aminek kell
+setActiveLink();
+
+// kattintásra kicsit feljebb görget mint magától tenné, így a navbar nem takarja ki a címet pl
+navLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const sectionId = link.getAttribute('href').substring(1);
+        const section = document.getElementById(sectionId);
+
+        window.scrollTo({
+            top: section.offsetTop,
+            behavior: 'smooth'
+        });
+    });
 });
 
+
+
 // kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
-document.querySelectorAll('.card').forEach(card => {
+smallcards.forEach(card => {
     const color = card.dataset.color || 'white';
     if (color){
         card.style.setProperty('--accent-color', `var(--clr-${color})`);
@@ -35,39 +71,36 @@ document.querySelectorAll('.card').forEach(card => {
 });
 
 //minden nagy kártya ugyanolyan színű mint a megfelelő kis kártya
-document.querySelectorAll('.big-card').forEach(bigCard => {
+bigcards.forEach(bigCard => {
     bigCard.dataset.color = document.querySelector(`.csomag-container .card[data-csomagid="${bigCard.dataset.csomagid}"]`).dataset.color;
 });
     
 
 
 //bővebben kártyák váltása -------------------------------------------------------------------------------------------------------
-let currentCardIndex = 0;
+let currentIndex = 0;
 
 //azért hogy az első látható legyen alapból de a többi ne
 showNextCard();
 showPrevCard();
 
 function showNextCard() {
-    const cards = document.querySelectorAll('.big-card');
-    cards[currentCardIndex].classList.add('card-hidden');
-    currentCardIndex = (currentCardIndex + 1) % cards.length;
-    cards[currentCardIndex].classList.remove('card-hidden');
+    bigcards[currentIndex].classList.add('card-hidden');
+    currentIndex = (currentIndex + 1) % bigcards.length;
+    bigcards[currentIndex].classList.remove('card-hidden');
 }
 
 function showPrevCard() {
-    const cards = document.querySelectorAll('.big-card');
-    cards[currentCardIndex].classList.add('card-hidden');
-    currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
-    // ugyanaz mint currentCardIndex = currentCardIndex === 0 ? cards.length - 1 : currentCardIndex - 1;
-    cards[currentCardIndex].classList.remove('card-hidden');
+    bigcards[currentIndex].classList.add('card-hidden');
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    // ugyanaz mint currentIndex = currentIndex === 0 ? cards.length - 1 : currentIndex - 1;
+    bigcards[currentIndex].classList.remove('card-hidden');
 }
 
 function jumpTo(csomagid) {
-    const cards = document.querySelectorAll('.big-card');
-    cards[currentCardIndex].classList.add('card-hidden');
+    bigcards[currentIndex].classList.add('card-hidden');
     let currentCard = document.querySelector(`div[data-csomagid="${csomagid}"]`);
     currentCard.classList.remove('card-hidden');
-    currentCardIndex = [].indexOf.call(cards, currentCard);
+    currentIndex = [].indexOf.call(bigcards, currentCard);
     document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }

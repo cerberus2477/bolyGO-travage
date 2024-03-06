@@ -17,6 +17,17 @@
 ?>
 
 
+<?php
+    if (isset($_POST["addcart"])) {
+        $_SESSION["kosar"][] = array(
+            "id" => $_POST["addcart"], 
+            "nev" => $_POST["csomagnev"],
+            "fo" => 1);
+        unset($_POST["addcart"]);
+        echo '<script>document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
 
@@ -39,9 +50,9 @@
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
 
-        <a href="programok.html">Csomagok</a>
-        <a href="galeria.html">Rólunk</a>
-        <a href="">Kapcsolat</a>
+        <a href="#csomagok" class="active">Csomagok</a>
+        <a href="#rolunk">Rólunk</a>
+        <a href="#kapcsolat">Kapcsolat</a>
         <a class="btn pc-btn icon-btn btn-calc-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
     </nav>
 
@@ -92,10 +103,11 @@
 
 
         <section id="csomagok">
-            <h2>Csomagok</h2>
+            <h2>Csomagjaink</h2>
             <div class="csomag-container">
                 <!-- kártyák random színéhez kell -->
-                <?php $colors = ['green', 'red', 'yellow', 'pink', 'purple'];?>
+                <!-- pirosat kivettem -->
+                <?php $colors = ['green', 'yellow', 'pink', 'purple'];?>
 
                 <!-- csomgok kis kártyái -->
                 <?php foreach ($data as $csomag):?>
@@ -112,7 +124,7 @@
         </section>
 
         <section class="bovebben-container">
-
+                    <h2>Tudj meg tövbet a csomagról</h2>
             <button class="btn btn-controll" onclick="showPrevCard()"><i class="fa-solid fa-chevron-left"></i></button> 
 
             <div id="hosszuleiras" class="meow">  <!-- ha megcsinálom hogy szépen csússzanak a kártyák kelleni fog egy div -->
@@ -164,20 +176,26 @@
         </section>
 
         <section id="kapcsolat">
-
+            <h2>Kapcsolat</h2>
+            <div class="contact-form">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Név:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Üzenet:</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-light">Küldés</button>
+                </form>
+            </div>
         </section>
     </main>
-
-    <?php
-        if (isset($_POST["addcart"])) {
-            $_SESSION["kosar"][] = array(
-                "id" => $_POST["addcart"], 
-                "nev" => $_POST["csomagnev"],
-                "fo" => 1);
-            unset($_POST["addcart"]);
-            echo '<script>document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
-        }
-    ?>
 
     <footer>
         <section>

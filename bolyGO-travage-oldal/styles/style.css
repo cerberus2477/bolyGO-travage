@@ -94,6 +94,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+        
+        /* overflow-y: visible; */
+        overflow: visible;
         overflow-x: hidden;
             /*hogy a kép kilógjon*/
 }
@@ -109,15 +112,17 @@ header {
 .header-content {
     text-align: center;
     z-index: 8;
-    padding: 2rem;
+    padding-inline: 20vw 5rem;
 }
 
 .scrolling-planet {
+    width: 50vw;
     position: absolute;
     right: -100px;
     /* középre függőlegesen */
     top: 50%;
     transform: translateY(-50%);
+    /* mix-blend-mode: difference; */
 }
 
 /* NAV ------------------------------------------------------------------------------------------------------------------*/
@@ -172,6 +177,18 @@ a {
     color: var(--clr-orange);
     text-decoration: none;
     transition: all .2s linear;
+}
+
+/* aláhúzás navban */
+
+nav a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 3rem;
+    height: 2px;
+    background-color: var(--clr-orange);
 }
 
 /* pc */
@@ -433,3 +450,42 @@ footer {
     justify-content: space-around;
     background-color: var(--clr-blue-black);
 }
+
+
+
+/* contact */
+.contact-form {
+    background-color: var(--clr-blue-black);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+}
+
+.contact-form form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--clr-white);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
