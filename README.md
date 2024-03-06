@@ -1,5 +1,2 @@
-
-# bolyGO
-## második project vagy valami olyasmi
-
-Foglalási oldal létrehozása
+# bolyGO utazási iroda foglalási oldala
+## 12/3 project (igazából csak második de nevermind)

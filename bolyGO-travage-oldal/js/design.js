@@ -19,6 +19,13 @@ const toggleNav = () => {
     }
 }
 
+// planet csusztatasa görgetésre----------------------------------------------------------------------------------
+window.addEventListener('scroll', function () {
+    var scrolled = window.scrollY;
+    var planet = document.querySelector('.scrolling-planet');
+    planet.style.right = -100 + scrolled * 0.5 + 'px';
+});
+
 // kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
 document.querySelectorAll('.card').forEach(card => {
     const color = card.dataset.color || 'white';

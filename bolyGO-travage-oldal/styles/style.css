@@ -92,22 +92,33 @@ header {
     background-color: transparent;
 
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+        overflow-x: hidden;
+            /*hogy a kép kilógjon*/
 }
 
 .header-main {
     height: 100vh;
+    position: relative; 
+    justify-content: left;
+    /* képhez */
 }
 
 
 .header-content {
     text-align: center;
     z-index: 8;
+    padding: 2rem;
 }
 
-
+.scrolling-planet {
+    position: absolute;
+    right: -100px;
+    /* középre függőlegesen */
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 /* NAV ------------------------------------------------------------------------------------------------------------------*/
 nav {
