@@ -40,9 +40,6 @@
         </div>
     </header>
 
-
-
-    
     <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
         <table>
@@ -60,32 +57,7 @@
         <?php endforeach ?>
         </table>
 
-<!-- 
-        <table>
-            <tr class="lineOfCart" id="line_id">
-                <td class="orderNum">ordernum</td>
-                <td>
-                    <p class="name">itemnév: <b>nééééév</b></p>
-                    <p>Utazók száma: 
-                        <input type="number" name="num" value="2">
-                        <button class="delete" name="deleteElement" value="2">Töröl</button>
-                    </p>
-                    <input type="hidden" name="id" value="id">
-                </td>
-            </tr>
-        </table> -->
-
-
-
         <!-- <div class="cart-items">
-        <?php
-            // Sample data
-            $items = array(
-                array("image" => "item1.jpg", "name" => "Item 1", "description" => "Lorem ipsum dolor sit amet", "price" => 10),
-                array("image" => "item2.jpg", "name" => "Item 2", "description" => "Consectetur adipiscing elit", "price" => 15),
-                array("image" => "item3.jpg", "name" => "Item 3", "description" => "Sed do eiusmod tempor incididunt", "price" => 20)
-            );
-        ?>
 
         <?php foreach ($items as $item):?>
             

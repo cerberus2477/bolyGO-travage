@@ -45,7 +45,7 @@
             <?php $orderNum=0;?>
             <?php foreach ($_SESSION["kosar"] as $elem): ?>
                 <?php $orderNum++; ?>
-                <details>
+                <details id="details_<?=$orderNum?>">
                     <summary><?=$orderNum?>. foglalás: <?=$elem["nev"]?></summary>
                     <form onsubmit="event.preventDefault(); Folytat(<?=$orderNum?>);">
                         <?php 
@@ -71,7 +71,6 @@
                         <input type="hidden" id="<?=$elem["id"]?>_fo" value="<?=$elem["fo"]?>">
                         <?php for ($i = 1; $i <= $elem["fo"]; $i++):?>
                             <p><?=$i?>. utazó</p>
-                            <!--ugyfel (id, nev, lakcim, szul, nem, tel, email)-->
                             <p>Név: <input required type="text" id="<?=$elem["id"]?>_utas<?=$i?>_nev"></p>
                             <p>Lakcím: <input required type="text" id="<?=$elem["id"]?>_utas<?=$i?>_lakcim"></p>
                             <p>Szül. dátum: <input required type="date" id="<?=$elem["id"]?>_utas<?=$i?>_szul"></p>
@@ -79,6 +78,7 @@
                             <p>Telefonszám: <input required type="tel" id="<?=$elem["id"]?>_utas<?=$i?>_tel"></p>
                             <p>Email-cím: <input required type="email" id="<?=$elem["id"]?>_utas<?=$i?>_email"></p>
                         <?php endfor;?>
+                        <p><button type="button" onclick='changeDetails(<?=$orderNum?>, <?=$orderNum+1?>)'>Következő foglalás</button></p>
                     </form>
                 </details>
             <?php endforeach; ?>
