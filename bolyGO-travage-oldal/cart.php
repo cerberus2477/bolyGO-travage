@@ -78,14 +78,6 @@
 
 
         <!-- <div class="cart-items">
-        <?php
-            // Sample data
-            $items = array(
-                array("image" => "item1.jpg", "name" => "Item 1", "description" => "Lorem ipsum dolor sit amet", "price" => 10),
-                array("image" => "item2.jpg", "name" => "Item 2", "description" => "Consectetur adipiscing elit", "price" => 15),
-                array("image" => "item3.jpg", "name" => "Item 3", "description" => "Sed do eiusmod tempor incididunt", "price" => 20)
-            );
-        ?>
 
         <?php foreach ($items as $item):?>
             
