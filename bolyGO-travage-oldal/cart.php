@@ -1,5 +1,27 @@
 <?php 
     session_start();
+
+    if (isset($_POST["deleteElement"])) {
+        $i = 0;
+        while ($i < count($_SESSION["kosar"]) && $_SESSION["kosar"][$i]["id"] != $_POST["deleteElement"]) $i++;
+        if ($i < count($_SESSION["kosar"])) {
+            unset($_SESSION["kosar"][$i]);
+            $_SESSION["kosar"] = array_values($_SESSION["kosar"]);
+        }
+        unset($_POST["deleteElement"]);
+    } 
+    else if (isset($_POST["submitted"])) {
+        for ($i = 0; $i < count($_SESSION["kosar"]); $i++) {
+            $_SESSION["kosar"][$i]["fo"] = $_POST["numOfPeople_".$_SESSION["kosar"][$i]["id"]];
+            if ($_SESSION["kosar"][$i]["fo"] == 0) {
+                unset($_SESSION["kosar"][$i]);
+                $_SESSION["kosar"] = array_values($_SESSION["kosar"]);
+            }
+        }
+        unset($_POST["submitted"]);
+        header('Location: ./reserve.php');
+        die();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -42,25 +64,26 @@
 
     <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
-        <table>
-        <?php $orderNum = 0;?>
-        <?php foreach ($_SESSION["kosar"] as $item):?> 
-            <?php $orderNum++;?>
-            <tr class="lineOfCart" id="line_<?= $item["id"]?>">
-                <td class="orderNum"><?= $orderNum?>.</td>
-                <td>
-                    <p class="name">itemnév: <b><?= $item["nev"]?></b></p>
-                    <p>Utazók száma: <input type="number" name="<?= "numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>"><button class="delete" name="deleteElement" value="<?=$item["id"]?>">Töröl</button></p>
-                    <input type="hidden" name="id" value="<?=$item["id"]?>">
-                </td>
-            </tr>
-        <?php endforeach ?>
-        </table>
-
+        <form action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
+            <table>
+            <?php $orderNum = 0;?>
+            <input type="hidden" name="submitted" value="van">
+            <?php foreach ($_SESSION["kosar"] as $item):?> 
+                <?php $orderNum++;?>
+                <tr class="lineOfCart" id="line_<?= $item["id"]?>">
+                    <td class="orderNum"><?= $orderNum?>.</td>
+                    <td>
+                        <p class="name">Csomagnév: <b><?= $item["nev"]?></b></p>
+                        <p>Utazók száma: <input type="number" name="<?="numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>" min=0><button class="delete" name="deleteElement" value="<?=$item["id"]?>">Töröl</button>
+                        <input type="hidden" name="id" value="<?=$item["id"]?>"></p>
+                    </td>
+                </tr>
+            <?php endforeach;?>
+            </table>
+            <a class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Foglalási adatok kitöltése <i class="fa-solid fa-circle-chevron-right"></i></i></a>
+        </form>
         <!-- <div class="cart-items">
-
         <?php foreach ($items as $item):?>
-            
             <div class="item">
                 <img class="big-card-img" src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
                 <div class="details">
@@ -74,20 +97,9 @@
                     <button class="delete">Delete</button>
                 </div>
             </div>
-
         <?php endforeach;?>
         <div id="total-price">Grand Total: $0.00</div>  -->
-
-        
-    </div>
-    
-
-
-
-
-        
-        <a class="btn pc-btn icon-btn" href="./reserve.php">Foglalási adatok kitöltése <i class="fa-solid fa-circle-chevron-right"></i></i></a>
-
+    </div>        
     </main>
 
 </body>
