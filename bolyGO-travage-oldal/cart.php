@@ -45,7 +45,7 @@
     
     <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
-        <!-- <table>
+        <table>
         <?php $orderNum = 0;?>
         <?php foreach ($_SESSION["kosar"] as $item):?> 
             <?php $orderNum++;?>
@@ -58,7 +58,7 @@
                 </td>
             </tr>
         <?php endforeach ?>
-        </table> -->
+        </table>
 
 <!-- 
         <table>
@@ -77,7 +77,7 @@
 
 
 
-        <div class="cart-items">
+        <!-- <div class="cart-items">
         <?php
             // Sample data
             $items = array(
@@ -104,7 +104,7 @@
             </div>
 
         <?php endforeach;?>
-        <div id="total-price">Grand Total: $0.00</div> 
+        <div id="total-price">Grand Total: $0.00</div>  -->
 
         
     </div>
