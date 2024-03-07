@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION["kosar"])) $_SESSION["kosar"] = array();
+    if (!isset($_SESSION["kosar"])) { $_SESSION["kosar"] = array(); }
 ?>
 
 <?php

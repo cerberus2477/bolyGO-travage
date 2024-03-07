@@ -40,9 +40,6 @@
         </div>
     </header>
 
-
-
-    
     <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
         <table>
@@ -59,23 +56,6 @@
             </tr>
         <?php endforeach ?>
         </table>
-
-<!-- 
-        <table>
-            <tr class="lineOfCart" id="line_id">
-                <td class="orderNum">ordernum</td>
-                <td>
-                    <p class="name">itemnév: <b>nééééév</b></p>
-                    <p>Utazók száma: 
-                        <input type="number" name="num" value="2">
-                        <button class="delete" name="deleteElement" value="2">Töröl</button>
-                    </p>
-                    <input type="hidden" name="id" value="id">
-                </td>
-            </tr>
-        </table> -->
-
-
 
         <!-- <div class="cart-items">
 
