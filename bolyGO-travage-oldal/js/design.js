@@ -43,6 +43,7 @@ document.querySelectorAll('.big-card').forEach(bigCard => {
 
 //bővebben kártyák váltása -------------------------------------------------------------------------------------------------------
 let currentCardIndex = 0;
+console.log(currentCardIndex);
 
 //azért hogy az első látható legyen alapból de a többi ne
 showNextCard();
@@ -66,7 +67,8 @@ function showPrevCard() {
 function jumpTo(csomagid) {
     const cards = document.querySelectorAll('.big-card');
     cards[currentCardIndex].classList.add('card-hidden');
-    let currentCard = document.querySelector(`div[data-csomagid="${csomagid}"]`);
+    let currentCard = document.querySelector(`.big-card[data-csomagid="${csomagid}"]`);
+    console.log(currentCard);
     currentCard.classList.remove('card-hidden');
     currentCardIndex = [].indexOf.call(cards, currentCard);
     document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
