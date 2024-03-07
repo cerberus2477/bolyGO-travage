@@ -39,32 +39,34 @@
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
 
-        <a href="programok.html">Csomagok</a>
-        <a href="galeria.html">Rólunk</a>
-        <a href="">Kapcsolat</a>
+        <a href="#csomagok">Csomagok</a>
+        <a href="#rolunk">Rólunk</a>
+        <a href="#kapcsolat">Kapcsolat</a>
         <a class="btn pc-btn icon-btn btn-calc-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
     </nav>
 
 
 
-    <header class="header-main">
+    <header class="header-index">
         <div class="header-content">
             <h1> <span>bolyGO</span> <br> utazási iroda</h1>
             <p>Utazz epikus bolygókra!!</p>
             <div><a class="btn btn-light icon-btn" href="#csomagok">Csomagok </a></div>
         </div>
-        <img src="./styles/img/planet1.png" alt="Planet" class="scrolling-planet">
+        <img class="scrolling-planet" src="./styles/img/planet1.png" alt="Planet">
 
     </header>
 
 
 
     <main class="main-index">
-        <section id=rolunk>
-            <h2>Rólunk</h2>
+
+        <section id="rolunk">
+            <h2>Rólunk <i class="fa-solid fa-user-astronaut"></i></h2>
             <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Blanditiis, quos.</p>
-            <div class="rolunk-container">
+
+            <div class="rolunk-cards">
                 <div class="card" data-color="green">
                     <img class="small-card-img" src="styles/img/sityu.jpg" alt="Sityu">
                     <div class="card-content">
@@ -88,14 +90,15 @@
                     </div>
                 </div>
             </div>
+
         </section>
 
 
         <section id="csomagok">
-            <h2>Csomagok</h2>
-            <div class="csomag-container">
-                <!-- kártyák random színéhez kell -->
-                <?php $colors = ['green', 'red', 'yellow', 'pink', 'purple'];?>
+            <h2>Csomagok <i class="fa-solid fa-shuttle-space"></i></h2>
+            <div class="csomag-cards">
+                <!-- kártyák random színéhez kell, pirosat kivettem -->
+                <?php $colors = ['green', 'yellow', 'pink', 'purple'];?>
 
                 <!-- csomgok kis kártyái -->
                 <?php foreach ($data as $csomag):?>
@@ -111,11 +114,11 @@
             </div>
         </section>
 
-        <section class="bovebben-container">
+        <section id="bovebben" class="bg-blur">
 
             <button class="btn btn-controll" onclick="showPrevCard()"><i class="fa-solid fa-chevron-left"></i></button> 
 
-            <div id="hosszuleiras" class="meow">  <!-- ha megcsinálom hogy szépen csússzanak a kártyák kelleni fog egy div -->
+            <div class="bovebben-cards">  <!-- ha megcsinálom hogy szépen csússzanak a kártyák kelleni fog egy div -->
                 <?php foreach ($data as $csomag):?>
                     <!-- data-color a js-sel van beállítva -->
                     <div class="card big-card card-hidden" data-csomagid="<?= $csomag["id"]?>">
@@ -164,9 +167,25 @@
         </section>
 
         <section id="kapcsolat">
-
+            <h2>Kapcsolat <i class="fa-solid fa-envelope"></i></h2>
+                <form id="kapcsolat-form" action="#" method="post" class="card bg-blur">
+                    <div class="form-group">
+                        <label for="name">Név:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Üzenet:</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-light">Küldés <i class="fa-solid fa-circle-check"></i></button>
+                </form>
         </section>
     </main>
+
 
     <?php
         if (isset($_POST["addcart"])) {
@@ -175,7 +194,8 @@
                 "nev" => $_POST["csomagnev"],
                 "fo" => 1);
             unset($_POST["addcart"]);
-            echo '<script>document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
+            //odaugrik 
+            echo '<script>document.getElementById("#bovebben").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
         }
     ?>
 
@@ -194,7 +214,7 @@
         <section>
         <!-- src="https://maps.google.com/maps?width=100&amp;height=100&amp;hl=en&amp;q=dunasziget%20nefelejcs%20utca%2064+(Rudolf%20Vend%C3%A9gh%C3%A1z%2C%20Dunasziget)&amp;ie=UTF8&amp;t=p&amp;z=10&amp;iwloc=B&amp;output=embed" -->
 
-            <h3>Telephelyünk</h3>
+            <h3>Telephelyünk <i class="fa-solid fa-map-location-dot"></i></h3>
             <div class="maps-container">
                 <iframe width="100%" height="100%"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2706.7356574234536!2d19.23691240392388!3d47.28042171934365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741930014fc0d9b%3A0x195b02a0b1e91634!2sMacskalapos!5e0!3m2!1sen!2sus!4v1709628639614!5m2!1sen!2sus"

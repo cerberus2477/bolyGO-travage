@@ -1,33 +1,55 @@
 const nav = document.getElementsByTagName("nav")[0];
 const navHeight = nav.getBoundingClientRect().height;
+const smallCards = document.querySelectorAll('#csomagok .card');
+const bigCards = document.querySelectorAll('.big-card');
+const navLinks = document.querySelectorAll('nav a');
+const planet = document.querySelector('.scrolling-planet');
 
-// nav szinezése -------------------------------------------------------------------------------------------------------
+var scrolled = 0;
+
+// nav szinezése és bolygó eltolása-------------------------------------------------------------------------------------------------------
 window.onscroll = function () {
-    if (window.pageYOffset > navHeight) {
-        nav.dataset.scrolled = "true";
-    } else {
-        nav.dataset.scrolled = "false";
-    }
+    scrolled = window.scrollY;
+
+    nav.dataset.scrolled = window.pageYOffset > navHeight;
+    planet.style.right = planet.getAttribute('--offset-x') + scrolled * 0.5 + 'px';
+
+    navLinks.forEach(link => {
+        const sectionId = link.getAttribute('href').substring(1);
+        const section = document.getElementById(sectionId);
+
+        if (section.offsetTop <= scrolled && section.offsetTop + section.offsetHeight > scrolled) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
 }
+
+//nav linkeken smooth scrolling (nem lesz a cím a navbar mögött)
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const sectionId = link.getAttribute('href').substring(1); //le kell vágni a #-et
+        const section = document.getElementById(sectionId);
+
+        window.scrollTo({
+            top: section.offsetTop,
+            behavior: 'smooth'
+        });
+    });
+});
 
 // nav kinyitása becsukása (hamburger menü) -------------------------------------------------------------------------------------------------------
 const toggleNav = () => {
-    if (nav.dataset.state == "closed") {
-        nav.dataset.state = "open";
-    } else {
-        nav.dataset.state = "closed";
-    }
+    nav.dataset.state = nav.dataset.state == "closed" ? "open" : "closed";
 }
 
-// planet csusztatasa görgetésre----------------------------------------------------------------------------------
-window.addEventListener('scroll', function () {
-    var scrolled = window.scrollY;
-    var planet = document.querySelector('.scrolling-planet');
-    planet.style.right = -100 + scrolled * 0.5 + 'px';
-});
+
+
 
 // kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
-document.querySelectorAll('.card').forEach(card => {
+smallCards.forEach(card => {
     const color = card.dataset.color || 'white';
     if (color){
         card.style.setProperty('--accent-color', `var(--clr-${color})`);
@@ -35,10 +57,11 @@ document.querySelectorAll('.card').forEach(card => {
 });
 
 //minden nagy kártya ugyanolyan színű mint a megfelelő kis kártya
-document.querySelectorAll('.big-card').forEach(bigCard => {
+bigCards.forEach(bigCard => {
     bigCard.dataset.color = document.querySelector(`.csomag-container .card[data-csomagid="${bigCard.dataset.csomagid}"]`).dataset.color;
 });
     
+
 
 
 //bővebben kártyák váltása -------------------------------------------------------------------------------------------------------
