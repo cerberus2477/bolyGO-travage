@@ -11,7 +11,7 @@
     $context = stream_context_create($options);
 
     //@ ignorálja az errorokat, így nem jelenik meg az oldalon. később kezeljük.
-    $raw_data = file_get_contents($url, false, $context);
+    $raw_data = @file_get_contents($url, false, $context);
     $data = json_decode($raw_data, true);
 
 
@@ -42,7 +42,6 @@
     <link rel="shortcut icon favicon" href="styles/img/logo_ikon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
     <script defer src="https://kit.fontawesome.com/af2e246792.js" crossorigin="anonymous"></script>
-    <script defer src="./js/design.js"></script>
 </head>
 
 <body>
@@ -106,8 +105,7 @@
             <h2>Csomagjaink  <i class="fa-solid fa-shuttle-space"></i></h2>
             <div class="card-container csomag-cards">
                 <!-- kártyák random színéhez kell -->
-                <!-- pirosat kivettem -->
-                <?php $colors = ['green', 'yellow', 'pink', 'purple'];?>
+                <?php $colors = ['pink', 'blue', 'teal', 'green', 'yellow', 'purple']; ?>
 
                 <!-- csomagok kis kártyái -->
                     <?php if ($data !== null): ?>
@@ -252,4 +250,6 @@
     </footer>
 </body>
 
+
+    <script defer src="./scripts/design.js"></script>
 </html>

@@ -3,7 +3,7 @@ const navHeight = nav.getBoundingClientRect().height;
 const navLinks = document.querySelectorAll('.navlink');
 const planet = document.querySelector('.scrolling-planet');
 const headerContent = document.querySelector('.header-content');
-const smallCards = document.querySelectorAll('#csomag-cards .card');
+const cards = document.querySelectorAll('.card');
 const bigCards = document.querySelectorAll('.big-card');
 let pxScrolled;
 
@@ -51,26 +51,32 @@ navLinks.forEach(link => {
 
 
 
-// kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
-smallCards.forEach(smallCard => {
-    const color = smallCard.dataset.color || 'white';
-    smallCard.style.setProperty('--accent-color', `var(--clr-${color})`);
-});
+
 
 //minden nagy kártya ugyanolyan színű mint a megfelelő kis kártya
 // bigCards.forEach(bigCard => {
-//     bigCard.dataset.color = smallCards.querySelector(`[data-csomagid="${bigCard.dataset.csomagid}"]`).dataset.color;
+//     bigCard.dataset.color = cards.querySelector(`[data-csomagid="${bigCard.dataset.csomagid}"]`).dataset.color;
 // });
 
 bigCards.forEach(bigCard => {
     const csomagId = bigCard.dataset.csomagid;
-    smallCards.forEach(smallCard => {
-        if (smallCard.dataset.csomagid === csomagId) {
-            bigCard.dataset.color = smallCard.dataset.color;
+    cards.forEach(card => {
+        if (card.dataset.csomagid === csomagId) {
+            bigCard.dataset.color = card.dataset.color;
         }
     });
 });
     
+// kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
+cards.forEach(card => {
+    const color = card.dataset.color || 'white';
+    const lightColors 
+    card.style.setProperty('--accent-color', `var(--clr-${color})`);
+    if (lightColors.contains(color)){
+        card.style.setProperty('--text-color', `var(--clr-white)`);
+    }
+    card.style.setProperty('--text-color', `var(--clr-white)`);
+});
 
 
 

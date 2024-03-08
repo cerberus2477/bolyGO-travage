@@ -29,7 +29,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bolyGO | Kosár</title>
+    <title>Kosár ✦ bolyGO</title>
     <link rel="shortcut icon favicon" href="styles/img/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/cart.css">
@@ -40,20 +40,17 @@
 </head>
 <body>
 
-    <nav class="main-nav" data-state="closed" data-scrolled="false">
+    <nav data-state="closed" data-scrolled="false">
         <div class="nav-first-row">
-            <a class="logo" href="./index.php">
-                <img class="logo" src="styles/img/logo_transparent.png" alt="bolyGO logo">
-            </a>
-            
+            <img class="logo" src="styles/img/logo_transparent.png" alt="bolyGO logo">
             <a href="./cart.php" class="btn mobile-btn" ><i class="fa-solid fa-cart-shopping"></i></a>
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
-
-        <a href="programok.html">itemok</a>
-        <a href="galeria.html">Rólunk</a>
-        <a href="">Kapcsolat</a>
-        <a class="btn pc-btn icon-btn" href="./index.php">Vissza <i class="fa-solid fa-arrow-left"></i></a>
+      
+        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
+        <a class="navlink" href="index.php#rolunk">Rólunk</a>
+        <a class="navlink" href="index.php#kapcsolat">Kapcsolat</a>
+        <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
     </nav>
 
     <header class="header-cart">

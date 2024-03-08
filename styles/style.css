@@ -7,16 +7,19 @@
 
 /* VARIABLES */
 :root {
-    --clr-white: hsl(251, 100%, 98%);
     --clr-black: hsl(240, 38%, 3%);
     --clr-blue-black: hsl(234, 43%, 10%);
+    --clr-hatter-sotet: hsl(228, 38%, 10%);
+    --clr-hatter-vilagos: hsl(230, 33%, 14%);
+    --clr-white: hsl(24, 100%, 98%);
 
     --clr-orange: hsl(25, 77%, 51%);
-
+    --clr-orange-dark: hsl(14, 82%, 49%);
+    --clr-pink: hsl(344, 72%, 58%);
+    --clr-blue: hsl(207, 74%, 58%);
+    --clr-teal: hsl(151, 75%, 56%);
     --clr-green: hsl(99, 76%, 54%);
-    --clr-red: hsl(14, 82%, 49%);
-    --clr-yellow: hsl(58, 72%, 63%);
-    --clr-pink: hsl(324, 72%, 63%);
+    --clr-yellow: hsl(59, 76%, 53%);
     --clr-purple: hsl(257, 72%, 63%);
 
     --clr-alpha-black: rgba(0, 0, 0, .5);
@@ -258,7 +261,7 @@ nav a[data-active="true"]::after {
 }
 
 .btn:hover {
-    background-color: var(--clr-red);
+    background-color: var(--clr-orange-dark);
 }
 
 .btn-light {
