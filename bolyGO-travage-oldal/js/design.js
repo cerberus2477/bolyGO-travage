@@ -50,6 +50,7 @@ navLinks.forEach(link => {
 });
 
 
+
 // kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
 smallCards.forEach(smallCard => {
     const color = smallCard.dataset.color || 'white';
@@ -70,6 +71,7 @@ bigCards.forEach(bigCard => {
     });
 });
     
+
 
 
 //bővebben kártyák váltása -------------------------------------------------------------------------------------------------------
