@@ -1,5 +1,6 @@
 <?php
-// API működéséhez szükséges paraméterek
+
+// api működéséhez szükséges paraméterek
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -7,9 +8,9 @@ header('Content-Type: application/json; charset=utf-8');
 
 // DB SETUP
 $isDB = false;
-runNonQuery(file_get_contents("bolygo_db.sql"), true);
+runNonQuery(file_get_contents("bolygo_db.sql"));
 $isDB = true;
-// runNonQuery(file_get_contents("data.sql"), true);
+runNonQuery(file_get_contents("data.sql"));
 
 switch ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
@@ -23,7 +24,7 @@ switch ($_SERVER["REQUEST_METHOD"]) {
         hibauzenet(405, "API-hívás hiba", "Ismeretlen hívás típus.");
 }
 
-// Csomagok adatainak lekérése
+//csomagok adatainak lekérése
 function getCsomagok()
 {
     $sql = "SELECT id FROM csomag WHERE id > -1";
@@ -38,7 +39,7 @@ function getCsomagok()
     //echo json_encode($csomagok, JSON_PRETTY_PRINT);
 }
 
-// Egy csomag adatainak lekérése a csomagid alapján
+//egy csomag adatainak lekérése a csomagid alapján
 function getCsomag($csomagid, $return)
 {
     $csomag = array();
@@ -55,7 +56,7 @@ function getCsomag($csomagid, $return)
     $csomag["vegido"] = $sor["vege"];
     $csomag["csomagar"] = intval($sor["ar"]);
 
-    // Csomaghoz választható járművek adatai
+    //csomaghoz választható járművek adatai
     $sql = "SELECT jarmu.nev, jarmu.osztaly, jarmu.fekvohely, csomagjarmu.ar FROM csomagjarmu INNER JOIN jarmu ON csomagjarmu.jarmuid = jarmu.id WHERE csomagjarmu.csomagid = " . $csomagid;
     $tabla = runQuery($sql);
     $csomag["jarmuvek"] = array();
@@ -76,14 +77,14 @@ function getCsomag($csomagid, $return)
     }
 }
 
-// Foglalások feltöltése az adatbázisba
+//foglalások feltöltése az adatbázisba
 function foglal()
 {
     $data = json_decode(file_get_contents('php://input'), true);
 
     try {
-        // Foglalás számosságának tesztelése: 
-        // Ha csak 1 elem van, csak azt kell feltölteni, ha több, akkor mindet külön
+        //foglalás számosságának tesztelése: 
+        //ha csak 1 elem van, csak azt kell feltölteni, ha több, akkor mindet külön
         if (!isset($data[0])) {
             uploadtoDB($data);
         } else {
@@ -102,15 +103,15 @@ function foglal()
     }
 }
 
-// Egy foglalás feltöltése az adatbázisba
+//egy foglalás feltöltése az adatbázisba
 function uploadtoDB($adatok)
 {
-    // 1. Foglalás hozzáadása
+    //1. foglalás hozzáadása
     $foglalasid = mysqli_fetch_array(runQuery("SELECT COUNT(*) AS db FROM `foglalas`"))["db"] + 1;
     $sql = "INSERT INTO foglalas (id, csomagid, kezdes, vege, ar) VALUES ($foglalasid," . $adatok["csomagid"] . ",' " . $adatok["kezdido"] . "',' " . $adatok["vegido"] . "', " . $adatok["ar"] . ")";
     runNonQuery($sql);
 
-    // 2. Ügyfelek hozzáadása
+    //2. ügyfelek hozzáadása
     $ugyfelek = array();
     foreach ($adatok["ugyfelek"] as $ugyfel) {
         $ugyfelid = mysqli_fetch_array(runQuery("SELECT COUNT(*) AS db FROM `ugyfel`"))["db"] + 1;
@@ -119,18 +120,20 @@ function uploadtoDB($adatok)
         runNonQuery($sql);
     }
 
-    // 3. Ügyfelek-foglalás összekapcsolása
+    //3. ügyfelek-foglalás összekapcsolása
     foreach ($ugyfelek as $ugyfelid) {
         $sql = "INSERT INTO csoport (foglalasid, ugyfelid) VALUES ($foglalasid, $ugyfelid);";
         runNonQuery($sql);
     }
 }
 
-// SQL lekérdezés lefuttatása
+//SQL lekérdezés lefuttatása
 function runQuery($sql)
 {
     try {
-        $adb =  mysqli_connect("localhost", "root", "", "bolygo_db");
+        global $isDB;
+        //ha van már adatbázis oda csatlakozik, ha nincs akkor csak localhostra
+        $adb =  mysqli_connect("localhost", "root", "", $isDB ? "bolygo_db" : "");
         $tabla = mysqli_query($adb, $sql);
         mysqli_close($adb);
         return $tabla;
@@ -139,25 +142,14 @@ function runQuery($sql)
     }
 }
 
-// SQL módosító parancs lefuttatása
-function runNonQuery($sql, $multiline=false)
+//SQL módosító parancs lefuttatása
+function runNonQuery($sql)
 {
     try {
         global $isDB;
-        // Ha van már adatbázis, oda csatlakozik, ha nincs, akkor csak localhostra
+        //ha van már adatbázis oda csatlakozik, ha nincs akkor csak localhostra
         $adb =  mysqli_connect("localhost", "root", "", $isDB ? "bolygo_db" : "");
-        //ha több parancsot futtatunk egyszerre egy stringként, akkor tagoljuk őket és egyesével futtatjuk
-        if ($multiline) {
-            $sqlCommands = explode(';', $sql);
-            foreach ($sqlCommands as $command) {
-                if (trim($command) !== '') {
-                    mysqli_query($adb, $command);
-                }
-            }
-        } else {
-            mysqli_query($adb, $sql);
-        }
-
+        mysqli_query($adb, $sql);
         mysqli_close($adb);
     } catch (Exception $e) {
         SQL_Hibauzenet($e);
@@ -173,7 +165,7 @@ function SQL_Hibauzenet($e)
     exit($json);
 }
 
-// Saját hibaüzenet visszaküldése
+//saját hibaüzenet visszaküldése
 function hibauzenet($hibakod, $hibatipus, $hibauzenet)
 {
     $uzenet = array("hiba" => $hibatipus, "uzenet" => "Hiba: " . $hibauzenet);

@@ -1,4 +1,4 @@
-INSERT INTO bolygo (id, nev) 
+INSERT IGNORE INTO bolygo (id, nev) 
 VALUES 
 (1, 'Aranyföld'), 
 (2, 'Zafírvilág'), 
@@ -13,7 +13,7 @@ VALUES
 (11, 'Csillagfény'), 
 (12, 'Káprázatbolygó');
 
-INSERT INTO jarmu (id, nev, osztaly, fekvohely) 
+INSERT IGNORE INTO jarmu (id, nev, osztaly, fekvohely) 
 VALUES 
 (1, 'Csillagharcos', 7, true),
 (2, 'Ködfutár', 8, true),
@@ -26,7 +26,7 @@ VALUES
 (9, 'Űrjáró', 8, true),
 (10, 'Csillagálmodó', 9, true);
 
-INSERT INTO csomag (id, nev, leiras, bolygoid, kezdes, vege, ar) 
+INSERT IGNORE INTO csomag (id, nev, leiras, bolygoid, kezdes, vege, ar) 
 VALUES 
 (1, 'Aranyföldi Kalandok', 'Fedezze fel az Aranyföld rejtett kincseit ezen a lenyűgöző utazáson, miközben felfedezzük a bolygó aranyhomokkal borított tájait és ragyogó naplementéjét. Hódítson új területeket és tapasztalja meg az Aranyföld különleges atmoszféráját a csillagok között. Ez az utazás emlékezetes élményeket kínál az aranyra vágyó utazóknak.', 1, '2024-07-01', '2024-07-10', 1800),
 (2, 'Zafírvilági Ugrás', 'Merüljön el a Zafírvilág csodálatos kék tengerében ezen a lenyűgöző körúton, miközben felfedezzük a bolygó zafírhomokkal borított partjait és kristálytiszta vizét. Ez az utazás lehetővé teszi, hogy közelebbről megismerje a Zafírvilág különleges élővilágát és tengeri titkait. Tapasztalja meg a kék varázslatot, miközben átsiklik a Zafírvilág égszínkék égen.', 2, '2024-08-15', '2024-08-25', 2000),
@@ -41,7 +41,7 @@ VALUES
 (11, 'Csillagfényi Utazás', 'Utazzon a Csillagfény rejtett birodalmába ezen a különleges expedíción, miközben felfedezzük a bolygó ragyogó égi jelenségeit és csillagfényes tájait. Ez az utazás lehetővé teszi, hogy közelebbről megismerje a Csillagfény különleges világát és csillogó csillagait. Tapasztalja meg a csillagfény varázsát, miközben felfedezzük a Csillagfény rejtett birodalmának titkait.', 11, '2025-05-01', '2025-05-10', 2000),
 (12, 'Káprázatbolygói Körút', 'Fedezze fel a Káprázatbolygó csillogó tájait és káprázatos csodáit ezen a lenyűgöző utazáson, miközben felfedezzük a bolygó ragyogó égi jelenségeit és csillagfényes tájait. Ez az utazás lehetővé teszi, hogy közelebbről megismerje a Káprázatbolygó különleges világát és csillogó csillagait. Tapasztalja meg a káprázat varázsát, miközben átsiklik a Káprázatbolygó ragyogó égboltja alatt.', 12, '2025-06-01', '2025-06-10', 2200);
 
-INSERT INTO csomagjarmu (csomagid, jarmuid, ar) 
+INSERT IGNORE INTO csomagjarmu (csomagid, jarmuid, ar) 
 VALUES 
 (1, 3, 1000),
 (2, 5, 1500),

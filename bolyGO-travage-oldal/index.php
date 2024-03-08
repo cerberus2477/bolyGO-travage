@@ -1,10 +1,6 @@
-<?php
-    session_start();
-    if (!isset($_SESSION["kosar"])) { $_SESSION["kosar"] = array(); }
-?>
 
 <?php
-    //API meghívása
+//API meghívása
     $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")));
     $options = array(
         'http' => array(
@@ -13,11 +9,16 @@
         )
     );
     $context = stream_context_create($options);
-    $data = json_decode(file_get_contents($url, false, $context), true);
-?>
+
+    //@ ignorálja az errorokat, így nem jelenik meg az oldalon. később kezeljük.
+    $raw_data = file_get_contents($url, false, $context);
+    $data = json_decode($raw_data, true);
 
 
-<?php
+    //KOSÁR
+    session_start();
+    if (!isset($_SESSION["kosar"])) { $_SESSION["kosar"] = array(); }
+
     if (isset($_POST["addcart"])) {
         $_SESSION["kosar"][] = array(
             "id" => $_POST["addcart"], 
@@ -26,8 +27,9 @@
         unset($_POST["addcart"]);
         //odaugrik 
         echo '<script>document.getElementById("#bovebben").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
-    }
+    }    
 ?>
+
 
 <!DOCTYPE html>
 <html lang="hu">
@@ -37,7 +39,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bolyGO</title>
-    <link rel="shortcut icon favicon" href="styles/img/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon favicon" href="styles/img/logo_ikon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
     <script defer src="https://kit.fontawesome.com/af2e246792.js" crossorigin="anonymous"></script>
     <script defer src="./js/design.js"></script>
@@ -71,7 +73,7 @@
 
     <main id="index-main">
         <section id=rolunk>
-            <h2>Rólunk</h2>
+            <h2>Rólunk <i class="fa-solid fa-user-astronaut"></i></h2>
             <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Blanditiis, quos.</p>
             <div class="card-container rolunk-cards">
@@ -107,17 +109,30 @@
                 <!-- pirosat kivettem -->
                 <?php $colors = ['green', 'yellow', 'pink', 'purple'];?>
 
-                <!-- csomgok kis kártyái -->
-                <?php foreach ($data as $csomag):?>
-                    <div class="card" data-csomagid="<?= $csomag["id"]?>" data-color="<?= $colors[array_rand($colors)] ?>">
-                        <img class="small-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
-                        <div class="card-content">
-                            <h3><?= $csomag["nev"]?></h3>
-                            <p class="description"><?= $csomag["leiras"]?></p>
-                            <button class="btn btn-light btn-auto-hover" onclick='jumpTo(<?= $csomag["id"]?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
+                <!-- csomagok kis kártyái -->
+                    <?php if ($data !== null): ?>
+                        <?php foreach ($data as $csomag): ?>
+                            <div class="card" data-csomagid="<?= $csomag["id"] ?>" data-color="<?= $colors[array_rand($colors)] ?>">
+                                <img class="small-card-img" src="<?= './styles/csomag_img/' . $csomag["id"] . '.png' ?>" alt="<?= $csomag["nev"] . ' képe' ?>">
+                                <div class="card-content">
+                                    <h3><?= $csomag["nev"] ?></h3>
+                                    <p class="description"><?= $csomag["leiras"] ?></p>
+                                    <button class="btn btn-light btn-auto-hover" onclick='jumpTo(<?= $csomag["id"] ?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="error">
+                            <h3><i class="fa-solid fa-triangle-exclamation"></i> HIBA! A csomagok megjelenítése sikertelen volt.</h3>
+                            <p>Az adatbázis elérése közben hiba merült fel. A következő lépéseket teheti a hiba elhárítása érdekében:</p>
+                            <ol>
+                                <li>Telepítse a <a href="http://www.apachefriends.org/download.html" target="_blank" rel="noopener noreferrer">XAMPP alkalmazás</a>t majd indítsa el az APACHE és MySQL szolgáltatásokat a XAMPP segítségével.</li>
+                                <li>Ellenőrizze a <a href="http://127.0.0.1/phpmyadmin/" target="_blank" rel="noopener noreferrer">phpMyAdmin</a> felületén, hogy a bolyGO_db létrehozása sikeres volt-e, és az adatok feltöltése megtörtént-e.</li>
+                                <li>Ha a hiba továbbra is fennáll, forduljon hozzánk a megadott elérhetőségek egyikén.</li>
+                            </ol>
                         </div>
-                    </div>
-                <?php endforeach ?>
+                    <?php endif; ?>
+
             </div>
         </section>
 
@@ -126,47 +141,59 @@
             <button class="btn btn-control" onclick="showPrevCard()"><i class="fa-solid fa-chevron-left"></i></button> 
 
             <div class="bovebben-cards"> 
-                <?php foreach ($data as $csomag):?>
-                    <div class="card big-card card-hidden" data-csomagid="<?= $csomag["id"]?>" data-color="">
-                        <img class="big-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
-            
-                        <div class="card-content">
-                            <h3><?= $csomag["nev"]?></h3>
-                            <h4><?= $csomag["bolygo"]?></h4>
-                            <p><?= $csomag["leiras"]?></p>
-                        </div>
+                <?php if ($data !== null): ?>
+                    <?php foreach ($data as $csomag):?>
+                        <div class="card big-card card-hidden" data-csomagid="<?= $csomag["id"]?>" data-color="">
+                            <img class="big-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
+                
+                            <div class="card-content">
+                                <h3><?= $csomag["nev"]?></h3>
+                                <h4><?= $csomag["bolygo"]?> <i class="fa-solid fa-meteor"></i></h4>
+                                <p><?= $csomag["leiras"]?></p>
+                            </div>
 
-                        <div class="card-content">
-                            <p>Választható dátum: <?= $csomag["kezdido"]?> - <?= $csomag["vegido"]?></p>
-                            <p>Választható járművek</p>
-                            <table border="1">
-                                <thead>
-                                    <tr>
-                                        <th>név</th>
-                                        <th>osztály</th>
-                                        <th>fekvőhely</th>
-                                        <th>ár</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($csomag["jarmuvek"] as $jarmu):?>
+                            <div class="card-content">
+                                <p>Választható dátum: <?= $csomag["kezdido"]?> - <?= $csomag["vegido"]?></p>
+                                <p>Választható járművek <i class="fa-solid fa-rocket"></i></p>
+                                <table border="1">
+                                    <thead>
                                         <tr>
-                                            <td><?= $jarmu["nev"]?></td>
-                                            <td><?= $jarmu["osztaly"]?></td>
-                                            <td><?= $jarmu["fekvohely"]?></td>
-                                            <td><?= $jarmu["ar"]?></td>
+                                            <th>név</th>
+                                            <th>osztály</th>
+                                            <th>fekvőhely</th>
+                                            <th>ár</th>
                                         </tr>
-                                    <?php endforeach ?>
-                                </tbody>
-                            </table>
-                            <p><i>Már <span><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
-                            <form action="<?php print $_SERVER["PHP_SELF"];?>" method="post">
-                                <button class="btn btn-auto-hover" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
-                                <input type="hidden" name="csomagnev" value="<?= $csomag["nev"]?>">
-                            </form>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($csomag["jarmuvek"] as $jarmu):?>
+                                            <tr>
+                                                <td><?= $jarmu["nev"]?></td>
+                                                <td><?= $jarmu["osztaly"]?></td>
+                                                <td><?= $jarmu["fekvohely"]?></td>
+                                                <td><?= $jarmu["ar"]?></td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                                <p><i>Már <span><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
+                                <form action="<?php print $_SERVER["PHP_SELF"];?>" method="post">
+                                    <button class="btn btn-auto-hover" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
+                                    <input type="hidden" name="csomagnev" value="<?= $csomag["nev"]?>">
+                                </form>
+                            </div>
                         </div>
+                    <?php endforeach ?>
+                <?php else: ?>
+                    <div class="error">
+                        <h3><i class="fa-solid fa-triangle-exclamation"></i> HIBA! A csomagok részletes leírásának megjelenítése sikertelen volt.</h3>
+                        <p>Az adatbázis elérése közben hiba merült fel. A következő lépéseket teheti a hiba elhárítása érdekében:</p>
+                        <ol>
+                            <li>Telepítse a <a href="http://www.apachefriends.org/download.html" target="_blank" rel="noopener noreferrer">XAMPP alkalmazás</a>t majd indítsa el az APACHE és MySQL szolgáltatásokat a XAMPP segítségével.</li>
+                            <li>Ellenőrizze a <a href="http://127.0.0.1/phpmyadmin/" target="_blank" rel="noopener noreferrer">phpMyAdmin</a> felületén, hogy a bolyGO_db létrehozása sikeres volt-e, és az adatok feltöltése megtörtént-e.</li>
+                            <li>Ha a hiba továbbra is fennáll, hozzánk a megadott elérhetőségek egyikén.</li>
+                        </ol>
                     </div>
-                <?php endforeach ?>
+                <?php endif; ?>
             </div>
 
             <button class="btn btn-control" onclick="showNextCard()"><i class="fa-solid fa-chevron-right"></i></button> 

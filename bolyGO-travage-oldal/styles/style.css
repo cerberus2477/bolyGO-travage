@@ -464,3 +464,14 @@ section#bovebben {
     justify-content: center;
     align-items: top;
 }
+
+
+.error{
+    background-color: rgb(85, 4, 20);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-big);
+}
+
+.error a{
+    color: var(--clr-pink);
+}
