@@ -24,7 +24,8 @@
             "nev" => $_POST["csomagnev"],
             "fo" => 1);
         unset($_POST["addcart"]);
-        echo '<script>document.getElementById("").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
+        //odaugrik 
+        echo '<script>document.getElementById("#bovebben").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
     }
 ?>
 
@@ -49,13 +50,12 @@
             <a href="./cart.php" class="btn mobile-btn" ><i class="fa-solid fa-cart-shopping"></i></a>
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
-
+      
         <a class="navlink" href="#csomagok" data-active="true">Csomagok</a>
         <a class="navlink" href="#rolunk">Rólunk</a>
         <a class="navlink" href="#kapcsolat">Kapcsolat</a>
         <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
     </nav>
-
 
 
     <header id="index-header">
@@ -64,7 +64,7 @@
             <p>Utazz epikus bolygókra!!</p>
             <div><a class="btn btn-light" href="#csomagok">Csomagok </a></div>
         </div>
-        <img src="./styles/img/planet1.png" alt="Planet" class="scrolling-planet">
+        <img class="scrolling-planet" src="./styles/img/planet1.png" alt="Planet">
 
     </header>
 
@@ -84,9 +84,7 @@
                     </div>
                 </div>
                 <div class="card" data-color="yellow">
-                    <div >
-                        <img class="small-card-img" src="styles/img/levi.png" alt="Levi">
-                    </div>
+                    <img class="small-card-img" src="styles/img/levi.png" alt="Levi">
                     <div class="card-content">
                         <h3>Levi</h3>
                         <p class="description">MIAUUUUU</div>
@@ -99,11 +97,12 @@
                     </div>
                 </div>
             </div>
+
         </section>
 
 
         <section id="csomagok">
-            <h2>Csomagjaink</h2>
+            <h2>Csomagjaink  <i class="fa-solid fa-shuttle-space"></i></h2>
             <div class="card-container csomag-cards">
                 <!-- kártyák random színéhez kell -->
                 <!-- pirosat kivettem -->
@@ -175,7 +174,7 @@
         </section>
 
         <section id="kapcsolat">
-            <h2>Kapcsolat</h2>
+            <h2>Kapcsolat <i class="fa-solid fa-envelope"></i></h2>
             <div class="card dark-blur card-content">
                 <form action="#" method="post">
                     <div class="form-group">
@@ -190,7 +189,8 @@
                         <label for="message">Üzenet:</label>
                         <textarea id="message" name="message" rows="4" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-light">Küldés</button>
+
+                    <button type="submit" class="btn btn-light">Küldés <i class="fa-solid fa-circle-check"></i></button>
                 </form>
             </div>
         </section>
@@ -215,7 +215,7 @@
         <section>
         <!-- src="https://maps.google.com/maps?width=100&amp;height=100&amp;hl=en&amp;q=dunasziget%20nefelejcs%20utca%2064+(Rudolf%20Vend%C3%A9gh%C3%A1z%2C%20Dunasziget)&amp;ie=UTF8&amp;t=p&amp;z=10&amp;iwloc=B&amp;output=embed" -->
 
-            <h3>Telephelyünk</h3>
+            <h3>Telephelyünk <i class="fa-solid fa-map-location-dot"></i></h3>
             <div class="maps-container">
                 <iframe width="100%" height="100%"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2706.7356574234536!2d19.23691240392388!3d47.28042171934365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741930014fc0d9b%3A0x195b02a0b1e91634!2sMacskalapos!5e0!3m2!1sen!2sus!4v1709628639614!5m2!1sen!2sus"
