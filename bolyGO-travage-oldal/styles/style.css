@@ -105,10 +105,15 @@ header#index-header{
     padding: 2rem;
 }
 
+#index-header .header-content{
+    padding-left: 10rem;
+}
+
 .scrolling-planet {
     /* js is ezt használja a mozgatásnál */
     --offset-x: -100px;
 
+    height: 100%;
     position: absolute;
     right: var(--offset-x);
     /* függőlegesen középen */

@@ -64,7 +64,7 @@
             <p>Utazz epikus bolygókra!!</p>
             <div><a class="btn btn-light" href="#csomagok">Csomagok </a></div>
         </div>
-        <img src="./styles/img/planet1.png" alt="Planet" class="scrolling-planet">
+        <img src="./styles/img/planet.png" alt="Planet" class="scrolling-planet">
 
     </header>
 
