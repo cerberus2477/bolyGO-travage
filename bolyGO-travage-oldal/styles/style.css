@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+
 @font-face {
     font-family: 'Century Gothic';
     src: url('./fonts/Century\ Gothic.ttf') format('truetype');
 }
-  
+
 /* VARIABLES */
 :root {
     --clr-white: hsl(251, 100%, 98%);
@@ -26,35 +27,32 @@
 }
 
 
-
 /* CSS RESET */
 * {
     box-sizing: border-box;
     position: relative;
+    scroll-behavior: smooth;
+    /* így a body:after színátmenete csak a háttérkép fölött lesz nem az egész oldal fölött */
     z-index: 2;
 }
 
 html,
 body {
-    font-family: 'Century Gothic', sans-serif;
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth;
+    
+    color: var(--clr-white);
+    font-family: 'Century Gothic', sans-serif;
     font-weight: 300;
     font-size: 1.125rem;
     line-height: 1.5;
-    color: var(--clr-white);
 
-    background-image: url("./img/bg.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    position: relative;
+    background: url("./img/bg.jpg") center/cover no-repeat fixed;
+    /* így a body:after színátmenete csak a háttérkép fölött lesz nem az egész oldal fölött */
     z-index: 1;
 }
 
-body::after{
+body::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -69,18 +67,13 @@ body::after{
 }
 
 
-section{
-    padding: 5rem 0;
-}
-
-/* MAIN--------------------------------------------------------------------------------------------------------------------- */
-
-main{
+/* MAIN --------------------------------------------------------------------------------------------------------------------- */
+main {
     background-color: var(--clr-blue-black);
-    padding: 0 5rem
+    padding: 0 5rem;
 }
 
-.main-index{
+main#index-main{
     background-color: transparent;
 }
 
@@ -94,35 +87,36 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-        
-        /* overflow-y: visible; */
-        overflow: visible;
-        overflow-x: hidden;
-            /*hogy a kép kilógjon*/
 }
 
-.header-main {
+header#index-header{
     height: 100vh;
-    position: relative; 
     justify-content: left;
-    /* képhez */
+
+    /* scrolling-planet elhelyezéséhez */
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 
 .header-content {
     text-align: center;
     z-index: 8;
-    padding-inline: 20vw 5rem;
+    padding: 2rem;
 }
 
 .scrolling-planet {
-    width: 50vw;
+    /* js is ezt használja a mozgatásnál */
+    --offset-x: -100px;
+
     position: absolute;
-    right: -100px;
-    /* középre függőlegesen */
+    right: var(--offset-x);
+    /* függőlegesen középen */
     top: 50%;
     transform: translateY(-50%);
-    /* mix-blend-mode: difference; */
+
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 /* NAV ------------------------------------------------------------------------------------------------------------------*/
@@ -147,7 +141,7 @@ nav {
     width: 100%;
     height: 100%;
     align-items: center;
-    padding:  2.4vh 1rem;
+    padding: 2.4vh 1rem;
 }
 
 nav[data-scrolled="true"] {
@@ -155,23 +149,18 @@ nav[data-scrolled="true"] {
     backdrop-filter: blur(var(--blur));
 }
 
-
-
 .logo {
     margin-right: auto;
     height: 100%;
     display: block !important;
 }
 
-
-
-nav a{
+nav a {
     font-size: 1rem;
     letter-spacing: 1px;
     color: var(--clr-white);
     margin: 2.4vh 1rem;
 }
-
 
 a {
     color: var(--clr-orange);
@@ -179,29 +168,29 @@ a {
     transition: all .2s linear;
 }
 
-/* aláhúzás navban */
-
-nav a.active::after {
+/* aktuális link aláhúzása */
+nav a[data-active="true"]::after {
     content: '';
     position: absolute;
     left: 0;
     bottom: -3px;
-    width: 3rem;
+    width: 4rem;
     height: 2px;
     background-color: var(--clr-orange);
 }
 
+
+
 /* pc */
-@media screen and (min-width: 801px){
+@media screen and (min-width: 801px) {
     .mobile-btn {
         display: none;
-        padding: 15px;
     }
-    .pc-btn{
+
+    .pc-btn {
         display: block;
     }
 }
-
 
 /* mobile */
 @media screen and (max-width: 800px) {
@@ -217,6 +206,7 @@ nav a.active::after {
     nav[data-state="closed"] a {
         display: none;
     }
+
     nav[data-state="open"] a {
         display: block;
     }
@@ -224,7 +214,8 @@ nav a.active::after {
     .mobile-btn {
         display: block !important;
     }
-    .pc-btn{
+
+    .pc-btn {
         display: none !important;
     }
 
@@ -241,30 +232,24 @@ nav a.active::after {
 
 
 
-
-
-
 /* GOMBOK ----------------------------------------------------------------------------------------------------------*/
 /* alapbol narancs */
 .btn {
     border-radius: var(--border-radius);
     border: none;
-
     padding: 15px 30px;
+    background-color: var(--clr-orange);
+    color: var(--clr-white);
+
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .2s;
 
     font-weight: 500;
-
     font-size: 0.75rem;
     line-height: 1;
     text-transform: uppercase;
     letter-spacing: 2px;
-
-    transition: all .2s;
-
-    background-color: var(--clr-orange);
-    color: var(--clr-white);
-
-    cursor:pointer;
 }
 
 .btn:hover {
@@ -276,70 +261,54 @@ nav a.active::after {
     color: var(--clr-blue-black);
 }
 
-.icon-btn{
-    white-space: nowrap;
-}
-
-.btn-controll {
+.btn-control {
     background-color: transparent;
 }
 
-.btn-controll:hover {
-    background-color: var(--clr-white);
-    color: var(--clr-blue-black);
+.btn-control:hover {
+    color: var(--clr-green);
+    background-color: transparent;
+}
+
+.btn-auto-hover:hover {
+    filter: brightness(80%) saturate(120%) hue-rotate(-20deg);
 }
 
 
-
-
 /* TYPOGRAPHY ------------------------------------------------------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Anta', serif;
+}
+
 h1 {
     font-size: 40px;
     margin-bottom: 20px;
 
     font-weight: 500;
     text-transform: capitalize;
-}
 
-header h1 {
     font-stretch: narrower;
     font-size: 3rem;
 }
 
-
-
-/* Lehetne valami effekt rajta */
 h2 {
     font-weight: 600;
     font-size: 30px;
     font-style: italic;
-    font-family: 'Anta', serif;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 4rem;
+    height: 3px;
+    background-color: var(--clr-purple);;
 }
 
 
-
-
-
-
-/* CARDS ---------------------------------------------------------------------------------------------------------------------------------------*/
-
-.rolunk-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.csomag-container{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    align-items: top;   
-}
-
-
-
+/* card ------------------------------------------------------------------------------------------------------------------------------------------- */
 .card {
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
     --accent-color: white;
@@ -351,33 +320,21 @@ h2 {
     border: 1px solid var(--accent-color);
     background-color: var(--clr-blue-black);
     transition: visibility 0.5s ease;
-  }
-  
-  .card-content {
+}
+
+.card-content {
     padding: 1.5rem;
-  }
+}
 
-  
-  .small-card-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    /* border-radius: var(--border-radius-big) var(--border-radius-big) 0 0; */
-    border-radius: 7px 7px 0 0;
-  }
-
-
-  .card-content .description{
+.card-content .description {
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /*harmadik sortól levágja és ...-ot tesz*/
-    white-space: pre-wrap; /* sortörés a szóközök megtartásával*/
-  }
-
-
-  
-
+    -webkit-line-clamp: 3;
+    /*harmadik sortól levágja és ...-ot tesz*/
+    white-space: pre-wrap;
+    /* sortörés a szóközök megtartásával*/
+}
 
 .card:hover {
     box-shadow: 0 8px 16px var(--accent-color);
@@ -391,31 +348,26 @@ h2 {
     background-color: var(--accent-color);
 }
 
-.btn-calc-hover:hover{
-    filter: brightness(90%) saturate(110%) hue-rotate(-10deg);
+.small-card-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* border-radius: var(--border-radius-big) var(--border-radius-big) 0 0; */
+    border-radius: 7px 7px 0 0;
 }
 
 
-/* bovebben ---------------------------------------------------------------------------------------------------------------------------------------------*/
+/* bovebben */
 
-.bovebben-container{
-    padding: 5rem 2rem;
-    margin: 0 -5rem;
-    display: flex;
-
-    background-color: var(--clr-alpha-black);
-    backdrop-filter: blur(var(--blur));
-}
-
-  .big-card{
+.big-card {
     width: 100%;
     display: flex;
     flex-direction: row;
- }
+}
 
- .big-card .card-content{
-    padding: 1.5rem .5rem;
- }
+.big-card .card-content {
+    padding-inline: .5rem;
+}
 
 .big-card-img {
     min-width: 100px;
@@ -425,6 +377,11 @@ h2 {
     border-radius: var(--border-radius-big);
 }
 
+/* ár */
+.big-card span {
+    color: var(--clr-pink);
+    font-weight: bold;
+}
 
 /* nem az aktuális kártya eltüntetéséhez */
 .card-hidden {
@@ -435,36 +392,7 @@ h2 {
 }
 
 
-/* ár */
-.card span{
-    color: var(--clr-pink);
-    font-weight: bold;
-}
-
-
-
-
-/* footer--------------------------------------------------------------------------------------------------------------------------- */
-footer {
-    display: flex;
-    justify-content: space-around;
-    background-color: var(--clr-blue-black);
-}
-
-
-
-/* contact */
-.contact-form {
-    background-color: var(--clr-blue-black);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-}
-
-.contact-form form {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
+/* kapcsolat ---------------------------------------------------------------------------------------------------------------------------*/
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -472,7 +400,7 @@ footer {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--clr-white);
+    color: var(--clr-purple);
 }
 
 .form-group input,
@@ -481,11 +409,53 @@ footer {
     padding: 0.5rem;
     border: none;
     border-radius: var(--border-radius);
-    background-color: var(--clr-black);
-    color: var(--clr-white);
+    background-color: var(--clr-white);
+    color: var(--clr-blue-black);
 }
 
 .form-group textarea {
     resize: vertical;
 }
 
+
+
+/* SECTIONS --------------------------------------------------------------------------------------------------------------------- */
+section {
+    padding: 5rem;
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+section#bovebben {
+    display: flex;
+}
+
+.dark-blur {
+    background-color: var(--clr-alpha-black);
+    backdrop-filter: blur(var(--blur));
+}
+
+.full-width {
+    margin-inline: -5rem;
+}
+
+
+/* containers */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.rolunk-cards {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.csomag-cards {
+    justify-content: center;
+    align-items: top;
+}
