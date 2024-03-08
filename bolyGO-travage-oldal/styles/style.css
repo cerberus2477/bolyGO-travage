@@ -73,6 +73,12 @@ section{
     padding: 5rem 0;
 }
 
+.bg-blur{
+    background-color: var(--clr-alpha-black);
+    backdrop-filter: blur(var(--blur));
+}
+
+
 /* MAIN--------------------------------------------------------------------------------------------------------------------- */
 
 main{
@@ -94,15 +100,16 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-        overflow-x: hidden;
-            /*hogy a kép kilógjon*/
+    
+
 }
 
-.header-main {
+.header-index {
     height: 100vh;
     position: relative; 
     justify-content: left;
-    /* képhez */
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 
@@ -113,9 +120,10 @@ header {
 }
 
 .scrolling-planet {
+    --offset-x: -100px; 
+
     position: absolute;
-    right: -100px;
-    /* középre függőlegesen */
+    right: var(--offset-x);
     top: 50%;
     transform: translateY(-50%);
 }
@@ -173,6 +181,18 @@ a {
     text-decoration: none;
     transition: all .2s linear;
 }
+
+nav a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 4rem; 
+    height: 2px;
+    background-color: var(--clr-orange);
+}
+
+
 
 /* pc */
 @media screen and (min-width: 801px){
@@ -306,20 +326,21 @@ h2 {
 
 /* CARDS ---------------------------------------------------------------------------------------------------------------------------------------*/
 
-.rolunk-container {
+.rolunk-cards {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.csomag-container{
+.csomag-cards{
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
     align-items: top;   
 }
+
 
 
 
@@ -381,13 +402,10 @@ h2 {
 
 /* bovebben ---------------------------------------------------------------------------------------------------------------------------------------------*/
 
-.bovebben-container{
+#bovebben{
     padding: 5rem 2rem;
     margin: 0 -5rem;
     display: flex;
-
-    background-color: var(--clr-alpha-black);
-    backdrop-filter: blur(var(--blur));
 }
 
   .big-card{
@@ -432,4 +450,40 @@ footer {
     display: flex;
     justify-content: space-around;
     background-color: var(--clr-blue-black);
+}
+
+
+/* contact */
+#kapcsolat{
+    padding: 5rem 2rem;
+    margin: 0 -5rem;
+}
+
+#kapcsolat-form{
+    width: 50%;
+    padding: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--clr-white);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--clr-white);
+    color: var(--clr-blue-black);
+}
+
+.form-group textarea {
+    resize: vertical;
 }

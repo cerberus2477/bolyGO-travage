@@ -1,12 +1,20 @@
 <?php
 
-// SITYUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
-// ide kell komment hogy mi ez
+// api működéséhez szükséges paraméterek
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 header('Content-Type: application/json; charset=utf-8');
+
+
+// DB SETUP
+$isDB = false;
+runNonQuery(file_get_contents("bolygo_db.sql"));
+$isDB = true;
+runNonQuery(file_get_contents("data.sql"));
+
+
 
 switch ($_SERVER["REQUEST_METHOD"]) {
     case "GET":
@@ -19,6 +27,7 @@ switch ($_SERVER["REQUEST_METHOD"]) {
     default:
         hibauzenet(405, "API-hívás hiba", "Ismeretlen hívás típus.");
 }
+
 
 //csomagok adatainak lekérése
 function getCsomagok()
@@ -131,7 +140,9 @@ function uploadtoDB($adatok)
 function runQuery($sql)
 {
     try {
-        $adb = mysqli_connect("localhost", "root", "", "bolygo_db");
+        global $isDB;
+        //ha van már adatbázis oda csatlakozik, ha nincs akkor csak localhostra
+        $adb =  mysqli_connect("localhost", "root", "", $isDB ? "bolygo_db" : "");
         $tabla = mysqli_query($adb, $sql);
         mysqli_close($adb);
         return $tabla;
@@ -144,7 +155,9 @@ function runQuery($sql)
 function runNonQuery($sql)
 {
     try {
-        $adb = mysqli_connect("localhost", "root", "", "bolygo_db");
+        global $isDB;
+        //ha van már adatbázis oda csatlakozik, ha nincs akkor csak localhostra
+        $adb =  mysqli_connect("localhost", "root", "", $isDB ? "bolygo_db" : "");
         mysqli_query($adb, $sql);
         mysqli_close($adb);
     } catch (Exception $e) {
