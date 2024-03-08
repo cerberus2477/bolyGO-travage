@@ -24,7 +24,7 @@
             "nev" => $_POST["csomagnev"],
             "fo" => 1);
         unset($_POST["addcart"]);
-        echo '<script>document.getElementById("hosszuleiras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
+        echo '<script>document.getElementById("").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
     }
 ?>
 
@@ -43,26 +43,26 @@
 </head>
 
 <body>
-    <nav class="main-nav" data-state="closed" data-scrolled="false">
+    <nav data-state="closed" data-scrolled="false">
         <div class="nav-first-row">
             <img class="logo" src="styles/img/logo_transparent.png" alt="bolyGO logo">
             <a href="./cart.php" class="btn mobile-btn" ><i class="fa-solid fa-cart-shopping"></i></a>
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
 
-        <a href="#csomagok" class="active">Csomagok</a>
-        <a href="#rolunk">Rólunk</a>
-        <a href="#kapcsolat">Kapcsolat</a>
-        <a class="btn pc-btn icon-btn btn-calc-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
+        <a class="navlink" href="#csomagok" data-active="true">Csomagok</a>
+        <a class="navlink" href="#rolunk">Rólunk</a>
+        <a class="navlink" href="#kapcsolat">Kapcsolat</a>
+        <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
     </nav>
 
 
 
-    <header class="header-main">
+    <header id="index-header">
         <div class="header-content">
             <h1> <span>bolyGO</span> <br> utazási iroda</h1>
             <p>Utazz epikus bolygókra!!</p>
-            <div><a class="btn btn-light icon-btn" href="#csomagok">Csomagok </a></div>
+            <div><a class="btn btn-light" href="#csomagok">Csomagok </a></div>
         </div>
         <img src="./styles/img/planet1.png" alt="Planet" class="scrolling-planet">
 
@@ -70,16 +70,16 @@
 
 
 
-    <main class="main-index">
+    <main id="index-main">
         <section id=rolunk>
             <h2>Rólunk</h2>
             <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Blanditiis, quos.</p>
-            <div class="rolunk-container">
+            <div class="card-container rolunk-cards">
                 <div class="card" data-color="green">
                     <img class="small-card-img" src="styles/img/sityu.jpg" alt="Sityu">
                     <div class="card-content">
-                        <h2>Sityu</h2>
+                        <h3>Sityu</h3>
                         <p class="description">Hol vagyok?</p>
                     </div>
                 </div>
@@ -88,13 +88,13 @@
                         <img class="small-card-img" src="styles/img/levi.png" alt="Levi">
                     </div>
                     <div class="card-content">
-                        <h2>Levi</h2>
+                        <h3>Levi</h3>
                         <p class="description">MIAUUUUU</div>
                 </div>
                 <div class="card" data-color="pink">
                     <img class="small-card-img" src="styles/img/tunde.jpg" alt="Tünde">
                     <div class="card-content">
-                        <h2>Tünde</h2>
+                        <h3>Tünde</h3>
                         <p class="description"><--- that's my boyfren c:</p>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
 
         <section id="csomagok">
             <h2>Csomagjaink</h2>
-            <div class="csomag-container">
+            <div class="card-container csomag-cards">
                 <!-- kártyák random színéhez kell -->
                 <!-- pirosat kivettem -->
                 <?php $colors = ['green', 'yellow', 'pink', 'purple'];?>
@@ -114,30 +114,30 @@
                     <div class="card" data-csomagid="<?= $csomag["id"]?>" data-color="<?= $colors[array_rand($colors)] ?>">
                         <img class="small-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
                         <div class="card-content">
-                            <h2><?= $csomag["nev"]?></h2>
+                            <h3><?= $csomag["nev"]?></h3>
                             <p class="description"><?= $csomag["leiras"]?></p>
-                            <button class="btn btn-light icon-btn btn-calc-hover" onclick='jumpTo(<?= $csomag["id"]?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
+                            <button class="btn btn-light btn-auto-hover" onclick='jumpTo(<?= $csomag["id"]?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
                         </div>
                     </div>
                 <?php endforeach ?>
             </div>
         </section>
 
-        <section class="bovebben-container">
-                    <h2>Tudj meg tövbet a csomagról</h2>
-            <button class="btn btn-controll" onclick="showPrevCard()"><i class="fa-solid fa-chevron-left"></i></button> 
+        <section id="bovebben" class="full-width dark-blur">
+            <h2>Tudj meg többet a csomagról</h2>
+            <button class="btn btn-control" onclick="showPrevCard()"><i class="fa-solid fa-chevron-left"></i></button> 
 
-            <div id="hosszuleiras" class="meow">  <!-- ha megcsinálom hogy szépen csússzanak a kártyák kelleni fog egy div -->
+            <div class="bovebben-cards"> 
                 <?php foreach ($data as $csomag):?>
-                    <!-- data-color a js-sel van beállítva -->
-                    <div class="card big-card card-hidden" data-csomagid="<?= $csomag["id"]?>">
+                    <div class="card big-card card-hidden" data-csomagid="<?= $csomag["id"]?>" data-color="">
                         <img class="big-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
             
                         <div class="card-content">
-                            <h2><?= $csomag["nev"]?></h2>
-                            <h3><?= $csomag["bolygo"]?></h3>
+                            <h3><?= $csomag["nev"]?></h3>
+                            <h4><?= $csomag["bolygo"]?></h4>
                             <p><?= $csomag["leiras"]?></p>
                         </div>
+
                         <div class="card-content">
                             <p>Választható dátum: <?= $csomag["kezdido"]?> - <?= $csomag["vegido"]?></p>
                             <p>Választható járművek</p>
@@ -163,7 +163,7 @@
                             </table>
                             <p><i>Már <span><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
                             <form action="<?php print $_SERVER["PHP_SELF"];?>" method="post">
-                                <button class="btn icon-btn btn-calc-hover" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
+                                <button class="btn btn-auto-hover" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
                                 <input type="hidden" name="csomagnev" value="<?= $csomag["nev"]?>">
                             </form>
                         </div>
@@ -171,13 +171,12 @@
                 <?php endforeach ?>
             </div>
 
-            <button class="btn btn-controll" onclick="showNextCard()"><i class="fa-solid fa-chevron-right"></i></button> 
-
+            <button class="btn btn-control" onclick="showNextCard()"><i class="fa-solid fa-chevron-right"></i></button> 
         </section>
 
         <section id="kapcsolat">
             <h2>Kapcsolat</h2>
-            <div class="contact-form">
+            <div class="card dark-blur card-content">
                 <form action="#" method="post">
                     <div class="form-group">
                         <label for="name">Név:</label>
@@ -197,9 +196,13 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="dark-blur">
         <section>
-            <h3>Ide lehetnek ilyen dolgok</h3>
+            <h3>Nav</h3>
+            <a href="#csomagok">Csomagok</a>
+            <a href="#rolunk">Rólunk</a>
+            <a href="#kapcsolat">Kapcsolat</a>
+            <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
         </section>
         <section>
             <h3>Forduljon hozzánk bizalommal!</h3>

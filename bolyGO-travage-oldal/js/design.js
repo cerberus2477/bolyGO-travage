@@ -1,6 +1,6 @@
 const nav = document.getElementsByTagName("nav")[0];
 const navHeight = nav.getBoundingClientRect().height;
-const navLinks = document.querySelectorAll('nav a');
+const navLinks = document.querySelectorAll('.navlink');
 const planet = document.querySelector('.scrolling-planet');
 const headerContent = document.querySelector('.header-content');
 const smallCards = document.querySelectorAll('#csomag-cards .card');
@@ -81,13 +81,13 @@ showPrevCard();
 
 function showNextCard() {
     bigCards[currentIndex].classList.add('card-hidden');
-    currentIndex = (currentIndex + 1) % bigcards.length;
+    currentIndex = (currentIndex + 1) % bigCards.length;
     bigCards[currentIndex].classList.remove('card-hidden');
 }
 
 function showPrevCard() {
     bigCards[currentIndex].classList.add('card-hidden');
-    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    currentIndex = (currentIndex - 1 + bigCards.length) % bigCards.length;
     // ugyanaz mint currentIndex = currentIndex === 0 ? cards.length - 1 : currentIndex - 1;
     bigCards[currentIndex].classList.remove('card-hidden');
 }
@@ -96,6 +96,6 @@ function jumpTo(csomagid) {
     bigCards[currentIndex].classList.add('card-hidden');
     let currentCard = document.querySelector(`.big-card[data-csomagid="${csomagid}"]`);
     currentCard.classList.remove('card-hidden');
-    currentIndex = [].indexOf.call(bigcards, currentCard);
+    currentIndex = [].indexOf.call(bigCards, currentCard);
     document.getElementById("bovebben").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }
