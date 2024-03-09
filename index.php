@@ -52,9 +52,9 @@
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
       
-        <a class="navlink" href="#csomagok" data-active="true">Csomagok</a>
-        <a class="navlink" href="#rolunk">Rólunk</a>
-        <a class="navlink" href="#kapcsolat">Kapcsolat</a>
+        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
+        <a class="navlink" href="index.php#rolunk">Rólunk</a>
+        <a class="navlink" href="index.php#kapcsolat">Kapcsolat</a>
         <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
     </nav>
 

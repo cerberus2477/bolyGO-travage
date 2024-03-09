@@ -29,7 +29,7 @@
         <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
         <a class="navlink" href="index.php#rolunk">Rólunk</a>
         <a class="navlink" href="index.php#kapcsolat">Kapcsolat</a>
-        <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
+        <a class="btn pc-btn btn-auto-hover" href="./cart.php">Vissza <i class="fa-solid fa-circle-chevron-left"></i></a>
     </nav>
 
     <header class="header-cart">
