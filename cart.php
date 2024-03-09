@@ -1,3 +1,5 @@
+<!-- data-csomagid id helyett lehet-e a soroknál? szebb lenne pls cserélje ki aki tudja mi van thx -->
+
 <?php 
     session_start();
 
@@ -23,6 +25,7 @@
         die();
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -30,12 +33,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kosár ✦ bolyGO</title>
-    <link rel="shortcut icon favicon" href="styles/img/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon favicon" href="styles/img/logo_ikon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/cart.css">
+    <!-- <link rel="stylesheet" href="styles/cart.css"> -->
     <script defer src="https://kit.fontawesome.com/af2e246792.js" crossorigin="anonymous"></script>
-    <script defer src="./js/design.js"></script>
-    <script defer src="./js/cart.js"></script>
+    <script defer src="./scripts/design.js"></script>
+    <script defer src="./scripts/cart.js"></script>
 </head>
 </head>
 <body>
@@ -61,42 +64,38 @@
 
     <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
-        <form action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
-            <table>
-            <?php $orderNum = 0;?>
+        <form class="items" action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
+            <!-- <?php $orderNum = 0;?> -->
             <input type="hidden" name="submitted" value="van">
+
             <?php foreach ($_SESSION["kosar"] as $item):?> 
-                <?php $orderNum++;?>
-                <tr class="lineOfCart" id="line_<?= $item["id"]?>">
-                    <td class="orderNum"><?= $orderNum?>.</td>
-                    <td>
-                        <p class="name">Csomagnév: <b><?= $item["nev"]?></b></p>
-                        <p>Utazók száma: <input type="number" name="<?="numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>" min=0><button class="delete" name="deleteElement" value="<?=$item["id"]?>">Töröl</button>
-                        <input type="hidden" name="id" value="<?=$item["id"]?>"></p>
-                    </td>
-                </tr>
+                <!-- <?php $orderNum++;?> -->
+                <section class="item" id="line_<?= $item["id"]?>"> 
+                    <div class="item-head">
+                        <h3><?= $item["nev"]?></h3>
+                        <button class="btn delete" name="deleteElement" value="<?=$item["id"]?>"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    <div class="item-row">
+                        <img src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
+                        <div>
+                            <!-- <p class="orderNum"><?= $orderNum?>.</p> -->
+                            <p>Utazók száma: <input class="quantity" type="number" name="<?="numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>" min=0>
+                            <!-- <p class="name"><b>Ár összesen: <span><?= $item["ar"] * $item["fo"]?></span>-től</p> -->
+                            <p><i>Ár összesen: <span class="price"><?=$item["fo"]?></span>-től</i></p>
+
+                            <input type="hidden" name="id" value="<?=$item["id"]?>"></p>
+                        </div>
+                    </div>
+                </section>
             <?php endforeach;?>
-            </table>
-            <a class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Foglalási adatok kitöltése <i class="fa-solid fa-circle-chevron-right"></i></i></a>
+
         </form>
-        <!-- <div class="cart-items">
-        <?php foreach ($items as $item):?>
-            <div class="item">
-                <img class="big-card-img" src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
-                <div class="details">
-                    <h2><?=$item["name"]?></h2>
-                    <p><?=$item["description"]?></p>
-                    <p><?=$item["price"]?></p>
-                    <p>total price: </p>
-                </div>
-                <div class="actions">
-                    <input type="number" class="quantity" value="1" min="1">
-                    <button class="delete">Delete</button>
-                </div>
+        <div class="checkout-container">
+            <div class="right-content">
+                <p>Végösszeg: <span id="total-price"></span></p>
+                <button class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Tovább <i class="fa-solid fa-circle-chevron-right"></i></button>       
             </div>
-        <?php endforeach;?>
-        <div id="total-price">Grand Total: $0.00</div>  -->
-    </div>        
+        </div>
     </main>
 
 </body>

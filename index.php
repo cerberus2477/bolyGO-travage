@@ -115,7 +115,7 @@
                                 <div class="card-content">
                                     <h3><?= $csomag["nev"] ?></h3>
                                     <p class="description"><?= $csomag["leiras"] ?></p>
-                                    <button class="btn btn-light btn-auto-hover" onclick='jumpTo(<?= $csomag["id"] ?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
+                                    <button class="btn btn-auto-hover" onclick='jumpTo(<?= $csomag["id"] ?>)'>Részletek <i class="fa-solid fa-circle-chevron-down"></i></button>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -153,7 +153,7 @@
                             <div class="card-content">
                                 <p>Választható dátum: <?= $csomag["kezdido"]?> - <?= $csomag["vegido"]?></p>
                                 <p>Választható járművek <i class="fa-solid fa-rocket"></i></p>
-                                <table border="1">
+                                <table>
                                     <thead>
                                         <tr>
                                             <th>név</th>
@@ -173,7 +173,7 @@
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
-                                <p><i>Már <span><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
+                                <p><i>Már <span class="price"><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
                                 <form action="<?php print $_SERVER["PHP_SELF"];?>" method="post">
                                     <button class="btn btn-auto-hover" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
                                     <input type="hidden" name="csomagnev" value="<?= $csomag["nev"]?>">
@@ -199,7 +199,7 @@
 
         <section id="kapcsolat">
             <h2>Kapcsolat <i class="fa-solid fa-envelope"></i></h2>
-            <div class="card dark-blur card-content">
+            <div class="card dark-blur card-content" data-color='purple'>
                 <form action="#" method="post">
                     <div class="form-group">
                         <label for="name">Név:</label>

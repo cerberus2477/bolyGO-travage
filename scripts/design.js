@@ -15,17 +15,22 @@ window.onscroll = function () {
     nav.dataset.scrolled = pxScrolled > navHeight;
 
     // planet csusztatasa görgetésre és szöveg változtatása
-    planet.style.right = -100 + pxScrolled * 0.5 + 'px';
-    // headerContent.style.fontSize = (3 - pxScrolled / 500) + 'rem';
+    if (planet) { //csak az index.phpn
+        planet.style.right = -100 + pxScrolled * 0.5 + 'px';
+        // headerContent.style.fontSize = (3 - pxScrolled / 500) + 'rem';
+    }
+    
 
     //nav linkek aláhúzása
-    navLinks.forEach(link => {
-        const sectionId = link.getAttribute('href').substring(1); // ???
-        const section = document.getElementById(sectionId);
+    if (planet) {
+        navLinks.forEach(link => {
+            const sectionId = link.getAttribute('href').substring(1); // ???
+            const section = document.getElementById(sectionId);
 
-        // ha a megfelelő section tetejénél lejjebb tekertünk de az aljáig meg nem "active" lesz az arra mutató menüpont
-        nav.dataset.active = section.offsetTop <= pxScrolled && section.offsetTop + section.offsetHeight > pxScrolled;
-    });
+            // ha a megfelelő section tetejénél lejjebb tekertünk de az aljáig meg nem "active" lesz az arra mutató menüpont
+            nav.dataset.active = section.offsetTop <= pxScrolled && section.offsetTop + section.offsetHeight > pxScrolled;
+        });
+    }
 }
 
 
@@ -36,28 +41,24 @@ const toggleNav = () => {
 
 
 // menüpontra kattintásra kicsit feljebb görget mint magától tenné, így a navbar nem takarja ki a rész tetejét
-navLinks.forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const sectionId = link.getAttribute('href').substring(1);
-        const section = document.getElementById(sectionId);
+// navLinks.forEach(link => {
+//     link.addEventListener('click', function (e) {
+//         e.preventDefault();
+//         const sectionId = link.getAttribute('href').substring(1);
+//         const section = document.getElementById(sectionId);
 
-        window.scrollTo({
-            top: section.offsetTop,
-            behavior: 'smooth'
-        });
-    });
-});
-
-
-
-
-
-//minden nagy kártya ugyanolyan színű mint a megfelelő kis kártya
-// bigCards.forEach(bigCard => {
-//     bigCard.dataset.color = cards.querySelector(`[data-csomagid="${bigCard.dataset.csomagid}"]`).dataset.color;
+//         window.scrollTo({
+//             top: section.offsetTop,
+//             behavior: 'smooth'
+//         });
+//     });
 // });
 
+
+
+
+
+// minden nagy kártya ugyanolyan színű mint a megfelelő kis kártya
 bigCards.forEach(bigCard => {
     const csomagId = bigCard.dataset.csomagid;
     cards.forEach(card => {
@@ -70,12 +71,11 @@ bigCards.forEach(bigCard => {
 // kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
 cards.forEach(card => {
     const color = card.dataset.color || 'white';
-    const lightColors 
     card.style.setProperty('--accent-color', `var(--clr-${color})`);
-    if (lightColors.contains(color)){
+    const lightColors = ['teal', 'green', 'yellow'];
+    if (!lightColors.includes(color)) {
         card.style.setProperty('--text-color', `var(--clr-white)`);
     }
-    card.style.setProperty('--text-color', `var(--clr-white)`);
 });
 
 

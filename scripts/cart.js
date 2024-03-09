@@ -3,7 +3,7 @@ function del(num){
     element.remove();
 }
 
-
+// EZT HASZNÁLJUK??
 //rövid kártyára kattintáskor lekéri az adott csomag id-jét a html-ből
 document.addEventListener("DOMContentLoaded", function() {
     var buttons = document.querySelectorAll(".details-button");
@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
             var card = this.closest(".card");
             var csomagid = card.getAttribute("data-csomagid");
             console.log(csomagid);
-
-
         });
     });
 });

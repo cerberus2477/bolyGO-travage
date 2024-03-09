@@ -7,10 +7,8 @@
 
 /* VARIABLES */
 :root {
-    --clr-black: hsl(240, 38%, 3%);
-    --clr-blue-black: hsl(234, 43%, 10%);
-    --clr-hatter-sotet: hsl(228, 38%, 10%);
-    --clr-hatter-vilagos: hsl(230, 33%, 14%);
+    --clr-black: hsl(228, 38%, 10%);
+    --clr-black-light: hsl(230, 33%, 14%);
     --clr-white: hsl(24, 100%, 98%);
 
     --clr-orange: hsl(25, 77%, 51%);
@@ -69,10 +67,9 @@ body::after {
     color: var(--clr-white);
 }
 
-
 /* MAIN --------------------------------------------------------------------------------------------------------------------- */
 main {
-    background-color: var(--clr-blue-black);
+    background-color: var(--clr-black);
     padding: 0 5rem;
 }
 
@@ -266,7 +263,7 @@ nav a[data-active="true"]::after {
 
 .btn-light {
     background-color: var(--clr-white);
-    color: var(--clr-blue-black);
+    color: var(--clr-black);
 }
 
 .btn-control {
@@ -319,14 +316,15 @@ h2::after {
 /* card ------------------------------------------------------------------------------------------------------------------------------------------- */
 .card {
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
-    --accent-color: white;
+    --accent-color: var(--clr-white);
+    --text-color: var(--clr-black);
 
     width: 300px;
     border-radius: var(--border-radius-big);
     transition: box-shadow 0.3s ease;
     color: var(--clr-white);
     border: 1px solid var(--accent-color);
-    background-color: var(--clr-blue-black);
+    background-color: var(--clr-black);
     transition: visibility 0.5s ease;
 }
 
@@ -354,6 +352,7 @@ h2::after {
 
 .card .btn {
     background-color: var(--accent-color);
+    color: var(--text-color);
 }
 
 .small-card-img {
@@ -386,10 +385,27 @@ h2::after {
 }
 
 /* ár */
-.big-card span {
+span.price {
     color: var(--clr-pink);
     font-weight: bold;
 }
+
+.big-card table {
+    border-collapse: collapse;
+    background-color: var(--clr-black-light);
+}
+
+.big-card th,
+.big-card td {
+    border: 1px solid var(--clr-white);
+    padding: .5rem;
+}
+
+.big-card th {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
 
 /* nem az aktuális kártya eltüntetéséhez */
 .card-hidden {
@@ -418,7 +434,7 @@ h2::after {
     border: none;
     border-radius: var(--border-radius);
     background-color: var(--clr-white);
-    color: var(--clr-blue-black);
+    color: var(--clr-black);
 }
 
 .form-group textarea {
@@ -429,7 +445,7 @@ h2::after {
 
 /* SECTIONS --------------------------------------------------------------------------------------------------------------------- */
 section {
-    padding: 5rem;
+    padding: 2rem;
 }
 
 footer {
@@ -477,4 +493,51 @@ section#bovebben {
 
 .error a{
     color: var(--clr-pink);
+}
+
+
+
+
+/* cart */
+.btn.delete {
+    background-color: var(--clr-pink);
+    color: var(--clr-white);
+}
+
+.quantity {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid var(--clr-black);
+    border-radius: 5px;
+}
+
+.item{
+    /* flex-direction: column; */
+    border-bottom: 1px solid var(--clr-black-light);
+}
+
+.item-head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.item-row{
+    display: flex;
+}
+
+.item-row img{
+    width: 20%;
+    margin-right: 1rem;
+    height: auto;
+}
+
+.checkout-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.right-content {
+    display: flex;
+    flex-direction: column;
 }
