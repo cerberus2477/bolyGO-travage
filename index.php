@@ -51,8 +51,8 @@
     <nav data-state="closed" data-scrolled="false">
         <div class="nav-first-row">
             <img class="logo" src="styles/img/logo_transparent.png" alt="bolyGO logo">
-            <a href="./cart.php" class="btn mobile-btn" ><i class="fa-solid fa-cart-shopping"></i></a>
-            <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
+            <a href="./cart.php" class="btn mobile-btn btn-auto-hover" ><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="#" class="btn mobile-btn btn-auto-hover" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
       
         <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
@@ -215,7 +215,7 @@
                                 <ol>
                                     <li>Telepítse a <a href="http://www.apachefriends.org/download.html" target="_blank" rel="noopener noreferrer">XAMPP alkalmazás</a>t majd indítsa el az APACHE és MySQL szolgáltatásokat a XAMPP segítségével.</li>
                                     <li>Ellenőrizze a <a href="http://127.0.0.1/phpmyadmin/" target="_blank" rel="noopener noreferrer">phpMyAdmin</a> felületén, hogy a bolyGO_db létrehozása sikeres volt-e, és az adatok feltöltése megtörtént-e.</li>
-                                    <li>Ha a hiba továbbra is fennáll, hozzánk a megadott elérhetőségek egyikén.</li>
+                                    <li>Ha a hiba továbbra is fennáll, forduljon hozzánk a megadott elérhetőségek egyikén.</li>
                                 </ol>
                             </div>
                         <?php endif; ?>
@@ -253,9 +253,9 @@
     <footer class="dark-blur">
         <section>
             <h3>Nav</h3>
-            <a href="#csomagok">Csomagok</a>
-            <a href="#rolunk">Rólunk</a>
-            <a href="#kapcsolat">Kapcsolat</a>
+            <a href="index.php#csomagok">Csomagok</a>
+            <a href="index.php#rolunk">Rólunk</a>
+            <a href="index.php#kapcsolat">Kapcsolat</a>
             <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
         </section>
         <section>
