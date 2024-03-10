@@ -85,7 +85,6 @@
     <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
         <?php if (isset($_SESSION["kosar"]) && count($_SESSION["kosar"]) > 0): ?>
-            <?php var_dump($_SESSION["kosar"])?>
             <form class="items" action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
                 <input type="hidden" name="submitted" value="van">
                 <?php foreach ($_SESSION["kosar"] as $item):?> 
@@ -120,7 +119,7 @@
                                 <input type="hidden" id="csomagar_<?=$item["id"]?>" value="<?=$data["csomagar"]?>">
                                 <input type="hidden" id="minjarmuar_<?=$item["id"]?>" value="<?=$minar?>">
 
-                                <p><i>Ár összesen: </i><span class="price" id="ar_<?=$item["id"]?>"></span> kobalttól</p>
+                                <p><i>Ár összesen <span class="price" id="ar_<?=$item["id"]?>"></span> kobalttól</i></p>
 
                                 <script>szamolAr(<?=$item["id"]?>, false)</script>
 
@@ -132,7 +131,7 @@
             </form>
             <div class="checkout-container">
                 <div class="right-content">
-                    <p>Végösszeg: <span id="total-price"></span> kobalt</p>
+                    <p>Végösszeg: <span id="total-price" class="price"></span> kobalttól</p>
                     <script>vegosszeg();</script>
                     <button class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Tovább <i class="fa-solid fa-circle-chevron-right"></i></button>       
                 </div>

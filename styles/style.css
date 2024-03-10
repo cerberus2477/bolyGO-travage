@@ -259,12 +259,7 @@ nav a[data-active="true"]::after {
 }
 
 .btn:hover {
-    background-color: var(--clr-orange-dark);
-}
-
-.btn-light {
-    background-color: var(--clr-white);
-    color: var(--clr-black);
+    filter: brightness(80%) saturate(116.5%) hue-rotate(-20deg) ;
 }
 
 .btn-control {
@@ -276,8 +271,8 @@ nav a[data-active="true"]::after {
     background-color: transparent;
 }
 
-.btn-auto-hover:hover {
-    filter: brightness(80%) saturate(120%) hue-rotate(-20deg);
+.btn-blue {
+    background-color: var(--clr-blue);
 }
 
 
@@ -417,14 +412,14 @@ span.price {
 }
 
 
-/* kapcsolat ---------------------------------------------------------------------------------------------------------------------------*/
+/* form dolgok ---------------------------------------------------------------------------------------------------------------------------*/
 .form-group {
     margin-bottom: 1.5rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: .5rem;
     color: var(--clr-white);
     border-left: 2px solid var(--clr-blue);
     padding-left: .4rem;
@@ -435,7 +430,7 @@ span.price {
 .form-group select,
 .form-group option {
     width: 100%;
-    padding: 0.5rem;
+    padding: .5rem;
     border: none;
     border-radius: var(--border-radius);
     background-color: var(--clr-black-light);
@@ -556,4 +551,19 @@ section#bovebben {
 .right-content {
     display: flex;
     flex-direction: column;
+}
+
+/* reserve */
+summary{
+    background-color: var(--clr-black-light);
+    padding: .5rem;
+    border-radius: var(--border-radius);
+}
+
+/* receipt */
+
+/* receipt.txt */
+.receipt-txt{
+    background-color: var(--clr-black-light);
+    border-radius: var(--border-radius-big);
 }

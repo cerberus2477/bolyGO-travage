@@ -197,6 +197,7 @@
                                 <p><i>Az ár nem tartalmazza az oda- és visszautat.</i></p>
                                 <form action="<?php print $_SERVER["PHP_SELF"];?>" method="post">
                                     <button class="btn btn-auto-hover" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
+                                    <p><i>Az utasok számát és a pontos adatokat később adhatja meg.</i></p>
                                     <input type="hidden" name="csomagnev" value="<?= $csomag["nev"]?>">
                                 </form>
                             </div>

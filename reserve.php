@@ -86,7 +86,7 @@
 
     <main>
         <?php if (isset($_SESSION["kosar"])): ?>
-            <form method="post" action="<?=$_SERVER["PHP_SELF"]?>">
+            <form method="post" action="<?=$_SERVER["PHP_SELF"]?>" id="reserveform">
                 <input type="hidden" name="submittedForm" value="true">
                 <?php $orderNum=0;?>
                 <?php foreach ($_SESSION["kosar"] as $elem): ?>
@@ -118,7 +118,7 @@
                                         <?php endforeach;?>
                                     </select>
                                 </div>
-                                <p id="<?=$elem["id"]?>"  class="price">Nincs elegendő adat az foglalás árának kiszámításához.</p>
+                                <p><span id="<?=$elem["id"]?>" class="price">Nincs elegendő adat az foglalás árának kiszámításához.</span></p>
                                 <input type="hidden" name="<?=$elem["id"]?>_ar" id="<?=$elem["id"]?>_ar" value="0">
                                 <h3>Utasok adatai</h3>
                                 <p>Kérjük adja meg az utasok szükséges adatait.</p>
@@ -151,15 +151,15 @@
                                     </div>
                                 <?php endfor;?>
                             <?php if ($elem != end($_SESSION["kosar"])):?>
-                            <button class="btn" type="button" onclick='changeDetails(<?=$orderNum?>, <?=$orderNum+1?>)'>Következő foglalás <i class="fa-solid fa-circle-chevron-down"></i></button>
+                            <button class="btn btn-blue btn-auto-hover" type="button" onclick='changeDetails(<?=$orderNum?>, <?=$orderNum+1?>)'>Következő foglalás <i class="fa-solid fa-circle-chevron-down"></i></button>
                             <?php endif;?>
                         </section>
                     </details>
                 <?php endforeach; ?>
-                <button class="btn" type="submit">Foglalás véglegesítése</button>
+                <button class="btn" onclick="document.getElementById('reserveform').submit();">Foglalás véglegesítése <i class="fa-solid fa-circle-check"></i></button>       
             </form>
         <?php else: ?>
-            <p>Még nem tett semmit a kosárba. <a href="index.php">Ide kattintva</a> teheti ezt meg.</p>
+            <p>Még nem tett semmit a kosárba. <a href="index#csomagok.php">Ide kattintva</a> teheti ezt meg.</p>
         <?php endif; ?>
     </main>
     <footer class="dark-blur">
