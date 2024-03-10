@@ -48,8 +48,8 @@
     <nav data-state="closed" data-scrolled="false">
         <div class="nav-first-row">
             <img class="logo" src="styles/img/logo_transparent.png" alt="bolyGO logo">
-            <a href="./cart.php" class="btn mobile-btn" ><i class="fa-solid fa-cart-shopping"></i></a>
-            <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
+            <a href="./cart.php" class="btn mobile-btn btn-auto-hover" ><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="#" class="btn mobile-btn btn-auto-hover" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
       
         <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>

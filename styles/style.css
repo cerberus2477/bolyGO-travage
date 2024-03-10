@@ -207,6 +207,7 @@ nav a[data-active="true"]::after {
         flex-direction: column;
         background-color: var(--clr-alpha-black);
         backdrop-filter: blur(var(--blur));
+        -webkit-backdrop-filter: blur(var(--blur));
         position: relative;
         transition: all .2s;
     }
@@ -226,6 +227,24 @@ nav a[data-active="true"]::after {
 
     .mobile-btn {
         display: block !important;
+        background-color: transparent !important;
+        margin-inline: .2rem;
+        padding-inline: .3rem;
+    }
+
+    .mobile-btn:hover {
+        background-color: transparent !important;
+        color: var(--clr-orange-dark) !important;
+    }
+
+    .mobile-btn:nth-of-type(1)::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        background-color: rgba(255, 255, 255, 0.3);
+        right: -0.2rem;
+        top: 0;
     }
 
     .pc-btn {
