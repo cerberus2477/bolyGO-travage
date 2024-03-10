@@ -3,26 +3,24 @@
     
     if (isset($_POST["submittedForm"])) {
         $message = array();
-        foreach ($_SESSION["kosar"] as $elem) {
-            $id = $elem["id"];
-            
+        foreach ($_SESSION["kosar"] as $key => $elem) {            
             $ugyfelek = array();
-            for ($i = 1; $i <= intval($_POST[$id."_fo"]); $i++) {
+            for ($i = 1; $i <= intval($_POST[$key."_fo"]); $i++) {
                 $ugyfelek[] = array(
-                    "nev" => $_POST[$id."_utas".$i."_nev"],
-                    "lakcim" => $_POST[$id."_utas".$i."_lakcim"],
-                    "szul" => $_POST[$id."_utas".$i."_szul"],
-                    "nem" => $_POST[$id."_utas".$i."_nem"],
-                    "tel" => $_POST[$id."_utas".$i."_tel"],
-                    "email" => $_POST[$id."_utas".$i."_email"]
+                    "nev" => $_POST[$key."_utas".$i."_nev"],
+                    "lakcim" => $_POST[$key."_utas".$i."_lakcim"],
+                    "szul" => $_POST[$key."_utas".$i."_szul"],
+                    "nem" => $_POST[$key."_utas".$i."_nem"],
+                    "tel" => $_POST[$key."_utas".$i."_tel"],
+                    "email" => $_POST[$key."_utas".$i."_email"]
                 );
             }
             
             $message[] = array(
-                "csomagid" => $id,
-                "kezdido" => $_POST[$id."_kezd"],
-                "vegido" => $_POST[$id."_vege"],
-                "ar" => intval($_POST[$id."_ar"]),
+                "csomagid" => $elem["id"],
+                "kezdido" => $_POST[$key."_kezd"],
+                "vegido" => $_POST[$key."_vege"],
+                "ar" => intval($_POST[$key."_ar"]),
                 "ugyfelek" => $ugyfelek
             );
         }
@@ -89,7 +87,7 @@
             <form method="post" action="<?=$_SERVER["PHP_SELF"]?>">
                 <input type="hidden" name="submittedForm" value="true">
                 <?php $orderNum=0;?>
-                <?php foreach ($_SESSION["kosar"] as $elem): ?>
+                <?php foreach ($_SESSION["kosar"] as $key => $elem): ?>
                     <?php $orderNum++; ?>
                     <details id="details_<?=$orderNum?>" <?php if ($elem == array_values($_SESSION["kosar"])[0]) echo "open"?>>
                         <summary><?=$orderNum?>. foglalás: <?=$elem["nev"]?></summary>
@@ -102,52 +100,52 @@
                                 <h3>Utzazás adatai</h3>
                                 <p>Kérjük adja meg az utazás (csomag) adatait.</p>
                                 <div class="form-group">
-                                    <label for="<?=$elem["id"]?>_kezd">Adja meg a foglalás kezdeti dátumát:</label>
-                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>); setDateBoundaries(<?=$elem["id"]?>)' type="date" id="<?=$elem["id"]?>_kezd" name="<?=$elem["id"]?>_kezd" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
+                                    <label for="<?=$key?>_kezd">Adja meg a foglalás kezdeti dátumát:</label>
+                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$key?>); setDateBoundaries(<?=$key?>)' type="date" id="<?=$key?>_kezd" name="<?=$key?>_kezd" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="<?=$elem["id"]?>_vege">Adja meg a foglalás végének dátumát:</label>
-                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>); setDateBoundaries(<?=$elem["id"]?>)' type="date" id="<?=$elem["id"]?>_vege" name="<?=$elem["id"]?>_vege" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
+                                    <label for="<?=$key?>_vege">Adja meg a foglalás végének dátumát:</label>
+                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$key?>); setDateBoundaries(<?=$key?>)' type="date" id="<?=$key?>_vege" name="<?=$key?>_vege" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="<?=$elem["id"]?>_jarmu">Válassza ki az utazáshoz igénybe venni kívánt járművet:</label>
-                                    <select id="<?=$elem["id"]?>_jarmu" onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>)'>
+                                    <label for="<?=$key?>_jarmu">Válassza ki az utazáshoz igénybe venni kívánt járművet:</label>
+                                    <select id="<?=$key?>_jarmu" onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$key?>)'>
                                         <?php foreach ($data["jarmuvek"] as $jarmu):?>
                                             <!--itt a jármű ára a value, mert majd ezzel lesz a teljes fizetendő kiszámolva-->
                                             <option value="<?=$jarmu["ar"]?>"><?=$jarmu["nev"]?> (<?=$jarmu["ar"]?> kobalt/fő, <?=$jarmu["osztaly"]?>. osztály, <?php echo $jarmu["fekvohely"]==1 ? "van" : "nincs"?> fekvőhely)</option>
                                         <?php endforeach;?>
                                     </select>
                                 </div>
-                                <p id="<?=$elem["id"]?>"  class="price">Nincs elegendő adat az foglalás árának kiszámításához.</p>
-                                <input type="hidden" name="<?=$elem["id"]?>_ar" id="<?=$elem["id"]?>_ar" value="0">
+                                <p id="<?=$key?>"  class="price">Nincs elegendő adat az foglalás árának kiszámításához.</p>
+                                <input type="hidden" name="<?=$key?>_ar" id="<?=$key?>_ar" value="0">
                                 <h3>Utasok adatai</h3>
                                 <p>Kérjük adja meg az utasok szükséges adatait.</p>
-                                <input type="hidden" id="<?=$elem["id"]?>_fo" name="<?=$elem["id"]?>_fo" value="<?=$elem["fo"]?>">
+                                <input type="hidden" id="<?=$key?>_fo" name="<?=$key?>_fo" value="<?=$elem["fo"]?>">
                                 <?php for ($i = 1; $i <= $elem["fo"]; $i++):?>
                                     <h4><?=$i?>. utas</h4>
                                     <div class="form-group">
-                                        <label for="<?=$elem["id"]?>_utas<?=$i?>_nev">Név:</label>
-                                        <input required type="text" id="<?=$elem["id"]?>_utas<?=$i?>_nev" name="<?=$elem["id"]?>_utas<?=$i?>_nev">
+                                        <label for="<?=$key?>_utas<?=$i?>_nev">Név:</label>
+                                        <input required type="text" id="<?=$key?>_utas<?=$i?>_nev" name="<?=$key?>_utas<?=$i?>_nev">
                                     </div>
                                     <div class="form-group">
-                                        <label for="<?=$elem["id"]?>_utas<?=$i?>_lakcim">Lakcím:</label>
-                                        <input required type="text" id="<?=$elem["id"]?>_utas<?=$i?>_lakcim" name="<?=$elem["id"]?>_utas<?=$i?>_lakcim">
+                                        <label for="<?=$key?>_utas<?=$i?>_lakcim">Lakcím:</label>
+                                        <input required type="text" id="<?=$key?>_utas<?=$i?>_lakcim" name="<?=$key?>_utas<?=$i?>_lakcim">
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Születési dátum:</label>
-                                        <input required type="date" id="<?=$elem["id"]?>_utas<?=$i?>_szul" name="<?=$elem["id"]?>_utas<?=$i?>_szul">
+                                        <input required type="date" id="<?=$key?>_utas<?=$i?>_szul" name="<?=$key?>_utas<?=$i?>_szul">
                                     </div>
                                     <div class="form-group">
-                                        <label for="<?=$elem["id"]?>_utas<?=$i?>_nem">Nem:</label>
-                                        <input required type="text" id="<?=$elem["id"]?>_utas<?=$i?>_nem" name="<?=$elem["id"]?>_utas<?=$i?>_nem">
+                                        <label for="<?=$key?>_utas<?=$i?>_nem">Nem:</label>
+                                        <input required type="text" id="<?=$key?>_utas<?=$i?>_nem" name="<?=$key?>_utas<?=$i?>_nem">
                                     </div>
                                     <div class="form-group">
-                                        <label for="<?=$elem["id"]?>_utas<?=$i?>_nem">Telefon:</label>
-                                        <input required type="tel" id="<?=$elem["id"]?>_utas<?=$i?>_tel" name="<?=$elem["id"]?>_utas<?=$i?>_tel">
+                                        <label for="<?=$key?>_utas<?=$i?>_nem">Telefon:</label>
+                                        <input required type="tel" id="<?=$key?>_utas<?=$i?>_tel" name="<?=$key?>_utas<?=$i?>_tel">
                                     </div>
                                     <div class="form-group">
-                                        <label for="<?=$elem["id"]?>_utas<?=$i?>_nem">E-mail:</label>
-                                        <input required type="email" id="<?=$elem["id"]?>_utas<?=$i?>_email" name="<?=$elem["id"]?>_utas<?=$i?>_email">
+                                        <label for="<?=$key?>_utas<?=$i?>_nem">E-mail:</label>
+                                        <input required type="email" id="<?=$key?>_utas<?=$i?>_email" name="<?=$key?>_utas<?=$i?>_email">
                                     </div>
                                 <?php endfor;?>
                             <?php if ($elem != end($_SESSION["kosar"])):?>

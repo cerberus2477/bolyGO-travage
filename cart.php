@@ -8,11 +8,10 @@
         unset($_POST["deleteElement"]);
     } 
     else if (isset($_POST["submitted"])) {
-        for ($i = 0; $i < count($_SESSION["kosar"]); $i++) {
-            $_SESSION["kosar"][$i]["fo"] = $_POST["numOfPeople_".$_SESSION["kosar"][$i]["id"]];
-            if ($_SESSION["kosar"][$i]["fo"] == 0) {
-                unset($_SESSION["kosar"][$i]);
-                $_SESSION["kosar"] = array_values($_SESSION["kosar"]);
+        foreach($_SESSION["kosar"] as $key => $item) {
+            $_SESSION["kosar"][$key]["fo"] = $_POST["numOfPeople_".$key];
+            if ($_SESSION["kosar"][$key]["fo"] == 0) {
+                unset($_SESSION["kosar"][$key]);
             }
         }
         unset($_POST["submitted"]);
@@ -22,12 +21,12 @@
 ?>
 
 <script>
-    function szamolAr(csomagid, summa=true) {
-        let fo = parseInt(document.getElementById("numOfPeople_"+csomagid).value);
-        let csomagar = parseInt(document.getElementById("csomagar_"+csomagid).value);
-        let jarmuar = parseInt(document.getElementById("minjarmuar_"+csomagid).value);
+    function szamolAr(sorszam, summa=true) {
+        let fo = parseInt(document.getElementById("numOfPeople_"+sorszam).value);
+        let csomagar = parseInt(document.getElementById("csomagar_"+sorszam).value);
+        let jarmuar = parseInt(document.getElementById("minjarmuar_"+sorszam).value);
         let ar = fo*(csomagar + 2*jarmuar)
-        document.getElementById("ar_"+csomagid).textContent = ar;
+        document.getElementById("ar_"+sorszam).textContent = ar;
         if (summa) vegosszeg();
     }
 
@@ -91,17 +90,17 @@
                     $data = json_decode($raw_data, true);
                 ?>
 
-                <section class="item" id="line_<?= $item["id"]?>"> 
+                <section class="item" id="line_<?=$key?>"> 
                     <div class="item-head">
                         <h3><?= $item["nev"]?></h3>
-                        <button class="btn delete" name="deleteElement" value="<?=$key?>"><i class="fa-solid fa-trash"></i></button>
+                        <button type="submit" class="btn delete" name="deleteElement" value="<?=$key?>"><i class="fa-solid fa-trash"></i></button>
                     </div>
                     <div class="item-row">
                         <img src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
                         <div>
                             <p>Helyszín: <?=$data["bolygo"]?></p>
                             <p>Ajánlat tartama: <?=$data["kezdido"]?> - <?=$data["vegido"]?></p>
-                            <p>Utasok száma: <input class="quantity" type="number" id="<?="numOfPeople_".$item["id"]?>" name="<?="numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>" min=0 onchange="szamolAr(<?=$item['id']?>)">
+                            <p>Utasok száma: <input class="quantity" type="number" id="<?="numOfPeople_".$key?>" name="numOfPeople_<?=$key?>" value="<?php echo (isset($_POST["numOfPeople_".$key]) ? $_POST["numOfPeople_".$key] : $item["fo"]);?>" min=0 onchange="szamolAr(<?=$key?>)">
 
                             <?php
                                 $minar = PHP_INT_MAX;
@@ -110,14 +109,14 @@
                                 }
                             ?>
 
-                            <input type="hidden" id="csomagar_<?=$item["id"]?>" value="<?=$data["csomagar"]?>">
-                            <input type="hidden" id="minjarmuar_<?=$item["id"]?>" value="<?=$minar?>">
+                            <input type="hidden" id="csomagar_<?=$key?>" value="<?=$data["csomagar"]?>">
+                            <input type="hidden" id="minjarmuar_<?=$key?>" value="<?=$minar?>">
 
-                            <p><i>Ár összesen: </i><span class="price" id="ar_<?=$item["id"]?>"></span> kobalttól</p>
+                            <p><i>Ár összesen: </i><span class="price" id="ar_<?=$key?>"></span> kobalttól</p>
 
-                            <script>szamolAr(<?=$item["id"]?>, false)</script>
+                            <script>szamolAr(<?=$key?>, false)</script>
 
-                            <input type="hidden" name="id" value="<?=$item["id"]?>"></p>
+                            <input type="hidden" name="id" value="<?=$key?>"></p>
                         </div>
                     </div>
                 </section>
