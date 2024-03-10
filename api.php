@@ -9,7 +9,7 @@ header('Content-Type: application/json; charset=utf-8');
 $isDB = false;
 runNonQuery(file_get_contents("bolygo_db.sql"), true);
 $isDB = true;
-// runNonQuery(file_get_contents("data.sql"), true);
+runNonQuery(file_get_contents("data.sql"), true);
 
 switch ($_SERVER["REQUEST_METHOD"]) {
     case "GET":

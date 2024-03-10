@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // ez állítaná a mennyiséget
+/*
 document.addEventListener("DOMContentLoaded", function() {
     const deleteButtons = document.querySelectorAll(".delete");
     const quantityInputs = document.querySelectorAll(".quantity");
@@ -58,3 +59,4 @@ document.addEventListener("DOMContentLoaded", function() {
     updateTotal(); // Call updateTotal initially
 });
 
+*/

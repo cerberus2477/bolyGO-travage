@@ -22,10 +22,29 @@
         }
         unset($_POST["submitted"]);
         header('Location: ./reserve.php');
-            print_r($_SESSION["kosar"]);
         die();
     }
 ?>
+
+<script>
+    function szamolAr(csomagid, summa=true) {
+        let fo = parseInt(document.getElementById("numOfPeople_"+csomagid).value);
+        let csomagar = parseInt(document.getElementById("csomagar_"+csomagid).value);
+        let jarmuar = parseInt(document.getElementById("minjarmuar_"+csomagid).value);
+        let ar = fo*(csomagar + 2*jarmuar)
+        document.getElementById("ar_"+csomagid).textContent = ar;
+        if (summa) vegosszeg();
+    }
+
+    function vegosszeg() {
+        let arak =document.querySelectorAll('[id^=ar_]');
+        let sum = 0;
+        arak.forEach(element => {
+            sum += parseInt(element.textContent);
+        });
+        document.getElementById("total-price").textContent = sum;
+    }
+</script>
 
 <!DOCTYPE html>
 <html lang="hu">
@@ -66,12 +85,17 @@
     <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
         <form class="items" action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
-            <!-- <?php $orderNum = 0;?> -->
             <input type="hidden" name="submitted" value="van">
-
             <?php foreach ($_SESSION["kosar"] as $item):?> 
-                <!-- <?php $orderNum++;?> -->
-                <!-- <?=var_dump($item)?> -->
+
+                <?php
+                    //API meghívása
+                    $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")))."?csomagid=".$item["id"];
+                    //@ ignorálja az errorokat, így nem jelenik meg az oldalon. később kezeljük.
+                    $raw_data = @file_get_contents($url);
+                    $data = json_decode($raw_data, true);
+                ?>
+
                 <section class="item" id="line_<?= $item["id"]?>"> 
                     <div class="item-head">
                         <h3><?= $item["nev"]?></h3>
@@ -80,12 +104,23 @@
                     <div class="item-row">
                         <img src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
                         <div>
-                            <!-- <p class="orderNum"><?= $orderNum?>.</p> -->
-                            <p>Helyszín: <?=$item["bolygo"]?></p>
-                            <p>Ajánlat tartama: <?=$item["kezdido"]?> - <?=$item["vegido"]?></p>
-                            <p>Utasok száma: <input class="quantity" type="number" name="<?="numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>" min=0>
-                            <!-- <p class="name"><b>Ár összesen: <span><?= $item["ar"] * $item["fo"]?></span>-től</p> -->
-                            <p><i>Ár összesen: <span class="price"><?=$item["fo"]?></span>-től</i></p>
+                            <p>Helyszín: <?=$data["bolygo"]?></p>
+                            <p>Ajánlat tartama: <?=$data["kezdido"]?> - <?=$data["vegido"]?></p>
+                            <p>Utasok száma: <input class="quantity" type="number" id="<?="numOfPeople_".$item["id"]?>" name="<?="numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>" min=0 onchange="szamolAr(<?=$item['id']?>)">
+
+                            <?php
+                                $minar = PHP_INT_MAX;
+                                foreach ($data["jarmuvek"] as $jarmu) {
+                                    if ($jarmu["ar"] < $minar) $minar = $jarmu["ar"];
+                                }
+                            ?>
+
+                            <input type="hidden" id="csomagar_<?=$item["id"]?>" value="<?=$data["csomagar"]?>">
+                            <input type="hidden" id="minjarmuar_<?=$item["id"]?>" value="<?=$minar?>">
+
+                            <p><i>Ár összesen: </i><span class="price" id="ar_<?=$item["id"]?>"></span> kobalttól</p>
+
+                            <script>szamolAr(<?=$item["id"]?>, false)</script>
 
                             <input type="hidden" name="id" value="<?=$item["id"]?>"></p>
                         </div>
@@ -96,7 +131,8 @@
         </form>
         <div class="checkout-container">
             <div class="right-content">
-                <p>Végösszeg: <span id="total-price"></span></p>
+                <p>Végösszeg: <span id="total-price"></span> kobalt</p>
+                <script>vegosszeg();</script>
                 <button class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Tovább <i class="fa-solid fa-circle-chevron-right"></i></button>       
             </div>
         </div>

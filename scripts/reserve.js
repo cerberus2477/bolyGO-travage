@@ -4,8 +4,14 @@ function kiszamolAr(csomagar, fo, csomagid) {
     let kulonbseg = vege.getTime() - kezdes.getTime();
     let napok = kulonbseg / (1000*3600*24);
     let osszeg = napok*fo*csomagar + parseInt(document.getElementById(csomagid+"_jarmu").value)*fo*2;
-    if (isFinite(osszeg)) document.getElementById(csomagid).innerText = "Ezen foglalásért fizetendő: " + osszeg + " kobalt.";
-    else document.getElementById(csomagid).innerText = "Nincs elegendő adat az foglalás árának kiszámításához.";
+    if (isFinite(osszeg)) {
+        document.getElementById(csomagid).innerText = "Ezen foglalásért fizetendő: " + osszeg + " kobalt.";
+        document.getElementById(csomagid+"_ar").value = osszeg;
+    }
+    else {
+        document.getElementById(csomagid).innerText = "Nincs elegendő adat az foglalás árának kiszámításához.";
+        document.getElementById(csomagid+"_ar").value = 0;
+    }
 }
 
 function closedetails(sorszam) {
@@ -19,4 +25,5 @@ function opendetails(sorszam) {
 function changeDetails(from, to) {
     closedetails(from);
     opendetails(to);
+    document.getElementById('details'+to).scrollIntoView();
 }

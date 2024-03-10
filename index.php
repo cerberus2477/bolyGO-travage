@@ -1,7 +1,7 @@
 
 <?php
-//API meghívása
-    $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")));
+    //API meghívása
+    $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME']))))."/api.php";
     $options = array(
         'http' => array(
             'method' => 'GET',
@@ -159,7 +159,7 @@
                                             <th>név</th>
                                             <th>osztály</th>
                                             <th>fekvőhely</th>
-                                            <th>ár</th>
+                                            <th>ár/fő/út</th>
                                         </tr>
                                     </thead>
                                     <tbody>
