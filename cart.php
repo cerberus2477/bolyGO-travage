@@ -4,12 +4,7 @@
     session_start();
 
     if (isset($_POST["deleteElement"])) {
-        $i = 0;
-        while ($i < count($_SESSION["kosar"]) && $_SESSION["kosar"][$i]["id"] != $_POST["deleteElement"]) $i++;
-        if ($i < count($_SESSION["kosar"])) {
-            unset($_SESSION["kosar"][$i]);
-            $_SESSION["kosar"] = array_values($_SESSION["kosar"]);
-        }
+        unset($_SESSION["kosar"][$_POST["deleteElement"]]);
         unset($_POST["deleteElement"]);
     } 
     else if (isset($_POST["submitted"])) {
@@ -86,7 +81,7 @@
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
         <form class="items" action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
             <input type="hidden" name="submitted" value="van">
-            <?php foreach ($_SESSION["kosar"] as $item):?> 
+            <?php foreach ($_SESSION["kosar"] as $key => $item):?> 
 
                 <?php
                     //API meghívása
@@ -99,7 +94,7 @@
                 <section class="item" id="line_<?= $item["id"]?>"> 
                     <div class="item-head">
                         <h3><?= $item["nev"]?></h3>
-                        <button class="btn delete" name="deleteElement" value="<?=$item["id"]?>"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn delete" name="deleteElement" value="<?=$key?>"><i class="fa-solid fa-trash"></i></button>
                     </div>
                     <div class="item-row">
                         <img src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
