@@ -187,7 +187,7 @@
                                             <tr>
                                                 <td><?= $jarmu["nev"]?></td>
                                                 <td><?= $jarmu["osztaly"]?></td>
-                                                <td><?= $jarmu["fekvohely"]?></td>
+                                                <td><?= $jarmu["fekvohely"] ? "van" : "nincs"?></td>
                                                 <td><?= $jarmu["ar"]?></td>
                                             </tr>
                                         <?php endforeach ?>
