@@ -78,58 +78,64 @@
 
     <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
-        <form class="items" action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
-            <input type="hidden" name="submitted" value="van">
-            <?php foreach ($_SESSION["kosar"] as $key => $item):?> 
 
-                <?php
-                    //API meghívása
-                    $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")))."?csomagid=".$item["id"];
-                    //@ ignorálja az errorokat, így nem jelenik meg az oldalon. később kezeljük.
-                    $raw_data = @file_get_contents($url);
-                    $data = json_decode($raw_data, true);
-                ?>
+        <?php if (isset($_SESSION["kosar"]) && count($_SESSION["kosar"]) > 0): ?>
+            <form class="items" action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
+                <input type="hidden" name="submitted" value="van">
+                <?php foreach ($_SESSION["kosar"] as $key => $item):?> 
 
-                <section class="item" id="line_<?=$key?>"> 
-                    <div class="item-head">
-                        <h3><?= $item["nev"]?></h3>
-                        <button type="submit" class="btn delete" name="deleteElement" value="<?=$key?>"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                    <div class="item-row">
-                        <img src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
-                        <div>
-                            <p>Helyszín: <?=$data["bolygo"]?></p>
-                            <p>Ajánlat tartama: <?=$data["kezdido"]?> - <?=$data["vegido"]?></p>
-                            <p>Utasok száma: <input class="quantity" type="number" id="<?="numOfPeople_".$key?>" name="numOfPeople_<?=$key?>" value="<?php echo (isset($_POST["numOfPeople_".$key]) ? $_POST["numOfPeople_".$key] : $item["fo"]);?>" min=0 onchange="szamolAr(<?=$key?>)">
+                    <?php
+                        //API meghívása
+                        $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")))."?csomagid=".$item["id"];
+                        //@ ignorálja az errorokat, így nem jelenik meg az oldalon. később kezeljük.
+                        $raw_data = @file_get_contents($url);
+                        $data = json_decode($raw_data, true);
+                    ?>
 
-                            <?php
-                                $minar = PHP_INT_MAX;
-                                foreach ($data["jarmuvek"] as $jarmu) {
-                                    if ($jarmu["ar"] < $minar) $minar = $jarmu["ar"];
-                                }
-                            ?>
-
-                            <input type="hidden" id="csomagar_<?=$key?>" value="<?=$data["csomagar"]?>">
-                            <input type="hidden" id="minjarmuar_<?=$key?>" value="<?=$minar?>">
-
-                            <p><i>Ár összesen: </i><span class="price" id="ar_<?=$key?>"></span> kobalttól</p>
-
-                            <script>szamolAr(<?=$key?>, false)</script>
-
-                            <input type="hidden" name="id" value="<?=$key?>"></p>
+                    <section class="item" id="line_<?=$key?>"> 
+                        <div class="item-head">
+                            <h3><?= $item["nev"]?></h3>
+                            <button type="submit" class="btn delete" name="deleteElement" value="<?=$key?>"><i class="fa-solid fa-trash"></i></button>
                         </div>
-                    </div>
-                </section>
-            <?php endforeach;?>
+                        <div class="item-row">
+                            <img src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
+                            <div>
+                                <p>Helyszín: <?=$data["bolygo"]?></p>
+                                <p>Ajánlat tartama: <?=$data["kezdido"]?> - <?=$data["vegido"]?></p>
+                                <p>Utasok száma: <input class="quantity" type="number" id="<?="numOfPeople_".$key?>" name="numOfPeople_<?=$key?>" value="<?php echo (isset($_POST["numOfPeople_".$key]) ? $_POST["numOfPeople_".$key] : $item["fo"]);?>" min=0 onchange="szamolAr(<?=$key?>)">
 
-        </form>
-        <div class="checkout-container">
-            <div class="right-content">
-                <p>Végösszeg: <span id="total-price"></span> kobalt</p>
-                <script>vegosszeg();</script>
-                <button class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Tovább <i class="fa-solid fa-circle-chevron-right"></i></button>       
+                                <?php
+                                    $minar = PHP_INT_MAX;
+                                    foreach ($data["jarmuvek"] as $jarmu) {
+                                        if ($jarmu["ar"] < $minar) $minar = $jarmu["ar"];
+                                    }
+                                ?>
+
+                                <input type="hidden" id="csomagar_<?=$key?>" value="<?=$data["csomagar"]?>">
+                                <input type="hidden" id="minjarmuar_<?=$key?>" value="<?=$minar?>">
+
+                                <p><i>Ár összesen: </i><span class="price" id="ar_<?=$key?>"></span> kobalttól</p>
+
+                                <script>szamolAr(<?=$key?>, false)</script>
+
+                                <input type="hidden" name="id" value="<?=$key?>"></p>
+                            </div>
+                        </div>
+                    </section>
+                <?php endforeach;?>
+
+            </form>
+            <div class="checkout-container">
+                <div class="right-content">
+                    <p>Végösszeg: <span id="total-price"></span> kobalt</p>
+                    <script>vegosszeg();</script>
+                    <button class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Tovább <i class="fa-solid fa-circle-chevron-right"></i></button>       
+                </div>
             </div>
-        </div>
+            <?php else: ?>
+                <p>Még nem tett semmit a kosárba. <a href="index.php#csomagok">Ide kattintva</a> teheti ezt meg.</p>
+                <!-- <h2>A készítők ajánlata:</h2> -->
+            <?php endif; ?>
     </main>
 
     <footer class="dark-blur">
