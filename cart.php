@@ -78,11 +78,11 @@
 
     <main>
         <!--kiírja a $_SESSION-ből a kosár tartalmát (az emberek száma változtatható)-->
-
         <?php if (isset($_SESSION["kosar"]) && count($_SESSION["kosar"]) > 0): ?>
             <form class="items" action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
                 <input type="hidden" name="submitted" value="van">
                 <?php foreach ($_SESSION["kosar"] as $key => $item):?> 
+
 
                     <?php
                         //API meghívása
@@ -96,6 +96,7 @@
                         <div class="item-head">
                             <h3><?= $item["nev"]?></h3>
                             <button type="submit" class="btn delete" name="deleteElement" value="<?=$key?>"><i class="fa-solid fa-trash"></i></button>
+
                         </div>
                         <div class="item-row">
                             <img src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
@@ -119,11 +120,11 @@
                                 <script>szamolAr(<?=$key?>, false)</script>
 
                                 <input type="hidden" name="id" value="<?=$key?>"></p>
+
                             </div>
                         </div>
                     </section>
                 <?php endforeach;?>
-
             </form>
             <div class="checkout-container">
                 <div class="right-content">
@@ -136,6 +137,7 @@
                 <p>Még nem tett semmit a kosárba. <a href="index.php#csomagok">Ide kattintva</a> teheti ezt meg.</p>
                 <!-- <h2>A készítők ajánlata:</h2> -->
             <?php endif; ?>
+
     </main>
 
     <footer class="dark-blur">
