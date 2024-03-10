@@ -82,9 +82,9 @@
     <footer class="dark-blur">
         <section>
             <h3>Nav</h3>
-            <a href="#csomagok">Csomagok</a>
-            <a href="#rolunk">Rólunk</a>
-            <a href="#kapcsolat">Kapcsolat</a>
+            <a href="index.php#csomagok">Csomagok</a>
+            <a href="index.php#rolunk">Rólunk</a>
+            <a href="index.php#kapcsolat">Kapcsolat</a>
             <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
         </section>
         <section>
