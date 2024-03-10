@@ -212,7 +212,7 @@
                                 <ol>
                                     <li>Telepítse a <a href="http://www.apachefriends.org/download.html" target="_blank" rel="noopener noreferrer">XAMPP alkalmazás</a>t majd indítsa el az APACHE és MySQL szolgáltatásokat a XAMPP segítségével.</li>
                                     <li>Ellenőrizze a <a href="http://127.0.0.1/phpmyadmin/" target="_blank" rel="noopener noreferrer">phpMyAdmin</a> felületén, hogy a bolyGO_db létrehozása sikeres volt-e, és az adatok feltöltése megtörtént-e.</li>
-                                    <li>Ha a hiba továbbra is fennáll, hozzánk a megadott elérhetőségek egyikén.</li>
+                                    <li>Ha a hiba továbbra is fennáll, forduljon hozzánk a megadott elérhetőségek egyikén.</li>
                                 </ol>
                             </div>
                         <?php endif; ?>
