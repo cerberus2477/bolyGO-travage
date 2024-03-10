@@ -70,8 +70,10 @@ body::after {
 /* MAIN --------------------------------------------------------------------------------------------------------------------- */
 main {
     background-color: var(--clr-black);
-    padding: 5rem;
+    padding-block: 5rem;
+    padding-inline: max(calc(100vw - 1800px / 2) 5rem);
     min-height: 100%;
+    margin-inline: auto;
 }
 
 main#index-main{
@@ -209,12 +211,17 @@ nav a[data-active="true"]::after {
         transition: all .2s;
     }
 
+    nav[data-state="open"]{
+        height: auto;
+    }
+
     nav[data-state="closed"] a {
         display: none;
     }
 
     nav[data-state="open"] a {
         display: block;
+        z-index: 11;
     }
 
     .mobile-btn {
@@ -227,11 +234,11 @@ nav a[data-active="true"]::after {
 
     /* style */
     nav[data-state="open"] .nav-first-row {
-        border-bottom: 1px solid var(--clr-green);
+        border-bottom: 1px solid var(--clr-black-light);
     }
 
     .logo {
-        height: 100%;
+        height: 2rem;
         display: block !important;
     }
 }
@@ -373,11 +380,14 @@ h2::after {
 }
 
 .big-card-img {
-    min-width: 100px;
-    width: max(100px, 100%);
+    /* width: max(100px, 100%); */
     object-fit: contain;
     display: block;
     border-radius: var(--border-radius-big);
+
+    width: max(20%, 300px);
+    margin-right: 1rem;
+    height: auto;
 }
 
 /* ár */
@@ -452,11 +462,30 @@ span.price {
     resize: vertical;
 }
 
+#kapcsolat form{
+    margin-inline: auto;
+}
+
+#kapcsolat form input, #kapcsolat form textarea{
+    background-color: var(--clr-white);
+    color: var(--clr-black);
+}
+
+.spaceship{
+    position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+    right: 2rem;
+    width: 50%;
+}
+
 
 
 /* SECTIONS --------------------------------------------------------------------------------------------------------------------- */
 section {
-    padding: 2rem;
+    padding: 7rem;
+    max-width: 1800px;
+    margin-inline: auto;
 }
 
 footer {
@@ -464,7 +493,7 @@ footer {
     justify-content: space-around;
 }
 
-section#bovebben {
+.bovebben-content>div{
     display: flex;
 }
 
@@ -538,7 +567,7 @@ section#bovebben {
 }
 
 .item-row img{
-    width: 20%;
+    width: max(20%, 300px);
     margin-right: 1rem;
     height: auto;
 }
@@ -566,4 +595,56 @@ summary{
 .receipt-txt{
     background-color: var(--clr-black-light);
     border-radius: var(--border-radius-big);
+}
+
+
+
+
+
+
+
+
+
+/* MAIN ------------------------------------------------------------------------------------------------------ */
+
+
+
+/* BOVEBBEN SECTION -------------------------------------------------------------------------------------------- */
+section#bovebben {
+    max-width: 100%;
+}
+
+.bovebben-content{
+    max-width: 1800px;
+    margin-inline: auto;
+}
+
+
+.card.big-card {
+    flex: 0 0 auto;
+    width: calc(100% - 2rem);
+}
+
+@media screen and (max-width: 1300px) {
+    .card.big-card {
+        flex-direction: column;
+    }
+    
+    section{
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    footer {
+        flex-direction: column;
+    }
+
+    .card{
+        width: 100%
+    }
+
+    .spaceship{
+        display: none;
+    }
 }
