@@ -41,8 +41,8 @@
 
         $response = file_get_contents($url, false, $context);
 
+        if (substr($http_response_header[0],9,3) == "201") $_SESSION["kosar"] = array();
         $_SESSION["apiresponse"] = $response;
-
         unset($_POST["submittedForm"]);
         header('Location: ./receipt.php');
         die();
