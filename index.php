@@ -237,8 +237,6 @@
             </ul>
         </section>
         <section>
-        <!-- src="https://maps.google.com/maps?width=100&amp;height=100&amp;hl=en&amp;q=dunasziget%20nefelejcs%20utca%2064+(Rudolf%20Vend%C3%A9gh%C3%A1z%2C%20Dunasziget)&amp;ie=UTF8&amp;t=p&amp;z=10&amp;iwloc=B&amp;output=embed" -->
-
             <h3>Telephelyünk <i class="fa-solid fa-map-location-dot"></i></h3>
             <div class="maps-container">
                 <iframe width="100%" height="100%"

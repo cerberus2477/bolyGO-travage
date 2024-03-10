@@ -70,7 +70,8 @@ body::after {
 /* MAIN --------------------------------------------------------------------------------------------------------------------- */
 main {
     background-color: var(--clr-black);
-    padding: 0 5rem;
+    padding: 5rem;
+    min-height: 100%;
 }
 
 main#index-main{
@@ -424,17 +425,32 @@ span.price {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--clr-purple);
+    color: var(--clr-white);
+    border-left: 2px solid var(--clr-blue);
+    padding-left: .4rem;
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea, 
+.form-group select,
+.form-group option {
     width: 100%;
     padding: 0.5rem;
     border: none;
     border-radius: var(--border-radius);
-    background-color: var(--clr-white);
-    color: var(--clr-black);
+    background-color: var(--clr-black-light);
+    color: var(--clr-white);
+}
+
+/* Style options within the select dropdown */
+.form-group select option {
+    background-color: var(--clr-black-light);
+    color: var(--clr-white);
+}
+
+
+.form-group select option:checked {
+    background-color: var(--clr-purple);
 }
 
 .form-group textarea {

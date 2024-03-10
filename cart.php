@@ -22,6 +22,7 @@
         }
         unset($_POST["submitted"]);
         header('Location: ./reserve.php');
+            print_r($_SESSION["kosar"]);
         die();
     }
 ?>
@@ -70,6 +71,7 @@
 
             <?php foreach ($_SESSION["kosar"] as $item):?> 
                 <!-- <?php $orderNum++;?> -->
+                <!-- <?=var_dump($item)?> -->
                 <section class="item" id="line_<?= $item["id"]?>"> 
                     <div class="item-head">
                         <h3><?= $item["nev"]?></h3>
@@ -79,7 +81,9 @@
                         <img src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
                         <div>
                             <!-- <p class="orderNum"><?= $orderNum?>.</p> -->
-                            <p>Utazók száma: <input class="quantity" type="number" name="<?="numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>" min=0>
+                            <p>Helyszín: <?=$item["bolygo"]?></p>
+                            <p>Ajánlat tartama: <?=$item["kezdido"]?> - <?=$item["vegido"]?></p>
+                            <p>Utasok száma: <input class="quantity" type="number" name="<?="numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>" min=0>
                             <!-- <p class="name"><b>Ár összesen: <span><?= $item["ar"] * $item["fo"]?></span>-től</p> -->
                             <p><i>Ár összesen: <span class="price"><?=$item["fo"]?></span>-től</i></p>
 
@@ -97,6 +101,33 @@
             </div>
         </div>
     </main>
+
+    <footer class="dark-blur">
+        <section>
+            <h3>Nav</h3>
+            <a href="#csomagok">Csomagok</a>
+            <a href="#rolunk">Rólunk</a>
+            <a href="#kapcsolat">Kapcsolat</a>
+            <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
+        </section>
+        <section>
+            <h3>Forduljon hozzánk bizalommal!</h3>
+            <ul>
+                <li>Tel: +369696969 <i class="fa fa-mobile"></i></li>
+                <li>meoww <i class="fa fa-cat"></i></li>
+                <li>cicákat akarok most ide most gimme <i class="fa fa-cat"></i></li>
+            </ul>
+        </section>
+        <section>
+            <h3>Telephelyünk <i class="fa-solid fa-map-location-dot"></i></h3>
+            <div class="maps-container">
+                <iframe width="100%" height="100%"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2706.7356574234536!2d19.23691240392388!3d47.28042171934365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741930014fc0d9b%3A0x195b02a0b1e91634!2sMacskalapos!5e0!3m2!1sen!2sus!4v1709628639614!5m2!1sen!2sus"
+                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                </iframe>
+            </div>
+        </section>
+    </footer>
 
 </body>
     
