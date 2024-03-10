@@ -1,6 +1,35 @@
 <?php 
     session_start();
     // echo $_SESSION["apiresponse"];
+    $file = fopen("receipt.txt", "w");
+    
+    fwrite($file,"SZÁMLA\n------\n");
+
+    $vegosszeg = 0;
+    foreach($_SESSION["foglalasiAdatok"] as $a) {
+        $vegosszeg += $a["ar"];
+    }
+    fwrite($file,"VÉGÖSSZEG: ".$vegosszeg." KOBALT\n");
+    fwrite($file,"Foglalások száma: ".count($_SESSION["foglalasiAdatok"])."\n");
+    fwrite($file,"Részletek:\n");
+
+    $i = 0;
+    foreach($_SESSION["foglalasiAdatok"] as $f) {
+        $i++;
+        
+        $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")))."?csomagid=".$f["csomagid"];
+        $raw_data = @file_get_contents($url);
+        $data = json_decode($raw_data, true);
+
+        fwrite($file,$i.". csomag:\n");
+        fwrite($file,"- Csomag neve: ".$data["nev"]."\n");
+        fwrite($file,"- Lefoglalt napok: ".$f["kezdido"]." - ".$f["vegido"]."\n");
+        fwrite($file,"- Utazók száma: ".count($f["ugyfelek"])."\n");
+        fwrite($file,"- Úticél: ".$data["bolygo"]."\n");
+        fwrite($file,"- Csomagért fizetendő: ".$f["ar"]." kobalt.\n");
+    }
+
+    fclose($file);
 ?>
 
 
