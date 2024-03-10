@@ -1,7 +1,17 @@
-lorem dfaosdnfadf
-asdfasdpofjaűsfjkasdf
-asdfaposdjfpoasdf
-asdfa sdfőaskdfa
-sdf asdúfkasdfa
-sdfas dfkad asdfasdpofjaűsfjkasdf fkasdf
-asd fkadf asdúfkasdfaasd fasd asdsd fasd fasdf 
+SZÁMLA
+------
+VÉGÖSSZEG: 172600 KOBALT
+Foglalások száma: 2
+Részletek:
+1. csomag:
+- Csomag neve: Aranyföldi Kalandok
+- Lefoglalt napok: 2492-08-03 - 2492-08-10
+- Utazók száma: 1
+- Úticél: Aranyföld
+- Csomagért fizetendő: 151600 kobalt.
+2. csomag:
+- Csomag neve: MEOW
+- Lefoglalt napok: 2024-03-10 - 2024-03-17
+- Utazók száma: 1
+- Úticél: MEOW
+- Csomagért fizetendő: 21000 kobalt.
