@@ -111,7 +111,17 @@
                     <?php if ($data !== null): ?>
                         <?php foreach ($data as $csomag): ?>
                             <div class="card" data-csomagid="<?= $csomag["id"] ?>" data-color="<?= $colors[array_rand($colors)] ?>">
-                                <img class="small-card-img" src="<?= './styles/csomag_img/' . $csomag["id"] . '.png' ?>" alt="<?= $csomag["nev"] . ' képe' ?>">
+                                <!-- kép -->
+                                <?php
+                                    $imagePath = './styles/csomag_img/'.$csomag["id"].'.png';
+                                    $altText = $csomag["nev"].' képe';
+
+                                    if (file_exists($imagePath)) {
+                                        echo '<img class="small-card-img" src="'.$imagePath.'" alt="'.$altText.'">';
+                                    } else {
+                                        echo '<img class="small-card-img" src="./styles/csomag_img/placeholder.png" alt="'.$altText.'">';
+                                    }
+                                ?>
                                 <div class="card-content">
                                     <h3><?= $csomag["nev"] ?></h3>
                                     <p class="description"><?= $csomag["leiras"] ?></p>
@@ -142,8 +152,18 @@
                 <?php if ($data !== null): ?>
                     <?php foreach ($data as $csomag):?>
                         <div class="card big-card card-hidden" data-csomagid="<?= $csomag["id"]?>" data-color="">
-                            <img class="big-card-img" src="<?= './styles/csomag_img/'.$csomag["id"].'.png'?>" alt="<?= $csomag["nev"].' képe'?>">
-                
+                            <!-- kép -->
+                            <?php
+                                $imagePath = './styles/csomag_img/'.$csomag["id"].'.png';
+                                $altText = $csomag["nev"].' képe';
+
+                                if (file_exists($imagePath)) {
+                                    echo '<img class="big-card-img" src="'.$imagePath.'" alt="'.$altText.'">';
+                                } else {
+                                    echo '<img class="big-card-img" src="./styles/csomag_img/placeholder.png" alt="'.$altText.'">';
+                                }
+                            ?>
+
                             <div class="card-content">
                                 <h3><?= $csomag["nev"]?></h3>
                                 <h4><?= $csomag["bolygo"]?> <i class="fa-solid fa-meteor"></i></h4>
@@ -174,6 +194,7 @@
                                     </tbody>
                                 </table>
                                 <p><i>Már <span class="price"><?= $csomag["csomagar"]?></span> kobalt/fő/éjtől</i></p>
+                                <p><i>Az ár nem tartalmazza az oda- és visszautat.</i></p>
                                 <form action="<?php print $_SERVER["PHP_SELF"];?>" method="post">
                                     <button class="btn btn-auto-hover" name="addcart" value="<?= $csomag["id"]?>">Kosárhoz adás <i class="fa-solid fa-cart-plus"></i></button>
                                     <input type="hidden" name="csomagnev" value="<?= $csomag["nev"]?>">
