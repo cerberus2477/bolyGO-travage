@@ -4,20 +4,14 @@
     session_start();
 
     if (isset($_POST["deleteElement"])) {
-        $i = 0;
-        while ($i < count($_SESSION["kosar"]) && $_SESSION["kosar"][$i]["id"] != $_POST["deleteElement"]) $i++;
-        if ($i < count($_SESSION["kosar"])) {
-            unset($_SESSION["kosar"][$i]);
-            $_SESSION["kosar"] = array_values($_SESSION["kosar"]);
-        }
+        unset($_SESSION["kosar"][$_POST["deleteElement"]]);
         unset($_POST["deleteElement"]);
     } 
     else if (isset($_POST["submitted"])) {
-        for ($i = 0; $i < count($_SESSION["kosar"]); $i++) {
-            $_SESSION["kosar"][$i]["fo"] = $_POST["numOfPeople_".$_SESSION["kosar"][$i]["id"]];
-            if ($_SESSION["kosar"][$i]["fo"] == 0) {
-                unset($_SESSION["kosar"][$i]);
-                $_SESSION["kosar"] = array_values($_SESSION["kosar"]);
+        foreach($_SESSION["kosar"] as $key => $item) {
+            $_SESSION["kosar"][$key]["fo"] = $_POST["numOfPeople_".$key];
+            if ($_SESSION["kosar"][$key]["fo"] == 0) {
+                unset($_SESSION["kosar"][$key]);
             }
         }
         unset($_POST["submitted"]);
@@ -27,12 +21,12 @@
 ?>
 
 <script>
-    function szamolAr(csomagid, summa=true) {
-        let fo = parseInt(document.getElementById("numOfPeople_"+csomagid).value);
-        let csomagar = parseInt(document.getElementById("csomagar_"+csomagid).value);
-        let jarmuar = parseInt(document.getElementById("minjarmuar_"+csomagid).value);
+    function szamolAr(sorszam, summa=true) {
+        let fo = parseInt(document.getElementById("numOfPeople_"+sorszam).value);
+        let csomagar = parseInt(document.getElementById("csomagar_"+sorszam).value);
+        let jarmuar = parseInt(document.getElementById("minjarmuar_"+sorszam).value);
         let ar = fo*(csomagar + 2*jarmuar)
-        document.getElementById("ar_"+csomagid).textContent = ar;
+        document.getElementById("ar_"+sorszam).textContent = ar;
         if (summa) vegosszeg();
     }
 
@@ -87,7 +81,8 @@
         <?php if (isset($_SESSION["kosar"]) && count($_SESSION["kosar"]) > 0): ?>
             <form class="items" action="<?php echo $_SERVER["PHP_SELF"]?>" method="post" id="cartform">
                 <input type="hidden" name="submitted" value="van">
-                <?php foreach ($_SESSION["kosar"] as $item):?> 
+                <?php foreach ($_SESSION["kosar"] as $key => $item):?> 
+
 
                     <?php
                         //API meghívása
@@ -97,17 +92,18 @@
                         $data = json_decode($raw_data, true);
                     ?>
 
-                    <section class="item" id="line_<?= $item["id"]?>"> 
+                    <section class="item" id="line_<?=$key?>"> 
                         <div class="item-head">
                             <h3><?= $item["nev"]?></h3>
-                            <button class="btn delete" name="deleteElement" value="<?=$item["id"]?>"><i class="fa-solid fa-trash"></i></button>
+                            <button type="submit" class="btn delete" name="deleteElement" value="<?=$key?>"><i class="fa-solid fa-trash"></i></button>
+
                         </div>
                         <div class="item-row">
                             <img src="<?= './styles/csomag_img/'.$item["id"].'.png'?>" alt="<?= $item["nev"].' képe'?>">
                             <div>
                                 <p>Helyszín: <?=$data["bolygo"]?></p>
                                 <p>Ajánlat tartama: <?=$data["kezdido"]?> - <?=$data["vegido"]?></p>
-                                <p>Utasok száma: <input class="quantity" type="number" id="<?="numOfPeople_".$item["id"]?>" name="<?="numOfPeople_".$item["id"]?>" value="<?= $item["fo"]?>" min=0 onchange="szamolAr(<?=$item['id']?>)">
+                                <p>Utasok száma: <input class="quantity" type="number" id="<?="numOfPeople_".$key?>" name="numOfPeople_<?=$key?>" value="<?php echo (isset($_POST["numOfPeople_".$key]) ? $_POST["numOfPeople_".$key] : $item["fo"]);?>" min=0 onchange="szamolAr(<?=$key?>)">
 
                                 <?php
                                     $minar = PHP_INT_MAX;
@@ -116,14 +112,15 @@
                                     }
                                 ?>
 
-                                <input type="hidden" id="csomagar_<?=$item["id"]?>" value="<?=$data["csomagar"]?>">
-                                <input type="hidden" id="minjarmuar_<?=$item["id"]?>" value="<?=$minar?>">
+                                <input type="hidden" id="csomagar_<?=$key?>" value="<?=$data["csomagar"]?>">
+                                <input type="hidden" id="minjarmuar_<?=$key?>" value="<?=$minar?>">
 
-                                <p><i>Ár összesen <span class="price" id="ar_<?=$item["id"]?>"></span> kobalttól</i></p>
+                                <p><i>Ár összesen <span class="price" id="ar_<?=$key?>"></span> kobalttól</i></p>
 
-                                <script>szamolAr(<?=$item["id"]?>, false)</script>
+                                <script>szamolAr(<?=$key?>, false)</script>
 
-                                <input type="hidden" name="id" value="<?=$item["id"]?>"></p>
+                                <input type="hidden" name="id" value="<?=$key?>"></p>
+
                             </div>
                         </div>
                     </section>
@@ -136,11 +133,11 @@
                     <button class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Tovább <i class="fa-solid fa-circle-chevron-right"></i></button>       
                 </div>
             </div>
+            <?php else: ?>
+                <p>Még nem tett semmit a kosárba. <a href="index.php#csomagok">Ide kattintva</a> teheti ezt meg.</p>
+                <!-- <h2>A készítők ajánlata:</h2> -->
+            <?php endif; ?>
 
-        <?php else: ?>
-            <p>Még nem tett semmit a kosárba. <a href="index.php#csomagok">Ide kattintva</a> teheti ezt meg.</p>
-            <!-- <h2>A készítők ajánlata:</h2> -->
-        <?php endif; ?>
     </main>
 
     <footer class="dark-blur">

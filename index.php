@@ -20,7 +20,7 @@
     if (!isset($_SESSION["kosar"])) { $_SESSION["kosar"] = array(); }
 
     if (isset($_POST["addcart"])) {
-        $_SESSION["kosar"][] = array(
+        $_SESSION["kosar"][count($_SESSION["kosar"])] = array(            
             "id" => $_POST["addcart"], 
             "nev" => $_POST["csomagnev"],
             "fo" => 1);
