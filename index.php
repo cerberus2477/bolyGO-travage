@@ -24,9 +24,12 @@
             "id" => $_POST["addcart"], 
             "nev" => $_POST["csomagnev"],
             "fo" => 1);
+        echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("bovebben").scrollIntoView();
+            });
+            </script>';
         unset($_POST["addcart"]);
-        //odaugrik 
-        echo '<script>document.getElementById("#bovebben").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});</script>';
     }    
 ?>
 
