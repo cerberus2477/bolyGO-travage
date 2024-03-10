@@ -115,7 +115,7 @@
                                 <input type="hidden" id="csomagar_<?=$key?>" value="<?=$data["csomagar"]?>">
                                 <input type="hidden" id="minjarmuar_<?=$key?>" value="<?=$minar?>">
 
-                                <p><i>Ár összesen: </i><span class="price" id="ar_<?=$key?>"></span> kobalttól</p>
+                                <p><i>Ár összesen <span class="price" id="ar_<?=$key?>"></span> kobalttól</i></p>
 
                                 <script>szamolAr(<?=$key?>, false)</script>
 
@@ -128,7 +128,7 @@
             </form>
             <div class="checkout-container">
                 <div class="right-content">
-                    <p>Végösszeg: <span id="total-price"></span> kobalt</p>
+                    <p>Végösszeg: <span id="total-price" class="price"></span> kobalttól</p>
                     <script>vegosszeg();</script>
                     <button class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Tovább <i class="fa-solid fa-circle-chevron-right"></i></button>       
                 </div>

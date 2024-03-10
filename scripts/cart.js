@@ -1,5 +1,5 @@
 function del(num){
-    const element=document.getElementById("line"+num);
+    const element=document.getElementById("item"+num);
     element.remove();
 }
 
@@ -17,46 +17,20 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+function szamolAr(csomagid, summa = true) {
+    let fo = parseInt(document.getElementById("numOfPeople_" + csomagid).value);
+    let csomagar = parseInt(document.getElementById("csomagar_" + csomagid).value);
+    let jarmuar = parseInt(document.getElementById("minjarmuar_" + csomagid).value);
+    let ar = fo * (csomagar + 2 * jarmuar)
+    document.getElementById("ar_" + csomagid).textContent = ar;
+    if (summa) vegosszeg();
+}
 
-
-
-// ez állítaná a mennyiséget
-/*
-document.addEventListener("DOMContentLoaded", function() {
-    const deleteButtons = document.querySelectorAll(".delete");
-    const quantityInputs = document.querySelectorAll(".quantity");
-    const totalPriceElement = document.getElementById("total-price"); 
-
-    deleteButtons.forEach(button => {
-        button.addEventListener("click", function() {
-            const item = button.closest(".item");
-            item.remove();
-            updateTotal();
-        });
+function vegosszeg() {
+    let arak = document.querySelectorAll('[id^=ar_]');
+    let sum = 0;
+    arak.forEach(element => {
+        sum += parseInt(element.textContent);
     });
-
-    quantityInputs.forEach(input => {
-        input.addEventListener("input", function() {
-            updateTotal();
-        });
-    });
-
-    function updateTotal() {
-        let totalPrice = 0;
-        const items = document.querySelectorAll(".item");
-
-        items.forEach(item => {
-            const price = parseFloat(item.querySelector("p:last-child").textContent.replace("$", ""));
-            const quantity = parseInt(item.querySelector(".quantity").value);
-            const itemTotal = price * quantity;
-            item.querySelector(".item-total").textContent = "$" + itemTotal.toFixed(2); // Update item total
-            totalPrice += itemTotal;
-        });
-
-        totalPriceElement.textContent = "$" + totalPrice.toFixed(2); // Update total price
-    }
-
-    updateTotal(); // Call updateTotal initially
-});
-
-*/
+    document.getElementById("total-price").textContent = sum;
+}

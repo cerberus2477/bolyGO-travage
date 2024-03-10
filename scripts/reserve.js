@@ -22,6 +22,9 @@ function opendetails(sorszam) {
     document.getElementById('details_'+sorszam).open = true;
 }
 
+// alapból megnyitjuk az első formot
+opendetails(1);
+
 function changeDetails(from, to) {
     closedetails(from);
     opendetails(to);
