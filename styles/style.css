@@ -558,9 +558,16 @@ footer {
 
 
 /* cart */
-.btn.delete {
-    background-color: var(--clr-pink);
+.btn-delete {
+    background-color: transparent;
+    color: var(--clr-pink);
+    border: 1px solid var(--clr-pink);
+}
+
+.btn-delete:hover {
+    background-color: pink;
     color: var(--clr-white);
+    border: 1px solid var(--clr-white);
 }
 
 .quantity {

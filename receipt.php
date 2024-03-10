@@ -39,13 +39,15 @@
     </header>
 
     <main>
-        <p><a href="receipt.txt" download>A számla ide kattintva tölthető le</a></p>
-        <div class="receipt-txt">
-            <?php
-                //ez megtartja az entereket
-                echo nl2br(file_get_contents('receipt.txt'))
-            ?>
-        </div>
+        <section>
+            <p><a href="receipt.txt" download>A számla ide kattintva tölthető le</a></p>
+            <div class="receipt-txt">
+                <?php
+                    //ez megtartja az entereket
+                    echo nl2br(file_get_contents('receipt.txt'))
+                ?>
+            </div>
+        </section>
     </main>
 
     <footer class="dark-blur">

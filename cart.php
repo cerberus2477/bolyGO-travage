@@ -95,7 +95,7 @@
                     <section class="item" id="line_<?=$key?>"> 
                         <div class="item-head">
                             <h3><?= $item["nev"]?></h3>
-                            <button type="submit" class="btn delete" name="deleteElement" value="<?=$key?>"><i class="fa-solid fa-trash"></i></button>
+                            <button type="submit" class="btn btn-delete" name="deleteElement" value="<?=$key?>"><i class="fa-solid fa-trash"></i></button>
 
                         </div>
                         <div class="item-row">
@@ -126,16 +126,17 @@
                     </section>
                 <?php endforeach;?>
             </form>
-            <div class="checkout-container">
+            <section class="checkout-container">
                 <div class="right-content">
                     <p>Végösszeg: <span id="total-price" class="price"></span> kobalttól</p>
                     <script>vegosszeg();</script>
                     <button class="btn pc-btn icon-btn" onclick="document.getElementById('cartform').submit();">Tovább <i class="fa-solid fa-circle-chevron-right"></i></button>       
                 </div>
-            </div>
+            </section>
             <?php else: ?>
-                <p>Még nem tett semmit a kosárba. <a href="index.php#csomagok">Ide kattintva</a> teheti ezt meg.</p>
-                <!-- <h2>A készítők ajánlata:</h2> -->
+                <section>
+                    <p>Még nem tett semmit a kosárba. <a href="index.php#csomagok">Ide kattintva</a> teheti ezt meg.</p>
+                </section>
             <?php endif; ?>
 
     </main>
