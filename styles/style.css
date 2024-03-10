@@ -457,7 +457,8 @@ span.price {
 .form-group input,
 .form-group textarea, 
 .form-group select,
-.form-group option {
+.form-group option,
+.quantity{
     width: 100%;
     padding: .5rem;
     border: none;
@@ -559,24 +560,21 @@ footer {
 .btn-delete {
     background-color: transparent;
     color: var(--clr-pink);
-    border: 1px solid var(--clr-pink);
+}
+
+.btn-delete i{
+    font-size: 200%;
 }
 
 .btn-delete:hover {
-    background-color: pink;
-    color: var(--clr-white);
-    border: 1px solid var(--clr-white);
+    color: var(--clr-orange-dark);
 }
 
 .quantity {
     width: 60px;
-    padding: 5px;
-    border: 1px solid var(--clr-black);
-    border-radius: 5px;
 }
 
 .item{
-    /* flex-direction: column; */
     border-bottom: 1px solid var(--clr-black-light);
 }
 

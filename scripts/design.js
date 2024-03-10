@@ -24,11 +24,12 @@ window.onscroll = function () {
     //nav linkek aláhúzása
     if (planet) {
         navLinks.forEach(link => {
-            const sectionId = link.getAttribute('href').substring(1); // ???
+            const sectionId = link.getAttribute('href').substring(10); // le kell vágni az elejéről az index.php# -t
             const section = document.getElementById(sectionId);
+            console.log(sectionId);
 
             // ha a megfelelő section tetejénél lejjebb tekertünk de az aljáig meg nem "active" lesz az arra mutató menüpont
-            nav.dataset.active = section.offsetTop <= pxScrolled && section.offsetTop + section.offsetHeight > pxScrolled;
+            link.dataset.active = section.offsetTop <= pxScrolled && section.offsetTop + section.offsetHeight > pxScrolled;
         });
     }
 }
