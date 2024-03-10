@@ -496,6 +496,7 @@ span.price {
     transform: translateY(-50%);
     right: 2rem;
     width: 50%;
+    z-index: 3;
 }
 
 
@@ -643,16 +644,18 @@ section#bovebben {
 }
 
 
-.card.big-card {
+.big-card {
     flex: 0 0 auto;
     width: calc(100% - 2rem);
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1500px) {
     .card.big-card {
         flex-direction: column;
     }
-    
+}
+
+@media screen and (max-width: 1300px) {
     section{
         padding: 2rem;
     }
