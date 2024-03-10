@@ -103,11 +103,11 @@
                                 <p>Kérjük adja meg az utazás (csomag) adatait.</p>
                                 <div class="form-group">
                                     <label for="<?=$elem["id"]?>_kezd">Adja meg a foglalás kezdeti dátumát:</label>
-                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>)' type="date" id="<?=$elem["id"]?>_kezd" name="<?=$elem["id"]?>_kezd" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
+                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>); setDateBoundaries(<?=$elem["id"]?>)' type="date" id="<?=$elem["id"]?>_kezd" name="<?=$elem["id"]?>_kezd" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="<?=$elem["id"]?>_vege">Adja meg a foglalás végének dátumát:</label>
-                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>)' type="date" id="<?=$elem["id"]?>_vege" name="<?=$elem["id"]?>_vege" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
+                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$elem["id"]?>); setDateBoundaries(<?=$elem["id"]?>)' type="date" id="<?=$elem["id"]?>_vege" name="<?=$elem["id"]?>_vege" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="<?=$elem["id"]?>_jarmu">Válassza ki az utazáshoz igénybe venni kívánt járművet:</label>

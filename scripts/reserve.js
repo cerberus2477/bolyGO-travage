@@ -27,3 +27,10 @@ function changeDetails(from, to) {
     opendetails(to);
     document.getElementById('details'+to).scrollIntoView();
 }
+
+function setDateBoundaries(csomagid) {
+    let kezd = document.getElementById(csomagid+"_kezd");
+    let vege = document.getElementById(csomagid+"_vege");
+    if (kezd.value != "") vege.min = kezd.value;
+    if (vege.value != "") kezd.max = vege.value;
+}
