@@ -5,6 +5,13 @@
     src: url('./fonts/Century\ Gothic.ttf') format('truetype');
 }
 
+/* https://www.cursors-4u.com */
+* {
+    /* sötétlila/kék */
+    cursor: url(https://cur.cursors-4u.net/symbols/sym-7/sym630.ani), url(https://cur.cursors-4u.net/symbols/sym-7/sym630.png), auto !important;
+}
+
+
 /* VARIABLES */
 :root {
     --clr-black: hsl(228, 38%, 10%);
@@ -338,17 +345,15 @@ h2::after {
 
 /* card ------------------------------------------------------------------------------------------------------------------------------------------- */
 .card {
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
     --accent-color: var(--clr-white);
     --text-color: var(--clr-black);
 
     width: 300px;
     border-radius: var(--border-radius-big);
-    transition: box-shadow 0.3s ease;
     color: var(--clr-white);
     border: 1px solid var(--accent-color);
     background-color: var(--clr-black);
-    transition: visibility 0.5s ease;
+    transition: all 0.3s ease;
 }
 
 .card-content {
@@ -469,9 +474,6 @@ span.price {
 /* nem az aktuális kártya eltüntetéséhez */
 .card-hidden {
     display: none;
-    opacity: 0;
-    visibility: none;
-    transition: all 0.5s ease;
 }
 
 
