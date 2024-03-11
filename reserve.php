@@ -88,7 +88,6 @@
         <section>
             <?php if (isset($_SESSION["kosar"])): ?>
                 <form method="post" action="<?=$_SERVER["PHP_SELF"]?>" id="reserveform">
-                    <input type="hidden" name="submittedForm" value="true">
                     <?php $orderNum=0;?>
                     <?php foreach ($_SESSION["kosar"] as $key => $elem): ?>
                         <?php $orderNum++; ?>
@@ -157,7 +156,8 @@
                             </section>
                         </details>
                     <?php endforeach; ?>
-                    <button class="btn" onclick="document.getElementById('reserveform').submit();">Foglalás véglegesítése <i class="fa-solid fa-circle-check"></i></button>       
+                    <input type="hidden" name="submittedForm" value="true">
+                    <button class="btn" type="submit">Foglalás véglegesítése <i class="fa-solid fa-circle-check"></i></button>       
                 </form>
             <?php else: ?>
                 <p>Még nem tett semmit a kosárba. <a href="index#csomagok.php">Ide kattintva</a> teheti ezt meg.</p>
