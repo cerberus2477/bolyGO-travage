@@ -54,10 +54,11 @@
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
       
-        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
         <a class="navlink" href="index.php#rolunk">Rólunk</a>
+        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
+        <a class="navlink" href="index.php#bovebben" data-active="true">Részletek</a>
         <a class="navlink" href="index.php#kapcsolat">Kapcsolat</a>
-        <a class="btn pc-btn btn-auto-hover" href="./cart.php">Vissza a főoldalra <i class="fa-solid fa-home"></i></a>
+        <a class="btn pc-btn btn-auto-hover" href="index.php">Vissza a főoldalra <i class="fa-solid fa-home"></i></a>
     </nav>
 
 

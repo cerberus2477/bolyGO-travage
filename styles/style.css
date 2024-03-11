@@ -155,6 +155,7 @@ nav {
 nav[data-scrolled="true"] {
     background-color: var(--clr-alpha-black);
     backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
 }
 
 .logo {
@@ -457,7 +458,8 @@ span.price {
 .form-group input,
 .form-group textarea, 
 .form-group select,
-.form-group option {
+.form-group option,
+.quantity{
     width: 100%;
     padding: .5rem;
     border: none;
@@ -496,7 +498,7 @@ span.price {
     transform: translateY(-50%);
     right: 2rem;
     width: 50%;
-    z-index: 3;
+    z-index: 6;
 }
 
 
@@ -520,6 +522,7 @@ footer {
 .dark-blur {
     background-color: var(--clr-alpha-black);
     backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
 }
 
 .full-width {
@@ -559,24 +562,21 @@ footer {
 .btn-delete {
     background-color: transparent;
     color: var(--clr-pink);
-    border: 1px solid var(--clr-pink);
+}
+
+.btn-delete i, .btn-control i{
+    font-size: 200%;
 }
 
 .btn-delete:hover {
-    background-color: pink;
-    color: var(--clr-white);
-    border: 1px solid var(--clr-white);
+    color: var(--clr-orange-dark);
 }
 
 .quantity {
     width: 60px;
-    padding: 5px;
-    border: 1px solid var(--clr-black);
-    border-radius: 5px;
 }
 
 .item{
-    /* flex-direction: column; */
     border-bottom: 1px solid var(--clr-black-light);
 }
 
@@ -636,6 +636,21 @@ summary{
 /* BOVEBBEN SECTION -------------------------------------------------------------------------------------------- */
 section#bovebben {
     max-width: 100%;
+    background-size: cover;
+    z-index: 10;
+}
+
+section#bovebben::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-alpha-black);
+    backdrop-filter: blur(calc(var(--blur)*2));
+    -webkit-backdrop-filter: blur(calc(var(--blur)*2));
+    z-index: 1;
 }
 
 .bovebben-content{

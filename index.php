@@ -54,9 +54,10 @@
             <a href="./cart.php" class="btn mobile-btn btn-auto-hover" ><i class="fa-solid fa-cart-shopping"></i></a>
             <a href="#" class="btn mobile-btn btn-auto-hover" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
-      
-        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
+
         <a class="navlink" href="index.php#rolunk">Rólunk</a>
+        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
+        <a class="navlink" href="index.php#bovebben" data-active="true">Részletek</a>
         <a class="navlink" href="index.php#kapcsolat">Kapcsolat</a>
         <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
     </nav>
@@ -76,8 +77,8 @@
     <main id="index-main">
         <section id=rolunk>
             <h2>Rólunk <i class="fa-solid fa-user-astronaut"></i></h2>
-            <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis, quos.</p>
+           <!-- <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Blanditiis, quos.</p> -->
             <div class="card-container rolunk-cards">
                 <div class="card" data-color="green">
                     <img class="small-card-img" src="styles/img/sityu.jpg" alt="Sityu">
@@ -147,7 +148,7 @@
             </div>
         </section>
 
-        <section id="bovebben" class="dark-blur">
+        <section id="bovebben">
             <div class="bovebben-content">
                 <h2>Tudj meg többet a csomagról</h2>
                 <div>
@@ -253,8 +254,9 @@
     <footer class="dark-blur">
         <section>
             <h3>Nav</h3>
-            <a href="index.php#csomagok">Csomagok</a>
-            <a href="index.php#rolunk">Rólunk</a>
+            <a class="navlink" href="index.php#rolunk">Rólunk</a>
+            <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
+            <a class="navlink" href="index.php#bovebben" data-active="true">Részletek</a>
             <a href="index.php#kapcsolat">Kapcsolat</a>
             <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
         </section>
@@ -263,7 +265,7 @@
             <ul>
                 <li>Tel: +369696969 <i class="fa fa-mobile"></i></li>
                 <li>meoww <i class="fa fa-cat"></i></li>
-                <li>cicákat akarok most ide most gimme <i class="fa fa-cat"></i></li>
+                <li>cicákat akarok most ide most gimme <i class="fa fa-cat"></i></li>
             </ul>
         </section>
         <section>

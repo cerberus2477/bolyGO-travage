@@ -71,8 +71,9 @@
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
       
-        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
         <a class="navlink" href="index.php#rolunk">Rólunk</a>
+        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
+        <a class="navlink" href="index.php#bovebben" data-active="true">Részletek</a>
         <a class="navlink" href="index.php#kapcsolat">Kapcsolat</a>
         <a class="btn pc-btn btn-auto-hover" href="./cart.php">Vissza <i class="fa-solid fa-circle-chevron-left"></i></a>
     </nav>
@@ -84,82 +85,84 @@
     </header>
 
     <main>
-        <?php if (isset($_SESSION["kosar"])): ?>
-            <form method="post" action="<?=$_SERVER["PHP_SELF"]?>" id="reserveform">
-                <input type="hidden" name="submittedForm" value="true">
-                <?php $orderNum=0;?>
-                <?php foreach ($_SESSION["kosar"] as $key => $elem): ?>
-                    <?php $orderNum++; ?>
-                    <details id="details_<?=$orderNum?>" <?php if ($elem == array_values($_SESSION["kosar"])[0]) echo "open"?>>
-                        <summary><?=$orderNum?>. foglalás: <?=$elem["nev"]?></summary>
-                        <section>
-                                <?php 
-                                    //API meghívása
-                                    $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")))."?csomagid=".$elem["id"];
-                                    $data = json_decode(file_get_contents($url), true);
-                                ?>
-                                <h3>Utzazás adatai</h3>
-                                <p>Kérjük adja meg az utazás (csomag) adatait.</p>
-                                <div class="form-group">
-                                    <label for="<?=$key?>_kezd">Adja meg a foglalás kezdeti dátumát:</label>
-                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$key?>); setDateBoundaries(<?=$key?>)' type="date" id="<?=$key?>_kezd" name="<?=$key?>_kezd" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="<?=$key?>_vege">Adja meg a foglalás végének dátumát:</label>
-                                    <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$key?>); setDateBoundaries(<?=$key?>)' type="date" id="<?=$key?>_vege" name="<?=$key?>_vege" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="<?=$key?>_jarmu">Válassza ki az utazáshoz igénybe venni kívánt járművet:</label>
-                                    <select id="<?=$key?>_jarmu" onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$key?>)'>
-                                        <?php foreach ($data["jarmuvek"] as $jarmu):?>
-                                            <!--itt a jármű ára a value, mert majd ezzel lesz a teljes fizetendő kiszámolva-->
-                                            <option value="<?=$jarmu["ar"]?>"><?=$jarmu["nev"]?> (<?=$jarmu["ar"]?> kobalt/fő, <?=$jarmu["osztaly"]?>. osztály, <?php echo $jarmu["fekvohely"]==1 ? "van" : "nincs"?> fekvőhely)</option>
-                                        <?php endforeach;?>
-                                    </select>
-                                </div>
-                                <p><span id="<?=$key?>" class="price">Nincs elegendő adat az foglalás árának kiszámításához.</span></p>
-                                <input type="hidden" name="<?=$key?>_ar" id="<?=$key?>_ar" value="0">
-                                <h3>Utasok adatai</h3>
-                                <p>Kérjük adja meg az utasok szükséges adatait.</p>
-                                <input type="hidden" id="<?=$key?>_fo" name="<?=$key?>_fo" value="<?=$elem["fo"]?>">
-                                <?php for ($i = 1; $i <= $elem["fo"]; $i++):?>
-                                    <h4><?=$i?>. utas</h4>
+        <section>
+            <?php if (isset($_SESSION["kosar"])): ?>
+                <form method="post" action="<?=$_SERVER["PHP_SELF"]?>" id="reserveform">
+                    <input type="hidden" name="submittedForm" value="true">
+                    <?php $orderNum=0;?>
+                    <?php foreach ($_SESSION["kosar"] as $key => $elem): ?>
+                        <?php $orderNum++; ?>
+                        <details id="details_<?=$orderNum?>" <?php if ($elem == array_values($_SESSION["kosar"])[0]) echo "open"?>>
+                            <summary><?=$orderNum?>. foglalás: <?=$elem["nev"]?></summary>
+                            <section>
+                                    <?php 
+                                        //API meghívása
+                                        $url = "http://".$_SERVER['HTTP_HOST'].implode("/",array_map('rawurlencode',explode("/",dirname($_SERVER['SCRIPT_NAME'])."/api.php")))."?csomagid=".$elem["id"];
+                                        $data = json_decode(file_get_contents($url), true);
+                                    ?>
+                                    <h3>Utzazás adatai</h3>
+                                    <p>Kérjük adja meg az utazás (csomag) adatait.</p>
                                     <div class="form-group">
-                                        <label for="<?=$key?>_utas<?=$i?>_nev">Név:</label>
-                                        <input required type="text" id="<?=$key?>_utas<?=$i?>_nev" name="<?=$key?>_utas<?=$i?>_nev">
+                                        <label for="<?=$key?>_kezd">Adja meg a foglalás kezdeti dátumát:</label>
+                                        <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$key?>); setDateBoundaries(<?=$key?>)' type="date" id="<?=$key?>_kezd" name="<?=$key?>_kezd" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="<?=$key?>_utas<?=$i?>_lakcim">Lakcím:</label>
-                                        <input required type="text" id="<?=$key?>_utas<?=$i?>_lakcim" name="<?=$key?>_utas<?=$i?>_lakcim">
+                                        <label for="<?=$key?>_vege">Adja meg a foglalás végének dátumát:</label>
+                                        <input onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$key?>); setDateBoundaries(<?=$key?>)' type="date" id="<?=$key?>_vege" name="<?=$key?>_vege" min=<?=$data["kezdido"]?> max="<?=$data["vegido"]?>" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Születési dátum:</label>
-                                        <input required type="date" id="<?=$key?>_utas<?=$i?>_szul" name="<?=$key?>_utas<?=$i?>_szul">
+                                        <label for="<?=$key?>_jarmu">Válassza ki az utazáshoz igénybe venni kívánt járművet:</label>
+                                        <select id="<?=$key?>_jarmu" onchange='kiszamolAr(<?=$data["csomagar"]?>, <?=$elem["fo"]?>, <?=$key?>)'>
+                                            <?php foreach ($data["jarmuvek"] as $jarmu):?>
+                                                <!--itt a jármű ára a value, mert majd ezzel lesz a teljes fizetendő kiszámolva-->
+                                                <option value="<?=$jarmu["ar"]?>"><?=$jarmu["nev"]?> (<?=$jarmu["ar"]?> kobalt/fő, <?=$jarmu["osztaly"]?>. osztály, <?php echo $jarmu["fekvohely"]==1 ? "van" : "nincs"?> fekvőhely)</option>
+                                            <?php endforeach;?>
+                                        </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="<?=$key?>_utas<?=$i?>_nem">Nem:</label>
-                                        <input required type="text" id="<?=$key?>_utas<?=$i?>_nem" name="<?=$key?>_utas<?=$i?>_nem">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="<?=$key?>_utas<?=$i?>_nem">Telefon:</label>
-                                        <input required type="tel" id="<?=$key?>_utas<?=$i?>_tel" name="<?=$key?>_utas<?=$i?>_tel">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="<?=$key?>_utas<?=$i?>_nem">E-mail:</label>
-                                        <input required type="email" id="<?=$key?>_utas<?=$i?>_email" name="<?=$key?>_utas<?=$i?>_email">
-                                    </div>
-                                <?php endfor;?>
-                            <?php if ($elem != end($_SESSION["kosar"])):?>
-                            <button class="btn btn-blue btn-auto-hover" type="button" onclick='changeDetails(<?=$orderNum?>, <?=$orderNum+1?>)'>Következő foglalás <i class="fa-solid fa-circle-chevron-down"></i></button>
-                            <?php endif;?>
-                        </section>
-                    </details>
-                <?php endforeach; ?>
-                <button class="btn" onclick="document.getElementById('reserveform').submit();">Foglalás véglegesítése <i class="fa-solid fa-circle-check"></i></button>       
-            </form>
-        <?php else: ?>
-            <p>Még nem tett semmit a kosárba. <a href="index#csomagok.php">Ide kattintva</a> teheti ezt meg.</p>
-        <?php endif; ?>
+                                    <p><span id="<?=$key?>" class="price">Nincs elegendő adat az foglalás árának kiszámításához.</span></p>
+                                    <input type="hidden" name="<?=$key?>_ar" id="<?=$key?>_ar" value="0">
+                                    <h3>Utasok adatai</h3>
+                                    <p>Kérjük adja meg az utasok szükséges adatait.</p>
+                                    <input type="hidden" id="<?=$key?>_fo" name="<?=$key?>_fo" value="<?=$elem["fo"]?>">
+                                    <?php for ($i = 1; $i <= $elem["fo"]; $i++):?>
+                                        <h4><?=$i?>. utas</h4>
+                                        <div class="form-group">
+                                            <label for="<?=$key?>_utas<?=$i?>_nev">Név:</label>
+                                            <input required type="text" id="<?=$key?>_utas<?=$i?>_nev" name="<?=$key?>_utas<?=$i?>_nev">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="<?=$key?>_utas<?=$i?>_lakcim">Lakcím:</label>
+                                            <input required type="text" id="<?=$key?>_utas<?=$i?>_lakcim" name="<?=$key?>_utas<?=$i?>_lakcim">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Születési dátum:</label>
+                                            <input required type="date" id="<?=$key?>_utas<?=$i?>_szul" name="<?=$key?>_utas<?=$i?>_szul">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="<?=$key?>_utas<?=$i?>_nem">Nem:</label>
+                                            <input required type="text" id="<?=$key?>_utas<?=$i?>_nem" name="<?=$key?>_utas<?=$i?>_nem">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="<?=$key?>_utas<?=$i?>_nem">Telefon:</label>
+                                            <input required type="tel" id="<?=$key?>_utas<?=$i?>_tel" name="<?=$key?>_utas<?=$i?>_tel">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="<?=$key?>_utas<?=$i?>_nem">E-mail:</label>
+                                            <input required type="email" id="<?=$key?>_utas<?=$i?>_email" name="<?=$key?>_utas<?=$i?>_email">
+                                        </div>
+                                    <?php endfor;?>
+                                <?php if ($elem != end($_SESSION["kosar"])):?>
+                                <button class="btn btn-blue btn-auto-hover" type="button" onclick='changeDetails(<?=$orderNum?>, <?=$orderNum+1?>)'>Következő foglalás <i class="fa-solid fa-circle-chevron-down"></i></button>
+                                <?php endif;?>
+                            </section>
+                        </details>
+                    <?php endforeach; ?>
+                    <button class="btn" onclick="document.getElementById('reserveform').submit();">Foglalás véglegesítése <i class="fa-solid fa-circle-check"></i></button>       
+                </form>
+            <?php else: ?>
+                <p>Még nem tett semmit a kosárba. <a href="index#csomagok.php">Ide kattintva</a> teheti ezt meg.</p>
+            <?php endif; ?>
+        </section>
     </main>
     <footer class="dark-blur">
         <section>

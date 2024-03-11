@@ -64,8 +64,9 @@
             <a href="#" class="btn btn-dark mobile-btn" onclick="toggleNav();"><i class="fa fa-bars"></i></a>
         </div>
       
-        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
         <a class="navlink" href="index.php#rolunk">Rólunk</a>
+        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
+        <a class="navlink" href="index.php#bovebben" data-active="true">Részletek</a>
         <a class="navlink" href="index.php#kapcsolat">Kapcsolat</a>
         <a class="btn pc-btn btn-auto-hover" href="./index.php">Vissza <i class="fa-solid fa-circle-chevron-left"></i></a>
     </nav>
@@ -144,8 +145,9 @@
     <footer class="dark-blur">
         <section>
             <h3>Nav</h3>
-            <a href="index.php#csomagok">Csomagok</a>
-            <a href="index.php#rolunk">Rólunk</a>
+            <a class="navlink" href="index.php#rolunk">Rólunk</a>
+            <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
+            <a class="navlink" href="index.php#bovebben" data-active="true">Részletek</a>
             <a href="index.php#kapcsolat">Kapcsolat</a>
             <a class="btn pc-btn btn-auto-hover" href="./cart.php">Kosár <i class="fa-solid fa-cart-shopping"></i></a>
         </section>

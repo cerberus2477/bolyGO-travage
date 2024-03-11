@@ -1,17 +1,23 @@
 SZÁMLA
 ------
-VÉGÖSSZEG: 172600 KOBALT
-Foglalások száma: 2
+VÉGÖSSZEG: 0 KOBALT
+Foglalások száma: 3
 Részletek:
 1. csomag:
-- Csomag neve: Aranyföldi Kalandok
-- Lefoglalt napok: 2492-08-03 - 2492-08-10
+- Csomag neve: Cadia eleste
+- Lefoglalt napok:  - 
 - Utazók száma: 1
-- Úticél: Aranyföld
-- Csomagért fizetendő: 151600 kobalt.
+- Úticél: Cadia
+- Csomagért fizetendő: 0 kobalt.
 2. csomag:
-- Csomag neve: MEOW
-- Lefoglalt napok: 2024-03-10 - 2024-03-17
+- Csomag neve: Mélymerülés nautica alatt
+- Lefoglalt napok:  - 
 - Utazók száma: 1
-- Úticél: MEOW
-- Csomagért fizetendő: 21000 kobalt.
+- Úticél: Palnet 4546B
+- Csomagért fizetendő: 0 kobalt.
+3. csomag:
+- Csomag neve: Mélymerülés nautica alatt
+- Lefoglalt napok:  - 
+- Utazók száma: 1
+- Úticél: Palnet 4546B
+- Csomagért fizetendő: 0 kobalt.
