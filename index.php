@@ -77,8 +77,8 @@
     <main id="index-main">
         <section id=rolunk>
             <h2>Rólunk <i class="fa-solid fa-user-astronaut"></i></h2>
-            <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis, quos.</p>
+           <!-- <p>Utaztatunk and shit és nagyon szuperek vagyunk. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Blanditiis, quos.</p> -->
             <div class="card-container rolunk-cards">
                 <div class="card" data-color="green">
                     <img class="small-card-img" src="styles/img/sityu.jpg" alt="Sityu">
