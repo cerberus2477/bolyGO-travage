@@ -155,6 +155,7 @@ nav {
 nav[data-scrolled="true"] {
     background-color: var(--clr-alpha-black);
     backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
 }
 
 .logo {
@@ -497,7 +498,7 @@ span.price {
     transform: translateY(-50%);
     right: 2rem;
     width: 50%;
-    z-index: 3;
+    z-index: 6;
 }
 
 
@@ -521,6 +522,7 @@ footer {
 .dark-blur {
     background-color: var(--clr-alpha-black);
     backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
 }
 
 .full-width {
@@ -562,7 +564,7 @@ footer {
     color: var(--clr-pink);
 }
 
-.btn-delete i{
+.btn-delete i, .btn-control i{
     font-size: 200%;
 }
 
@@ -634,6 +636,21 @@ summary{
 /* BOVEBBEN SECTION -------------------------------------------------------------------------------------------- */
 section#bovebben {
     max-width: 100%;
+    background-size: cover;
+    z-index: 10;
+}
+
+section#bovebben::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-alpha-black);
+    backdrop-filter: blur(calc(var(--blur)*2));
+    -webkit-backdrop-filter: blur(calc(var(--blur)*2));
+    z-index: 1;
 }
 
 .bovebben-content{

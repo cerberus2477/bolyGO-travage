@@ -5,6 +5,7 @@ const planet = document.querySelector('.scrolling-planet');
 const headerContent = document.querySelector('.header-content');
 const cards = document.querySelectorAll('.card');
 const bigCards = document.querySelectorAll('.big-card');
+const bovebben = document.getElementById('bovebben');
 let pxScrolled;
 
 // görgetésre változó dolgok ------------------------------------------------------------------------------------
@@ -92,6 +93,7 @@ function showNextCard() {
     bigCards[currentIndex].classList.add('card-hidden');
     currentIndex = (currentIndex + 1) % bigCards.length;
     bigCards[currentIndex].classList.remove('card-hidden');
+    changeBgImg();
 }
 
 function showPrevCard() {
@@ -99,6 +101,7 @@ function showPrevCard() {
     currentIndex = (currentIndex - 1 + bigCards.length) % bigCards.length;
     // ugyanaz mint currentIndex = currentIndex === 0 ? cards.length - 1 : currentIndex - 1;
     bigCards[currentIndex].classList.remove('card-hidden');
+    changeBgImg();
 }
 
 function jumpTo(csomagid) {
@@ -106,5 +109,16 @@ function jumpTo(csomagid) {
     let currentCard = document.querySelector(`.big-card[data-csomagid="${csomagid}"]`);
     currentCard.classList.remove('card-hidden');
     currentIndex = [].indexOf.call(bigCards, currentCard);
+    changeBgImg();
     document.getElementById("bovebben").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+}
+
+function changeBgImg() {
+    const visibleBigCardImg = document.querySelector('.big-card:not(.card-hidden) .big-card-img');
+    if (visibleBigCardImg) {
+        const imgUrl = visibleBigCardImg.getAttribute('src');
+        bovebben.style.backgroundImage = `url('${imgUrl}')`;
+        bovebben.style.backgroundColor = 'var(--clr-alpha-black)'; // Set background color
+        bovebben.style.backdropFilter = 'blur(var(--blur))'; // Set backdrop filter
+    }
 }

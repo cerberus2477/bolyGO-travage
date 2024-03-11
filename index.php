@@ -148,7 +148,7 @@
             </div>
         </section>
 
-        <section id="bovebben" class="dark-blur">
+        <section id="bovebben">
             <div class="bovebben-content">
                 <h2>Tudj meg többet a csomagról</h2>
                 <div>
