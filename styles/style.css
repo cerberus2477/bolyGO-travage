@@ -160,7 +160,7 @@ nav[data-scrolled="true"] {
 
 .logo {
     margin-right: auto;
-    height: min(2rem, 100%);
+    height: 2rem;
     display: block !important;
 }
 
@@ -387,12 +387,41 @@ h2::after {
 }
 
 
-/* bovebben */
+/* BOVEBBEN SECTION -------------------------------------------------------------------------------------------- */
+section#bovebben {
+    max-width: 100%;
+    background-size: cover;
+    z-index: 10;
+}
+
+section#bovebben::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-alpha-black);
+    backdrop-filter: blur(calc(var(--blur)*2));
+    -webkit-backdrop-filter: blur(calc(var(--blur)*2));
+    z-index: 1;
+}
+
+.bovebben-content {
+    max-width: 1800px;
+    margin-inline: auto;
+}
 
 .big-card {
-    width: 100%;
     display: flex;
     flex-direction: row;
+    flex: 0 0 auto;
+    width: calc(100% - 2rem);
+    background-color: var(--clr-alpha-black);
+}
+
+.big-card *{
+    z-index: 6;
 }
 
 .big-card .card-content {
@@ -432,6 +461,10 @@ span.price {
     color: var(--text-color);
 }
 
+.bovebben-content>div {
+    display: flex;
+}
+
 
 /* nem az aktuális kártya eltüntetéséhez */
 .card-hidden {
@@ -442,7 +475,7 @@ span.price {
 }
 
 
-/* form dolgok ---------------------------------------------------------------------------------------------------------------------------*/
+/* form dolgok (kapcsolat) --------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -502,8 +535,7 @@ span.price {
 }
 
 
-
-/* SECTIONS --------------------------------------------------------------------------------------------------------------------- */
+/* SECTIONS ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 section {
     padding: 7rem;
     max-width: 1800px;
@@ -515,9 +547,7 @@ footer {
     justify-content: space-around;
 }
 
-.bovebben-content>div{
-    display: flex;
-}
+
 
 .dark-blur {
     background-color: var(--clr-alpha-black);
@@ -530,7 +560,7 @@ footer {
 }
 
 
-/* containers */
+/* containers ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -544,7 +574,6 @@ footer {
 
 .csomag-cards {
     justify-content: center;
-    align-items: top;
 }
 
 
@@ -558,7 +587,7 @@ footer {
     color: var(--clr-pink);
 }
 
-/* cart */
+/* cart.php ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 .btn-delete {
     background-color: transparent;
     color: var(--clr-pink);
@@ -606,16 +635,15 @@ footer {
     flex-direction: column;
 }
 
-/* reserve */
+/* reserve.php */
 summary{
     background-color: var(--clr-black-light);
     padding: .5rem;
     border-radius: var(--border-radius);
 }
 
-/* receipt */
 
-/* receipt.txt */
+/* receipt.php --------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .receipt-txt{
     background-color: var(--clr-black-light);
     border-radius: var(--border-radius-big);
@@ -623,50 +651,16 @@ summary{
 
 
 
-
-
-
-
-
-
-/* MAIN ------------------------------------------------------------------------------------------------------ */
-
-
-
-/* BOVEBBEN SECTION -------------------------------------------------------------------------------------------- */
-section#bovebben {
-    max-width: 100%;
-    background-size: cover;
-    z-index: 10;
-}
-
-section#bovebben::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--clr-alpha-black);
-    backdrop-filter: blur(calc(var(--blur)*2));
-    -webkit-backdrop-filter: blur(calc(var(--blur)*2));
-    z-index: 1;
-}
-
-.bovebben-content{
-    max-width: 1800px;
-    margin-inline: auto;
-}
-
-
-.big-card {
-    flex: 0 0 auto;
-    width: calc(100% - 2rem);
-}
-
+/* Media querik -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 @media screen and (max-width: 1500px) {
     .card.big-card {
         flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .logo {
+       height: 100%;
     }
 }
 

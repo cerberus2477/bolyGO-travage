@@ -54,7 +54,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foglalás ✦ bolyGO</title>
-    <link rel="shortcut icon favicon" href="styles/img/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon favicon" href="styles/img/logo_ikon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/reserve.css">
     <script defer src="https://kit.fontawesome.com/af2e246792.js" crossorigin="anonymous"></script>
@@ -72,8 +72,8 @@
         </div>
       
         <a class="navlink" href="index.php#rolunk">Rólunk</a>
-        <a class="navlink" href="index.php#csomagok" data-active="true">Csomagok</a>
-        <a class="navlink" href="index.php#bovebben" data-active="true">Részletek</a>
+        <a class="navlink" href="index.php#csomagok">Csomagok</a>
+        <a class="navlink" href="index.php#bovebben">Részletek</a>
         <a class="navlink" href="index.php#kapcsolat">Kapcsolat</a>
         <a class="btn pc-btn btn-auto-hover" href="./cart.php">Vissza <i class="fa-solid fa-circle-chevron-left"></i></a>
     </nav>

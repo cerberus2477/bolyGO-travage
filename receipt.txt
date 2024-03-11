@@ -1,11 +1,23 @@
 SZÁMLA
 ------
-VÉGÖSSZEG: 11800 KOBALT
-Foglalások száma: 1
+VÉGÖSSZEG: 0 KOBALT
+Foglalások száma: 3
 Részletek:
 1. csomag:
-- Csomag neve: Nautica alatti jégparty
-- Lefoglalt napok: 2286-08-18 - 2286-08-23
+- Csomag neve: Cadia eleste
+- Lefoglalt napok:  - 
+- Utazók száma: 1
+- Úticél: Cadia
+- Csomagért fizetendő: 0 kobalt.
+2. csomag:
+- Csomag neve: Mélymerülés nautica alatt
+- Lefoglalt napok:  - 
 - Utazók száma: 1
 - Úticél: Palnet 4546B
-- Csomagért fizetendő: 11800 kobalt.
+- Csomagért fizetendő: 0 kobalt.
+3. csomag:
+- Csomag neve: Mélymerülés nautica alatt
+- Lefoglalt napok:  - 
+- Utazók száma: 1
+- Úticél: Palnet 4546B
+- Csomagért fizetendő: 0 kobalt.

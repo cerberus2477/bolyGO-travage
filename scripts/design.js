@@ -31,7 +31,23 @@ window.onscroll = function () {
 
             // ha a megfelelő section tetejénél lejjebb tekertünk de az aljáig meg nem "active" lesz az arra mutató menüpont
             link.dataset.active = section.offsetTop <= pxScrolled && section.offsetTop + section.offsetHeight > pxScrolled;
+            // menüpontra kattintásra kicsit feljebb görget mint magától tenné, így a navbar nem takarja ki a rész tetejét
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('href').substring(1);
+                    const section = document.getElementById(sectionId);
+
+                    window.scrollTo({
+                        top: section.offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            });
         });
+    }
+    else{
+
     }
 }
 
@@ -42,24 +58,7 @@ const toggleNav = () => {
 }
 
 
-// menüpontra kattintásra kicsit feljebb görget mint magától tenné, így a navbar nem takarja ki a rész tetejét
-// navLinks.forEach(link => {
-//     link.addEventListener('click', function (e) {
-//         e.preventDefault();
-//         const sectionId = link.getAttribute('href').substring(1);
-//         const section = document.getElementById(sectionId);
-
-//         window.scrollTo({
-//             top: section.offsetTop,
-//             behavior: 'smooth'
-//         });
-//     });
-// });
-
-
-
-
-
+// kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
 // minden nagy kártya ugyanolyan színű mint a megfelelő kis kártya
 bigCards.forEach(bigCard => {
     const csomagId = bigCard.dataset.csomagid;
@@ -70,10 +69,11 @@ bigCards.forEach(bigCard => {
     });
 });
     
-// kártyák szinezése (hover és hover nélkül) data-color alapján-------------------------------------------------------------------------------------------------------
+//css változó állítása data-colorra, ha nincs megadva fehérre
 cards.forEach(card => {
     const color = card.dataset.color || 'white';
     card.style.setProperty('--accent-color', `var(--clr-${color})`);
+    //nem világos háttérszínen sötét helyett fehér a szöveg
     const lightColors = ['teal', 'green', 'yellow'];
     if (!lightColors.includes(color)) {
         card.style.setProperty('--text-color', `var(--clr-white)`);
